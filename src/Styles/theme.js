@@ -30,10 +30,11 @@ const FONT_SIZE = {
 };
 
 const FONT_WEIGHT = {
-	light: '100',
-	regular: '400',
-	medium: '500',
-	bold: '700',
+	extraLight: 'Pretendard-ExtraLight',
+	light: 'Pretendard-Light',
+	regular: 'Pretendard-Regular',
+	medium: 'Pretendard-Medium',
+	bold: 'Pretendard-Bold',
 };
 
 const theme = {

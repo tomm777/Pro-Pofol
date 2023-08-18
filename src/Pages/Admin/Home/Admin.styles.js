@@ -14,4 +14,8 @@ const PaginationWrap = styled.div`
 	text-align: center;
 	margin-top: 30px;
 `;
-export { AdminContent, PaginationWrap };
+const Removetag = styled.a`
+	vertical-align: middle;
+	color: black;
+`;
+export { AdminContent, PaginationWrap, Removetag };

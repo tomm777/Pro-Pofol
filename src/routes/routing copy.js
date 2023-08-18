@@ -5,7 +5,7 @@ import Home from '../Pages/Home/Home';
 import AdminCategory from '../Pages/Admin/Category/AdminCategory';
 import AdminHome from '../Pages/Admin/Home/Admin';
 import AdminLayout from '../Components/Admin';
-import Portfolio from '../pages/PofolReview/PofolReview';
+import AdminMentorApply from '../Pages/Admin/MentorApply/AdminMentorApply';
 
 const router = createBrowserRouter([
 	{
@@ -16,10 +16,6 @@ const router = createBrowserRouter([
 				path: '',
 				element: <Home />,
 			},
-			{
-				path: 'portfolio',
-				element: <Portfolio />,
-			},
 		],
 	},
 	{
@@ -27,12 +23,16 @@ const router = createBrowserRouter([
 		element: <AdminLayout />,
 		children: [
 			{
-				path: '',
+				path: 'user',
 				element: <AdminHome />,
 			},
 			{
 				path: 'category',
 				element: <AdminCategory />,
+			},
+			{
+				path: 'mentorapply',
+				element: <AdminMentorApply />,
 			},
 		],
 	},

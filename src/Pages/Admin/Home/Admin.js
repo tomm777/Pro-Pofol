@@ -1,10 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Layout, Menu, Space, theme } from 'antd';
+import { Space, theme } from 'antd';
 import AdminTable from '../../../Components/Admin/Table/AdminTable';
-import { AdminContent } from './Admin.styles';
+import { AdminContent, Removetag } from './Admin.styles';
+import Searchbar from '../../../Components/Admin/Searchbar/Searchbar';
 const AdminHome = () => {
-	console.log('HOME');
 	const data = [
 		{
 			key: '1',
@@ -69,7 +68,9 @@ const AdminHome = () => {
 			key: 'action',
 			render: (_, record) => (
 				<Space size="middle">
-					<a onClick={() => removeHandler(record.key)}>삭제</a>
+					<Removetag onClick={() => removeHandler(record.key)}>
+						삭제
+					</Removetag>
 				</Space>
 			),
 		},
@@ -80,10 +81,10 @@ const AdminHome = () => {
 	}));
 	const [tableData, setTableData] = useState(modifiedData);
 
-	useEffect(() => {
-		console.log('RENDER');
-		// setTableData(modifiedData);
-	}, [data]);
+	// useEffect(() => {
+	// 	console.log('RENDER');
+	// 	// setTableData(modifiedData);
+	// }, [data]);
 
 	const removeHandler = key => {
 		console.log(key);
@@ -96,55 +97,56 @@ const AdminHome = () => {
 
 	return (
 		<AdminContent background={colorBgContainer}>
+			<Searchbar />
 			<AdminTable
 				columns={columns}
 				dataSource={tableData}
 				totalPages={0}
 			/>
 		</AdminContent>
-
-		// <Layout
-		// 	style={{
-		// 		textAlign: 'center',
-		// 		background: colorBgContainer,
-		// 		backgroundColor: 'red',
-		// 	}}
-		// 	>
-		// 	</Layout>
-		// <AdminContent
-		// 	style={{
-		// 		// margin: '24px 16px',
-		// 		overflow: 'initial',
-		// 	}}
-		// >
-		// 	<div
-		// 		style={{
-		// 			padding: 24,
-		// 			textAlign: 'center',
-		// 			// background: colorBgContainer,
-		// 		}}
-		// 	>
-		// 		{/* {currentView} */}
-		// 		<AdminTable
-		// 			columns={columns}
-		// 			dataSource={data}
-		// 			totalPages={totalPages}
-		// 		/>
-		// 	</div>
-		// </AdminContent>
-
-		// <Layout>
-		// 	{/* <Layout
-		// 		className="site-layout"
-		// 		style={{
-		// 			marginLeft: 20,
-		// 			marginTop: 80,
-		// 			width: '100px',
-		// 		}}
-		// 	>
-
-		// 	</Layout> */}
-		// </Layout>
 	);
 };
 export default AdminHome;
+
+// <Layout
+// 	style={{
+// 		textAlign: 'center',
+// 		background: colorBgContainer,
+// 		backgroundColor: 'red',
+// 	}}
+// 	>
+// 	</Layout>
+// <AdminContent
+// 	style={{
+// 		// margin: '24px 16px',
+// 		overflow: 'initial',
+// 	}}
+// >
+// 	<div
+// 		style={{
+// 			padding: 24,
+// 			textAlign: 'center',
+// 			// background: colorBgContainer,
+// 		}}
+// 	>
+// 		{/* {currentView} */}
+// 		<AdminTable
+// 			columns={columns}
+// 			dataSource={data}
+// 			totalPages={totalPages}
+// 		/>
+// 	</div>
+// </AdminContent>
+
+// <Layout>
+// 	{/* <Layout
+// 		className="site-layout"
+// 		style={{
+// 			marginLeft: 20,
+// 			marginTop: 80,
+// 			width: '100px',
+// 		}}
+// 	>
+
+// 	</Layout> */}
+// </Layout>

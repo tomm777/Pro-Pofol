@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
 	AuditOutlined,
 	FormOutlined,
@@ -7,11 +7,42 @@ import {
 	TagsOutlined,
 	TeamOutlined,
 } from '@ant-design/icons';
-import { Layout, Menu, Space, theme } from 'antd';
+import { Menu, theme } from 'antd';
 import { AdminSider, LogoBox } from './Sidebar.styles';
-import AdminTable from '../../Table/AdminTable';
 
 const Sidebar = () => {
+	const location = useLocation();
+	const url = location.pathname.split('/');
+	const formUrl = url[url.length - 1];
+	const tab =
+		formUrl.charAt(0).toUpperCase() + formUrl.slice(1).toLowerCase();
+	console.log(tab);
+	// console.log(tab);
+	// const pathCheck = name => {
+	// 	console.log(name);
+	// 	switch (name) {
+	// 		case 'user':
+	// 			tab = 'User';
+	// 			break;
+	// 		case 'Mentorapply':
+	// 			tab = 'Mentor Apply';
+	// 			break;
+	// 		case 'Category':
+	// 			tab = 'Category';
+	// 			break;
+	// 		case 'studyboard':
+	// 			tab = 'Study/Project';
+	// 			break;
+	// 		case 'mentorboard':
+	// 			tab = 'Mentor Board';
+	// 			break;
+
+	// 		default:
+	// 			break;
+	// 	}
+	// };
+	// pathCheck(tab);
+
 	const navigate = useNavigate();
 	// Dummy Data
 	const navList = [
@@ -21,15 +52,14 @@ const Sidebar = () => {
 		'Study/Project',
 		'Mentor Baord',
 	];
-	const removeHandler = key => {
-		console.log(key);
-	};
-
-	// useEffect(() => {
-	// 	console.log('render');
-	// }, []);
-	// 총 페이지
-	const totalPages = 100;
+	// url로 넘기기 위한 데이터들
+	const pathName = [
+		'user',
+		'mentorapply',
+		'category',
+		'studyproject',
+		'mentorbaord',
+	];
 	// Sider Nav Tabs
 	const items = [
 		TeamOutlined,
@@ -40,23 +70,20 @@ const Sidebar = () => {
 	].map((icon, index) => ({
 		key: navList[index],
 		icon: React.createElement(icon),
-		label: `${navList[index]}`,
+		label: navList[index],
 	}));
-
-	const [currentView, setCurrentView] = useState('User');
 
 	const {
 		token: { colorBgContainer },
 	} = theme.useToken();
-	const onClickHanlder = e => {
+	const onClickHandler = e => {
+		// url은 소문자
+		console.log(e);
+		// const result = e.key.toLowerCase();
 		// Tabs key로 구분
-		console.log(e.key);
-		// setCurrentView(e.key);
-		if (e.key === 'User') {
-			navigate('/admin');
-			return;
-		}
-		navigate(`/admin/${e.key}`);
+		const result = pathName[navList.indexOf(e.key)]; // pathName에서 해당 탭의 index를 찾아 사용
+		console.log(result);
+		navigate(`/admin/${result}`);
 	};
 
 	return (
@@ -74,10 +101,10 @@ const Sidebar = () => {
 				<Menu
 					theme="light"
 					mode="inline"
-					defaultSelectedKeys={currentView}
+					defaultSelectedKeys={[tab]}
 					items={items}
 					onClick={e => {
-						onClickHanlder(e);
+						onClickHandler(e);
 					}}
 				/>
 			</AdminSider>

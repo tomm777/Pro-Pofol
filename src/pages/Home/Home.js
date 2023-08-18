@@ -1,12 +1,22 @@
 import * as M from './Home.styles';
+import RecommendCard from '../../components/Home/RecommendCard/RecommendCard';
 function Home() {
 	return (
 		<>
 			<M.Wrap>
 				<M.Content>
-					<M.SlideBanner></M.SlideBanner>
+					<M.SlideBanner>
+						<img src="./assets/img/banner/banner01.png"></img>
+					</M.SlideBanner>
 					<M.RecommendedMentor>
 						<M.Title>👀 000님에게 추천하는 멘토</M.Title>
+						<M.RecommendCards>
+							<RecommendCard></RecommendCard>
+							<RecommendCard></RecommendCard>
+							<RecommendCard></RecommendCard>
+							<RecommendCard></RecommendCard>
+							<RecommendCard></RecommendCard>
+						</M.RecommendCards>
 					</M.RecommendedMentor>
 					<M.NewStudy>
 						<M.TitleBox>

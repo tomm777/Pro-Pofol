@@ -8,6 +8,11 @@ import AccountManage from '../pages/MyPage/AccountManage/AccountManage';
 import AccountWithdrawal from '../pages/MyPage/AccountWithdrawal/AccountWithdrawal';
 import MyPageLayout from '../components/MyPage/MyPageLayout/MyPageLayout';
 import MentoringListPage from '../pages/MyPage/Mentor/MentoringList/MentoringListPage';
+import AdminCategory from '../pages/Admin/Category/AdminCategory';
+import AdminHome from '../pages/Admin/Home/Admin';
+import AdminLayout from '../components/Admin';
+import Portfolio from '../pages/PofolReview/PofolReview';
+import StudyPage from '../pages/StudyPage/StudyPage';
 
 const router = createBrowserRouter([
 	{
@@ -43,6 +48,28 @@ const router = createBrowserRouter([
 						element: <AccountWithdrawal />,
 					},
 				],
+			},
+			{
+				path: 'portfolio',
+				element: <Portfolio />,
+			},
+			{
+				path: 'study',
+				element: <StudyPage />,
+			},
+		],
+	},
+	{
+		path: '/admin',
+		element: <AdminLayout />,
+		children: [
+			{
+				path: '',
+				element: <AdminHome />,
+			},
+			{
+				path: 'category',
+				element: <AdminCategory />,
 			},
 		],
 	},

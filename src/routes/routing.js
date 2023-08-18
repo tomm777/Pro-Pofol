@@ -6,6 +6,7 @@ import AdminCategory from '../Pages/Admin/Category/AdminCategory';
 import AdminHome from '../Pages/Admin/Home/Admin';
 import AdminLayout from '../Components/Admin';
 import Portfolio from '../pages/PofolReview/PofolReview';
+import StudyPage from '../pages/StudyPage/StudyPage';
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
 			{
 				path: 'portfolio',
 				element: <Portfolio />,
+			},
+			{
+				path: 'study',
+				element: <StudyPage />,
 			},
 		],
 	},

@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Home from '../pages/Home/Home';
 import Portfolio from '../pages/PofolReview/PofolReview';
-import StudyPage from '../pages/StudyPage/studyPage';
+import StudyPage from '../pages/StudyPage/StudyPage';
 
 const router = createBrowserRouter([
 	{

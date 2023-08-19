@@ -1,6 +1,6 @@
 import * as M from './Home.styles';
-import RecommendCard from '../../components/Home/RecommendCard/RecommendCard';
-import PopularCard from '../../components/Card/Card';
+import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCard';
+import PopularCard from '../../components/common/Card/Card';
 function Home() {
 	return (
 		<>
@@ -9,16 +9,16 @@ function Home() {
 					<M.SlideBanner>
 						<img src="./assets/img/banner/banner01.png"></img>
 					</M.SlideBanner>
-					<M.RecommendedMentor>
+					<M.RecommendMentor>
 						<M.Title>👀 000님에게 추천하는 멘토</M.Title>
 						<M.RecommendCards>
-							<RecommendCard />
-							<RecommendCard />
-							<RecommendCard />
-							<RecommendCard />
-							<RecommendCard />
+							<RecommendCard link="#" />
+							<RecommendCard link="#" />
+							<RecommendCard link="#" />
+							<RecommendCard link="#" />
+							<RecommendCard link="#" />
 						</M.RecommendCards>
-					</M.RecommendedMentor>
+					</M.RecommendMentor>
 					<M.NewStudy>
 						<M.TitleBox>
 							<M.Title>🔥 방금 올라온 스터디/ 프로젝트</M.Title>

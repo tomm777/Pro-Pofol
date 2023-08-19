@@ -20,7 +20,7 @@ export const SlideBanner = styled.div`
 	}
 `;
 
-export const RecommendedMentor = styled.div`
+export const RecommendMentor = styled.div`
 	width: 100%;
 	margin-bottom: 64px;
 `;
@@ -49,6 +49,7 @@ export const ViewAll = styled.a`
 	}
 	font-size: ${({ theme }) => theme.FONT_SIZE.md};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.medium};
+	cursor: pointer;
 `;
 
 export const SlideStudyCard = styled.div`

@@ -16,7 +16,14 @@ function PopularCard() {
 				<S.StackText>React</S.StackText>
 			</S.StackWrapper>
 
-			<S.Person></S.Person>
+			<S.BottomBox>
+				<S.RightBox>
+					<S.Person>150명</S.Person>
+					<S.Position>프론트엔드</S.Position>
+				</S.RightBox>
+
+				<S.Day>마감 10일 전</S.Day>
+			</S.BottomBox>
 		</S.Container>
 	);
 }

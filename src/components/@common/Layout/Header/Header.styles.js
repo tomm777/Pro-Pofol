@@ -3,7 +3,7 @@ import {
 	bodyContainer,
 	flexAlignCenter,
 	flexCenter,
-} from '../../../styles/common';
+} from '../../../../styles/common';
 
 export const Wrapper = styled.div`
 	${bodyContainer}

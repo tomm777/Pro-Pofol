@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../components/common/Layout';
+import Layout from '../components/@common/Layout';
 
 import Home from '../pages/Home/Home';
 
@@ -19,6 +19,7 @@ import Portfolio from '../pages/PofolReview/PofolReview';
 import Apply from '../pages/PofolReview/MentoringApply/MentoringApply';
 
 import StudyPage from '../pages/StudyPage/StudyPage';
+import StudyPost from '../pages/StudyPage/StudyPost/StudyPost';
 
 const router = createBrowserRouter([
 	{

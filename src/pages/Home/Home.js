@@ -11,11 +11,11 @@ function Home() {
 					<M.RecommendedMentor>
 						<M.Title>👀 000님에게 추천하는 멘토</M.Title>
 						<M.RecommendCards>
-							<RecommendCard></RecommendCard>
-							<RecommendCard></RecommendCard>
-							<RecommendCard></RecommendCard>
-							<RecommendCard></RecommendCard>
-							<RecommendCard></RecommendCard>
+							<RecommendCard />
+							<RecommendCard />
+							<RecommendCard />
+							<RecommendCard />
+							<RecommendCard />
 						</M.RecommendCards>
 					</M.RecommendedMentor>
 					<M.NewStudy>
@@ -40,7 +40,7 @@ function Home() {
 						<M.SlideStudyCard></M.SlideStudyCard>
 					</M.NewStudy>
 					<M.PopularMento>
-						{/* <M.Title>✨ 지금 인기 있는 멘토</M.Title> */}
+						<M.Title>✨ 지금 인기 있는 멘토</M.Title>
 					</M.PopularMento>
 				</M.Content>
 			</M.Wrap>

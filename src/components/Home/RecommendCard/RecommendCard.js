@@ -31,7 +31,7 @@ const Position = styled.p`
 	font-weight: 400;
 `;
 
-const WorkingYear = styled.p`
+const Career = styled.p`
 	color: #7d7d7d;
 	font-size: 14px;
 	font-weight: 400;
@@ -46,7 +46,7 @@ RecommendCard.defaultProps = {
 	nickname: '마라탕',
 	company: '네이버',
 	position: '프론트엔드 개발',
-	workingyear: 9,
+	career: 9,
 };
 
 export default function RecommendCard({
@@ -54,7 +54,7 @@ export default function RecommendCard({
 	nickname,
 	company,
 	position,
-	workingyear,
+	career,
 }) {
 	return (
 		<Container>
@@ -62,7 +62,7 @@ export default function RecommendCard({
 			<NickName>{nickname}</NickName>
 			<Company>{company}</Company>
 			<Position>{position}</Position>
-			<WorkingYear>경력 {workingyear}년</WorkingYear>
+			<Career>경력 {career}년</Career>
 		</Container>
 	);
 }

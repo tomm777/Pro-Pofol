@@ -27,7 +27,6 @@ export const RecommendedMentor = styled.div`
 export const RecommendCards = styled.div`
 	width: 100%;
 	display: flex;
-	}
 `;
 export const NewStudy = styled.div`
 	width: 100%;

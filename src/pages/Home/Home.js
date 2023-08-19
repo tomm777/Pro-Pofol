@@ -1,5 +1,6 @@
 import * as M from './Home.styles';
 import RecommendCard from '../../components/Home/RecommendCard/RecommendCard';
+import PopularCard from '../../components/Card/Card';
 function Home() {
 	return (
 		<>
@@ -41,6 +42,12 @@ function Home() {
 					</M.NewStudy>
 					<M.PopularMento>
 						<M.Title>✨ 지금 인기 있는 멘토</M.Title>
+						<M.PopularCards>
+							<PopularCard background="whiteBackground" />
+							<PopularCard background="whiteBackground" />
+							<PopularCard background="whiteBackground" />
+							<PopularCard background="whiteBackground" />
+						</M.PopularCards>
 					</M.PopularMento>
 				</M.Content>
 			</M.Wrap>

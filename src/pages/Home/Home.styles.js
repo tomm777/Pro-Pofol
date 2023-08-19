@@ -44,6 +44,11 @@ export const Title = styled.span`
 `;
 export const ViewAll = styled.a`
 	color: ${({ theme }) => theme.PALETTE.mainColor};
+	> svg {
+		margin-left: 8px;
+	}
+	font-size: ${({ theme }) => theme.FONT_SIZE.md};
+	font-family: ${({ theme }) => theme.FONT_WEIGHT.medium};
 `;
 
 export const SlideStudyCard = styled.div`
@@ -55,4 +60,13 @@ export const SlideStudyCard = styled.div`
 export const PopularMento = styled.div`
 	width: 100%;
 	margin-bottom: 100px;
+`;
+
+export const PopularCards = styled.div`
+	width: 100%;
+	display: flex;
+	gap: 20px;
+	> div {
+		margin-top: 32px;
+	}
 `;

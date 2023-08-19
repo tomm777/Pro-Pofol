@@ -14,9 +14,10 @@ export default function RecommendCard({
 	company,
 	position,
 	career,
+	link,
 }) {
 	return (
-		<R.Container>
+		<R.Container href={link}>
 			<R.ProfileImage src={profileimage} alt="프로필 이미지" />
 			<R.NickName>{nickname}</R.NickName>
 			<R.Company>{company}</R.Company>

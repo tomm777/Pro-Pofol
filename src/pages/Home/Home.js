@@ -1,6 +1,6 @@
 import * as M from './Home.styles';
 import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCard';
-import PopularCard from '../../components/common/Card/Card';
+import PopularCard from '../../components/@common/Card/Card';
 function Home() {
 	return (
 		<>
@@ -12,7 +12,7 @@ function Home() {
 					<M.RecommendMentor>
 						<M.Title>👀 000님에게 추천하는 멘토</M.Title>
 						<M.RecommendCards>
-							<RecommendCard link="#" />
+							<RecommendCard link="https://www.naver.com/" />
 							<RecommendCard link="#" />
 							<RecommendCard link="#" />
 							<RecommendCard link="#" />

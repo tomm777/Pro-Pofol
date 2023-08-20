@@ -3,7 +3,7 @@ import * as H from './StudyInfoCard.styles';
 StudyInfoCard.defaultProps = {
 	category: '스터디',
 	languages: ['React', 'JavaScript', 'Vue'],
-	title: '스터디/프로젝트 이름 들어가는 곳입니다.',
+	title: '성수역 모각코 하실분 구합니다.',
 	numberPeople: '10',
 	position: '프론트엔드',
 	deadline: 2,

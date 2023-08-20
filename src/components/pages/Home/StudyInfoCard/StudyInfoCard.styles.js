@@ -26,7 +26,8 @@ export const Category = styled.p`
 	background-color: #37f;
 	border-radius: 15px;
 	margin-bottom: 16px;
-	display: inline-block;
+	width: 80px;
+	text-align: center;
 `;
 export const Title = styled.p`
 	color: #000;

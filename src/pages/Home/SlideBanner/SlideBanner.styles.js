@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const IndicatorContainer = styled.div`
 	position: absolute;
-	bottom: -16px;
+	bottom: -32px;
 	display: flex;
 	justify-content: center;
 	width: 100%;

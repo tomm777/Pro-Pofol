@@ -3,7 +3,6 @@ import { styled } from 'styled-components';
 export const ButtonBox = styled.div`
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 64px;
 
 	& div {
 		display: flex;
@@ -29,6 +28,6 @@ export const WriteButtons = styled(Buttons)`
 
 	&:hover {
 		color: ${({ theme }) => theme.PALETTE.black};
-		background: ${({ theme }) => theme.PALETTE.white};
+		background: ${({ theme }) => theme.PALETTE.hover};
 	}
 `;

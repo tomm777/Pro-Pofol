@@ -24,7 +24,7 @@ const FONT_SIZE = {
 	xs: '0.75rem', // 12
 	sm: '0.875rem', // 14
 	md: '1rem', // 16
-	big: '1.25rem',
+	big: '1.25rem', // 20
 	lg: '1.5rem', // 24
 	xl: '2.5rem',
 };

@@ -29,7 +29,7 @@ function Portfolio() {
 					</S.MentorCardBox>
 				</div>
 
-				<Line size={'xLarge'} />
+				<Line size={'small'} />
 
 				<S.MentorBox>
 					{/* 모든 멘토 제목 */}

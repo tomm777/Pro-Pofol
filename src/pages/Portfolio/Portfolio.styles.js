@@ -1,12 +1,18 @@
 import styled from 'styled-components';
-import { bodyContainer, flexAlignCenter } from '../../styles/common';
+import {
+	bodyContainer,
+	flexAlignCenter,
+	flexColumn,
+} from '../../styles/common';
 
 export const PortfolioBox = styled.div`
 	${bodyContainer}
+	${flexColumn}
+	gap: 64px;
 `;
 
 export const BannerBox = styled.div`
-	margin: 40px 0 64px 0;
+	margin: 40px 0 0 0;
 `;
 
 export const BannerImage = styled.img`

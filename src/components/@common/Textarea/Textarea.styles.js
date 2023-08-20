@@ -16,6 +16,7 @@ const sizeCSS = {
 
 export const Textarea = styled.textarea`
 	${({ size }) => sizeCSS[size]}
-	border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};
 	padding: 12px;
+	border-radius: 4px;
+	border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};
 `;

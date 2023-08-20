@@ -1,60 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled, { css } from 'styled-components';
-
-const IndicatorContainer = styled.div`
-	position: absolute;
-	bottom: -16px;
-	display: flex;
-	justify-content: center;
-	width: 100%;
-`;
-
-const Indicator = styled.button`
-	width: 8px;
-	height: 8px;
-	margin: 0 5px;
-	padding: 0;
-	background-color: ${({ active }) => (active ? '#3377FF' : '#C8C8C8')};
-	border: 1px solid ${({ active }) => (active ? '#3377FF' : '#C8C8C8')};
-	border-radius: 50%;
-	cursor: pointer;
-	outline: none;
-`;
-
-const SliderContainer = styled.div`
-	position: relative;
-	width: 1080px;
-	height: 300px;
-	margin-bottom: 64px;
-`;
-
-const SliderItem = styled.div`
-	position: absolute;
-	top: 0;
-	left: 100%;
-	display: none;
-	width: 1080px;
-	height: 300px;
-	overflow: hidden;
-	transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-	${({ active }) =>
-		active &&
-		css`
-			left: 0;
-			display: block;
-		`}
-	${({ prev }) =>
-		prev &&
-		css`
-			left: -100%;
-		`}
-
-	img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-`;
+import * as H from './SlideBanner.styles';
 
 const RollingSlider = () => {
 	const images = [
@@ -75,19 +20,19 @@ const RollingSlider = () => {
 	}, [activeIndex, images.length]);
 
 	return (
-		<SliderContainer>
+		<H.SliderContainer>
 			{images.map((src, index) => (
-				<SliderItem
+				<H.SliderItem
 					key={src}
 					active={index === activeIndex}
 					prev={index === prevIndex}
 				>
 					<img src={src} alt={`배너이미지 ${index + 1}`} />
-				</SliderItem>
+				</H.SliderItem>
 			))}
-			<IndicatorContainer>
+			<H.IndicatorContainer>
 				{images.map((_, index) => (
-					<Indicator
+					<H.Indicator
 						key={index}
 						active={index === activeIndex}
 						onClick={() => {
@@ -96,8 +41,8 @@ const RollingSlider = () => {
 						}}
 					/>
 				))}
-			</IndicatorContainer>
-		</SliderContainer>
+			</H.IndicatorContainer>
+		</H.SliderContainer>
 	);
 };
 

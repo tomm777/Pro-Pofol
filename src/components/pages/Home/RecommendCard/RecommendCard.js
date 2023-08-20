@@ -1,4 +1,4 @@
-import * as R from './Recommend.styles';
+import * as H from './Recommend.styles';
 
 RecommendCard.defaultProps = {
 	profileimage: './assets/img/profile/profile.png',
@@ -17,12 +17,12 @@ export default function RecommendCard({
 	link,
 }) {
 	return (
-		<R.Container href={link}>
-			<R.ProfileImage src={profileimage} alt="프로필 이미지" />
-			<R.NickName>{nickname}</R.NickName>
-			<R.Company>{company}</R.Company>
-			<R.Position>{position}</R.Position>
-			<R.Career>경력 {career}년</R.Career>
-		</R.Container>
+		<H.Container href={link}>
+			<H.ProfileImage src={profileimage} alt="프로필 이미지" />
+			<H.NickName>{nickname}</H.NickName>
+			<H.Company>{company}</H.Company>
+			<H.Position>{position}</H.Position>
+			<H.Career>경력 {career}년</H.Career>
+		</H.Container>
 	);
 }

@@ -10,7 +10,6 @@ export const Container = styled.a`
 	border-radius: 10px;
 	border: 1px solid #d2d2d2;
 	background: #fff;
-	margin-left: 20px;
 	margin-top: 32px;
 	cursor: pointer;
 	text-decoration: none;

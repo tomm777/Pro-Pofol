@@ -1,18 +1,21 @@
 import * as M from './Home.styles';
 import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCard';
 import PopularCard from '../../components/@common/Card/Card';
+import RollingSlider from './SlideBanner/SlideBanner';
+
 function Home() {
 	return (
 		<>
 			<M.Wrap>
 				<M.Content>
-					<M.SlideBanner>
+					<RollingSlider />
+					{/* <M.SlideBanner>
 						<img src="./assets/img/banner/banner01.png"></img>
-					</M.SlideBanner>
+					</M.SlideBanner> */}
 					<M.RecommendMentor>
 						<M.Title>👀 000님에게 추천하는 멘토</M.Title>
 						<M.RecommendCards>
-							<RecommendCard link="https://www.naver.com/" />
+							<RecommendCard link="" />
 							<RecommendCard link="#" />
 							<RecommendCard link="#" />
 							<RecommendCard link="#" />

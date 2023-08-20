@@ -10,7 +10,7 @@ export const ButtonBox = styled.div`
 	}
 `;
 
-export const Buttons = styled.button`
+export const Button = styled.button`
 	height: 50px;
 	padding: 10px 50px;
 	border-radius: 100px;
@@ -21,7 +21,7 @@ export const Buttons = styled.button`
 	}
 `;
 
-export const WriteButtons = styled(Buttons)`
+export const WriteButton = styled(Button)`
 	border-radius: 10px;
 	color: ${({ theme }) => theme.PALETTE.white};
 	background: ${({ theme }) => theme.PALETTE.black};

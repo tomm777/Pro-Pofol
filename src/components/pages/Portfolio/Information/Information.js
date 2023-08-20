@@ -1,7 +1,7 @@
 import Select from '../../../@common/Select/Select';
-import * as S from './InfoBox.styles';
+import * as S from './Information.styles';
 
-function InfoBox() {
+function Information() {
 	const OPTIONS = [
 		{ value: 'select', name: '선택' },
 		{ value: 'frontend', name: '프론트엔드 개발' },
@@ -31,4 +31,4 @@ function InfoBox() {
 	);
 }
 
-export default InfoBox;
+export default Information;

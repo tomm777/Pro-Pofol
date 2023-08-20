@@ -1,5 +1,5 @@
-import { Textarea } from '../../../components/@common/Textarea/Textarea.styles';
-import InfoBox from '../../../components/pages/Portfolio/InfoBox/InfoBox';
+import Textarea from '../../../components/@common/Textarea/Textarea';
+import Information from '../../../components/pages/Portfolio/Information/Information';
 import * as S from './PortfolioApply.styles';
 
 function PortfolioApply() {
@@ -13,7 +13,7 @@ function PortfolioApply() {
 				<S.ContentsBox>
 					<span>1. 멘토 님의 기본 정보를 작성해 주세요.</span>
 
-					<InfoBox />
+					<Information />
 				</S.ContentsBox>
 
 				<S.ContentsBox>

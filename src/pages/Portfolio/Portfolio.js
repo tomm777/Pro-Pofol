@@ -1,6 +1,6 @@
 import PopularCard from '../../components/@common/Card/Card';
-import { Line } from '../../components/@common/Line/Line.styles';
-import ButtonBox from '../../components/pages/Portfolio/ButtonBox/ButtonBox';
+import Buttons from '../../components/pages/Portfolio/Buttons/Buttons';
+import Line from '../../components/@common/Line/Line';
 import * as S from './Portfolio.styles';
 
 function Portfolio() {
@@ -12,7 +12,7 @@ function Portfolio() {
 					<S.BannerImage src="./assets/img/banner/banner02.png" />
 				</S.BannerBox>
 
-				<ButtonBox />
+				<Buttons />
 
 				<div>
 					{/* 지금 인기 있는 멘토들 제목 */}

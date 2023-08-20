@@ -2,7 +2,7 @@ import * as H from './Home.styles';
 import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCard';
 import PopularCard from '../../components/@common/Card/Card';
 import RollingSlider from './SlideBanner/SlideBanner';
-import StudyInfoCard from '../../components/pages/Home/StudyInfoCard/StudyInfoCard';
+import StudyInfoCard from '../../components/@common/StudyInfoCard/StudyInfoCard';
 
 function Home() {
 	return (

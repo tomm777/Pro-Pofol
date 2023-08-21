@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 
 const NaverLogin = () => {
 	const { naver } = window;
-	const NAVER_CLIENT_ID = ''; // 발급 받은 Client ID 입력
-	const NAVER_CALLBACK_URL = ''; // 작성했던 Callback URL 입력
+	const NAVER_CLIENT_ID = '2PS45SPgV6uwdkglbWit';
+	const NAVER_CALLBACK_URL = 'http://localhost:3000/signup';
 
 	const initializeNaverLogin = () => {
 		const naverLogin = new naver.LoginWithNaverId({
@@ -32,7 +32,7 @@ const NaverLogin = () => {
 
 	return (
 		<>
-			<div id="naverIdLogin" style={{ display: 'none'}}>
+			<div id="naverIdLogin" style={{ display: 'none' }}>
 				{' '}
 			</div>
 		</>

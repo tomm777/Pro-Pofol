@@ -20,7 +20,11 @@ import PortfolioApply from '../pages/Portfolio/PortfolioApply/PortfolioApply';
 import PortfolioPost from '../pages/Portfolio/PortfolioPost/PortfolioPost';
 
 import StudyPage from '../pages/StudyPage/StudyPage';
-import StudyPost from '../pages/StudyPage/StudyPost/StudyPost';
+import StudyEditPost from '../pages/StudyPage/StudyEditPost/StudyEditPost';
+import StudyPostDetail from '../pages/StudyPage/StudyPostDetail/StudyPostDetail';
+import AdminMentorApply from '../pages/Admin/MentorApply/AdminMentorApply';
+import AdminStudyProject from '../pages/Admin/StudyProject/AdminStudyProject';
+import AdminMentorBoardList from '../pages/Admin/MentorBoardList/AdminMentorBoardList';
 
 const router = createBrowserRouter([
 	{
@@ -69,9 +73,21 @@ const router = createBrowserRouter([
 				path: 'portfolio/post',
 				element: <PortfolioPost />,
 			},
+			// 스터디 프로젝트 페이지
+			// 스터디 페이지 메인
 			{
 				path: 'study',
 				element: <StudyPage />,
+			},
+			// 스터디 게시글 작성
+			{
+				path: 'study/edit',
+				element: <StudyEditPost />,
+			},
+			// 스터디 게시글 상세
+			{
+				path: 'study/detail',
+				element: <StudyPostDetail />,
 			},
 		],
 	},
@@ -80,12 +96,24 @@ const router = createBrowserRouter([
 		element: <AdminLayout />,
 		children: [
 			{
-				path: '',
+				path: 'user',
 				element: <AdminHome />,
 			},
 			{
 				path: 'category',
 				element: <AdminCategory />,
+			},
+			{
+				path: 'mentorapply',
+				element: <AdminMentorApply />,
+			},
+			{
+				path: 'studyproject',
+				element: <AdminStudyProject />,
+			},
+			{
+				path: 'mentorboard',
+				element: <AdminMentorBoardList />,
 			},
 		],
 	},

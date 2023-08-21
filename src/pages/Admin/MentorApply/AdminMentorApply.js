@@ -1,9 +1,13 @@
 import { useState } from 'react';
-import { SearchInput } from '../../../components/Admin/Searchbar/Searchbar.styles';
-import AdminTable from '../../../components/Admin/Table/AdminTable';
-import { AdminContent, Removetag } from '../Home/Admin.styles';
 import { Space, theme } from 'antd';
-import { Atags } from '../Category/AdminCategory.styles';
+import {
+	AdminContent,
+	Removetag,
+} from '../../../components/pages/Admin/Common/Common.styles';
+import AdminTable from '../../../components/pages/Admin/Table/AdminTable';
+import { SearchInput } from '../../../components/pages/Admin/Searchbar/Searchbar.styles';
+import { Atags } from './AdminMentorApply.styles';
+import ApplyModal from '../ApplyModals/ApplyModal';
 
 const AdminMentorApply = () => {
 	const data = [
@@ -91,15 +95,24 @@ const AdminMentorApply = () => {
 		},
 	];
 	// 거절
+	const [isOpen, setIsOpen] = useState(false);
 	const refuseHandler = key => {
+		// Todo
+		// 거절 후 filter로 재배열
+		// 처리한 신청서는 없어져야함
 		console.log(key);
 		// setTableData(data => data.filter(items => items.key !== key));
 	};
 	// 자세히 보기
 	const openApplyModal = () => {
+		setIsOpen(true);
 		console.log('OPEN');
 	};
-	const approveHandler = () => {};
+	const approveHandler = () => {
+		// Todo
+		// 승인 후 filter로 재배열
+		// 처리한 신청서는 없어져야함
+	};
 	const modifiedData = data.map((item, index) => ({
 		...item,
 		key: String(index + 1), // 번호 값을 index로부터 생성
@@ -121,6 +134,7 @@ const AdminMentorApply = () => {
 				dataSource={tableData}
 				totalPages={0}
 			/>
+			{isOpen && <ApplyModal />}
 		</AdminContent>
 	);
 };

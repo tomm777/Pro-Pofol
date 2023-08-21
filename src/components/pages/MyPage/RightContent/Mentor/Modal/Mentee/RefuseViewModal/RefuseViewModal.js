@@ -29,7 +29,7 @@ function RefuseViewModal({ setRefuseViewModalOpenState }) {
 			<RVM.Modal ref={wrapperRef}>
 				<RVM.ModalWrapper>
 					<RVM.InfoWrapper>
-						<RVM.InfoTitle>거절 사유 선택</RVM.InfoTitle>
+						<RVM.InfoTitle>거절 사유</RVM.InfoTitle>
 						<RVM.InfoBox>
 							<RVM.InfoSubTitleBox>
 								<RVM.InfoSubTitle>거절사유</RVM.InfoSubTitle>

@@ -37,9 +37,13 @@ export const Contents = styled.div`
 	font-size: 16px;
 	font-weight: 400;
 	text-align: center;
-	> a > img {
-		width: 100px;
-		margin-bottom: 16px;
+	> button {
+		background: none;
+		cursor: pointer;
+		> img {
+			width: 80px;
+			margin-bottom: 16px;
+		}
 	}
 `;
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as S from './Header.styles';
-import SignupModal from '../../../pages/Home/Modal/SignUpModal';
+import SignupModal from '../../../pages/SignUp/Modal/SignUpModal';
 
 function Header() {
 	const [openModal, setOpenModal] = useState(false);
@@ -27,8 +27,8 @@ function Header() {
 					</S.NavBar>
 
 					<S.LoginBar>
-						<a href="/login">로그인</a>
-						<a onClick={handleSignupClick}>회원가입</a>
+						{/* <a href="/login">로그인</a> */}
+						<a onClick={handleSignupClick}>로그인/회원가입</a>
 						<S.Button>멘토 전환</S.Button>
 					</S.LoginBar>
 				</S.NavBox>

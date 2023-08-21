@@ -15,8 +15,8 @@ function Header() {
 				</S.NavBar>
 
 				<S.LoginBar>
-					<a href="/signup">로그인</a>
-					<a href="/register">회원가입</a>
+					<a href="/login">로그인</a>
+					<a href="/signup">회원가입</a>
 					<S.Button>멘토 전환</S.Button>
 				</S.LoginBar>
 			</S.NavWrapper>

@@ -10,6 +10,7 @@ import AccountManage from '../pages/MyPage/AccountManage/AccountManage';
 import AccountWithdrawal from '../pages/MyPage/AccountWithdrawal/AccountWithdrawal';
 import MyPageLayout from '../components/pages/MyPage/MyPageLayout/MyPageLayout';
 import MentoringListPage from '../pages/MyPage/Mentor/MentoringList/MentoringListPage';
+import SignUp from '../pages/SignUp/SignUp';
 
 import AdminCategory from '../pages/Admin/Category/AdminCategory';
 import AdminHome from '../pages/Admin/Home/Admin';
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
 			{
 				path: 'study',
 				element: <StudyPage />,
+			},
+			{
+				path: 'signup',
+				element: <SignUp />,
 			},
 		],
 	},

@@ -38,7 +38,7 @@ export const InfoWrapper = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 2rem;
+	gap: 2rem;w
 	width: 25rem;
 `;
 
@@ -52,6 +52,7 @@ export const InfoBox = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 2rem;
+	width: 100%;
 `;
 
 export const InfoSubTitleBox = styled.div`

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import * as S from './SignUp.styles';
+import Button from '../../components/@common/Button/Button';
 
 function SignUp() {
 	const [name, setName] = useState('');
@@ -86,7 +87,7 @@ function SignUp() {
 	return (
 		<>
 			<S.Wrap>
-				<S.RegisterForm>
+				<S.RegisterForm onSubmit={handleSubmit}>
 					<p>회원 가입</p>
 					<div>
 						<label>이름</label>
@@ -107,14 +108,17 @@ function SignUp() {
 					<div>
 						<label>직무</label>
 						<select value={position} onChange={handleJobChange}>
-							<option value="">선택</option>
+							<option value="">선택하세요</option>
 							<option value="backend">백엔드 개발자</option>
 							<option value="frontend">프론트엔드 개발자</option>
+							<option value="fullstack">풀스택 개발자</option>
 							<option value="android">안드로이드 개발자</option>
 							<option value="ios">iOS 개발자</option>
 						</select>
 					</div>
-					<button onClick={handleSubmit}>저장</button>
+					<Button variant={'primary'} shape={'default'} size={'big'}>
+						가입완료하기
+					</Button>
 				</S.RegisterForm>
 			</S.Wrap>
 		</>

@@ -4,7 +4,7 @@ import * as H from './Home.styles';
 import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCard';
 import PopularCard from '../../components/@common/Card/Card';
 import RollingSlider from './SlideBanner/SlideBanner';
-import Slider from '../../components/@common/Sllider/Slider';
+import Slider from '../../components/@common/Slider/Slider';
 
 function Home() {
 	const [popularData, setPopularData] = useState([]);

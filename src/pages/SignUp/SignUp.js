@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import * as S from './SignUp.styles';
 import Button from '../../components/@common/Button/Button';
+import Input from '../../components/@common/Input/Input';
 
 function SignUp() {
 	const [name, setName] = useState('');
@@ -88,18 +89,29 @@ function SignUp() {
 					<p>회원 가입</p>
 					<div>
 						<label>이름</label>
-						<input type="text" value={name} readOnly />
+						<Input
+							type="text"
+							value={name}
+							readOnly
+							size={'medium'}
+						/>
 					</div>
 					<div>
 						<label>이메일</label>
-						<input type="text" value={email} readOnly />
+						<Input
+							type="text"
+							value={email}
+							readOnly
+							size={'medium'}
+						/>
 					</div>
 					<div>
 						<label>닉네임</label>
-						<input
+						<Input
 							type="text"
 							value={nickname}
 							onChange={handleNicknameChange}
+							size={'medium'}
 						/>
 					</div>
 					<div>

@@ -126,13 +126,14 @@ function SignUp() {
 						</select>
 					</div>
 					<Button variant={'primary'} shape={'default'} size={'big'}>
-						가입완료하기
+						가입 완료하기
 					</Button>
 				</S.RegisterForm>
 			</S.Wrap>
 		</>
 	);
 }
-// 주석
+// ddsfsdf
+// sdfsdfsd
 
 export default SignUp;

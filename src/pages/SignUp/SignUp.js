@@ -24,12 +24,9 @@ function SignUp() {
 	async function sendCodeToServer(UserCode) {
 		console.log(UserCode);
 		try {
-			const response = await axios.post(
-				'http://localhost:8080/login/naver/callback ',
-				{
-					UserCode,
-				},
-			);
+			const response = await axios.post('http://localhost:8080/signup', {
+				UserCode,
+			});
 			const accessToken = response.data.access_token;
 			console.log('발급된 액세스 토큰:', accessToken);
 		} catch (error) {
@@ -124,6 +121,6 @@ function SignUp() {
 		</>
 	);
 }
-// 주석 처리
+// 주석
 
 export default SignUp;

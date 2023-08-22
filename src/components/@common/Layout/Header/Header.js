@@ -33,7 +33,7 @@ function Header() {
 			</S.NavBox>
 			{openModal && <SignupModal onClose={handleSignupClose} />}
 		</S.Header>
-		// 주석
+
 	);
 }
 

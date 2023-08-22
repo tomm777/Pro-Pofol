@@ -1,42 +1,19 @@
-import { useEffect } from 'react';
+import React from 'react';
 
-const NaverLogin = () => {
-	const { naver } = window;
-	const NAVER_CLIENT_ID = '2PS45SPgV6uwdkglbWit';
-	const NAVER_CALLBACK_URL = 'http://localhost:3000/signup';
+const Naver = () => {
+	const CLIENT_ID = '2PS45SPgV6uwdkglbWit';
+	const CALLBACK_URL = 'http://localhost:3000/signup';
+	const STATE_STRING = 'false';
+	const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${CLIENT_ID}&state=${STATE_STRING}&redirect_uri=${CALLBACK_URL}`;
 
-	const initializeNaverLogin = () => {
-		const naverLogin = new naver.LoginWithNaverId({
-			clientId: NAVER_CLIENT_ID,
-			callbackUrl: NAVER_CALLBACK_URL,
-			isPopup: false,
-			loginButton: { color: 'green', type: 1, height: 58 },
-			callbackHandle: true,
-		});
-		naverLogin.init();
+	const NaverLogin = () => {
+		window.location.href = NAVER_AUTH_URL;
 	};
-
-	const userAccessToken = () => {
-		window.location.href.includes('access_token') && getToken();
-	};
-
-	const getToken = () => {
-		const token = window.location.href.split('=')[1].split('&')[0];
-		console.log(token);
-	};
-
-	useEffect(() => {
-		initializeNaverLogin();
-		userAccessToken();
-	}, []);
-
 	return (
-		<>
-			<div id="naverIdLogin" style={{ display: 'none' }}>
-				{' '}
-			</div>
-		</>
+		<button onClick={NaverLogin}>
+			<img src="./assets/img/icons/naverlogo.png" alt="네이버로고" />
+		</button>
 	);
 };
 
-export default NaverLogin;
+export default Naver;

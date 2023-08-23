@@ -8,6 +8,11 @@ export const CardWrapper = styled.div`
 	align-content: flex-start;
 	row-gap: 1.25rem;
 	flex-wrap: wrap;
+	margin-right: 0.94rem;
+
+	&:nth-child(3n) {
+		margin-right: -1px;
+	}
 `;
 
 export const Wrapper = styled.div`
@@ -17,19 +22,15 @@ export const Wrapper = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	gap: 1rem;
+	gap: 2rem;
 	flex-shrink: 0;
 	border-radius: 0.625rem;
 	background: #e3edff;
 `;
 
 export const Title = styled.div`
-	color: #000;
-	font-family: Pretendard;
-	font-size: 0.75rem;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
+	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+	font-size: ${({ theme }) => theme.FONT_SIZE.xs};
 `;
 
 export const UserBox = styled.div`
@@ -53,22 +54,14 @@ export const UserImage = styled.div`
 `;
 
 export const UserName = styled.div`
-	color: #000;
-	font-family: Pretendard;
-	font-size: 0.875rem;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
+	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 `;
 
 export const ApplicationTitle = styled.div`
 	width: 10rem;
-	color: #000;
-	font-family: Pretendard;
-	font-size: 0.875rem;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
+	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	text-decoration-line: underline;
 `;
 
@@ -94,11 +87,8 @@ export const OneButton = styled.button`
 
 	color: #37f;
 	text-align: center;
-	font-family: Pretendard;
-	font-size: 0.875rem;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
+	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 `;
 
 export const TwoButton = styled.button`
@@ -116,9 +106,11 @@ export const TwoButton = styled.button`
 
 	color: #37f;
 	text-align: center;
-	font-family: Pretendard;
-	font-size: 0.875rem;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
+	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+
+	&:nth-child(2) {
+		color: var(--grey-white, #fff);
+		background: #37f;
+	}
 `;

@@ -22,6 +22,7 @@ export const PopularCard = styled.a`
 	gap: 16px;
 	border-radius: 10px;
 	text-decoration: none;
+	color: ${({ theme }) => theme.PALETTE.black};
 
 	&:visited {
 		color: ${({ theme }) => theme.PALETTE.black};
@@ -70,6 +71,9 @@ export const TitleBox = styled.div`
 	${flexCenter}
 
 	& span {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 		font-family: ${({ theme }) => theme.FONT_WEIGHT.light};
 		color: ${({ theme }) => theme.PALETTE.black};
 	}

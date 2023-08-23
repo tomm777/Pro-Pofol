@@ -47,6 +47,10 @@ const sizeCSS = {
 		padding: 0.8rem 3rem;
 		font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	`,
+	medium: css`
+		padding: 10px 50px;
+		font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+	`,
 	big: css`
 		padding: 1rem 4.25rem;
 		font-size: ${({ theme }) => theme.FONT_SIZE.sm};

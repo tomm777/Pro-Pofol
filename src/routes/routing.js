@@ -4,6 +4,7 @@ import Layout from '../components/@common/Layout';
 
 import Home from '../pages/Home/Home';
 import SignUp from '../pages/SignUp/SignUp';
+import SignUpDone from '../pages/SignUp/SignUpDone/SignUpDone';
 
 import MyPage from '../pages/MyPage/MyPage';
 import MentoringHistory from '../pages/MyPage/Mentor/MentoringHistory/MentoringHistory';
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
 			{
 				path: '/signup',
 				element: <SignUp />,
+			},
+			{
+				path: '/signupdone',
+				element: <SignUpDone />,
 			},
 			{
 				path: 'MyPage',

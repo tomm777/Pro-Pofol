@@ -133,7 +133,5 @@ function SignUp() {
 		</>
 	);
 }
-// ddsfsdf
-// sdfsdfsd
 
 export default SignUp;

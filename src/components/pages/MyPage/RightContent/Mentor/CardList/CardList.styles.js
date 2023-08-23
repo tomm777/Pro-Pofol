@@ -41,6 +41,7 @@ export const Clicked = styled.div`
 	gap: 0.625rem;
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+	cursor: pointer;
 `;
 
 export const NonClicked = styled.div`
@@ -54,6 +55,7 @@ export const NonClicked = styled.div`
 	color: #ccc;
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+	cursor: pointer;
 `;
 
 export const SubContentListBox = styled.div`

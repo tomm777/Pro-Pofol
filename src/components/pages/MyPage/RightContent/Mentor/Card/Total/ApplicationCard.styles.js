@@ -63,6 +63,7 @@ export const ApplicationTitle = styled.div`
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	text-decoration-line: underline;
+	cursor: pointer;
 `;
 
 export const ButtonBox = styled.div`

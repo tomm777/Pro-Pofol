@@ -92,7 +92,7 @@ export const OneButton = styled.button`
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 `;
 
-export const TwoButton = styled.button`
+export const RefuseButton = styled.button`
 	display: flex;
 	width: 6.875rem;
 	height: 1.875rem;
@@ -114,4 +114,24 @@ export const TwoButton = styled.button`
 		color: var(--grey-white, #fff);
 		background: #37f;
 	}
+`;
+
+export const ApplyButton = styled.button`
+	display: flex;
+	width: 6.875rem;
+	height: 1.875rem;
+	padding: 0.3125rem 0.9375rem 0.375rem 0.9375rem;
+	justify-content: center;
+	align-items: center;
+	gap: 0.625rem;
+	border-radius: 0.25rem;
+	border: 1px solid #37f;
+
+	color: var(--grey-white, #fff);
+	background: #37f;
+	cursor: pointer;
+
+	text-align: center;
+	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 `;

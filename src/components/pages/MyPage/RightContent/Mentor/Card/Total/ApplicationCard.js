@@ -10,7 +10,7 @@ import { useRecoilValue } from 'recoil';
 import { mentoringItem } from '../../../../../../../recoil/atoms/myPage/myPage.atom';
 
 // 카드 리스트
-function ApplicationCard({ category }) {
+function ApplicationCard({ categoryKey }) {
 	// 모달창 노출 여부 state
 	const [infoModalOpenState, setInfoModalOpenState] = useState(false);
 	const [editModalOpenState, setEditModalOpenState] = useState(false);
@@ -27,13 +27,16 @@ function ApplicationCard({ category }) {
 		setRefuseModalOpenState(true);
 	};
 
-	const mentoringData = [...useRecoilValue(mentoringItem)];
-	console.log(mentoringData);
+	const mentoringData = useRecoilValue(mentoringItem);
+	const totalData = mentoringData.total;
+	const applyData = mentoringData.apply;
+	const completedData = mentoringData.completed;
+	const refuseData = mentoringData.refuse;
 
 	return (
 		<>
-			{category === 'apply'
-				? mentoringData.map((item, index) => {
+			{categoryKey === 'apply'
+				? applyData.map((item, index) => {
 						return (
 							<CardLayout
 								key={index}
@@ -43,12 +46,12 @@ function ApplicationCard({ category }) {
 								showEditModal={showEditModal}
 								editModalOpenState={editModalOpenState}
 								setEditModalOpenState={setEditModalOpenState}
-								category={category}
+								categoryKey={categoryKey}
 							></CardLayout>
 						);
 				  })
-				: category === 'completed'
-				? mentoringData.map((item, index) => {
+				: categoryKey === 'completed'
+				? completedData.map((item, index) => {
 						return (
 							<CardLayout
 								key={index}
@@ -58,23 +61,23 @@ function ApplicationCard({ category }) {
 								showEditModal={showEditModal}
 								editModalOpenState={editModalOpenState}
 								setEditModalOpenState={setEditModalOpenState}
-								category={category}
+								categoryKey={categoryKey}
 							></CardLayout>
 						);
 				  })
-				: category === 'refuse'
-				? mentoringData.map((item, index) => {
+				: categoryKey === 'refuse'
+				? refuseData.map((item, index) => {
 						return (
 							<CardLayout
 								key={index}
 								showInfoModal={showInfoModal}
 								infoModalOpenState={infoModalOpenState}
 								setInfoModalOpenState={setInfoModalOpenState}
-								category={category}
+								categoryKey={categoryKey}
 							></CardLayout>
 						);
 				  })
-				: mentoringData.map((item, index) => {
+				: totalData.map((item, index) => {
 						return (
 							<CardLayout
 								key={index}
@@ -86,7 +89,7 @@ function ApplicationCard({ category }) {
 								setRefuseModalOpenState={
 									setRefuseModalOpenState
 								}
-								category={category}
+								categoryKey={categoryKey}
 								showEditModal={showEditModal} // 여긴 지워야함
 								editModalOpenState={editModalOpenState} // 여긴 지워야함
 								setEditModalOpenState={setEditModalOpenState} // 여긴 지워야함
@@ -109,7 +112,7 @@ function CardLayout({
 	setInfoModalOpenState,
 	setEditModalOpenState,
 	setRefuseModalOpenState,
-	category,
+	categoryKey,
 }) {
 	return (
 		<CCS.CardWrapper>
@@ -131,7 +134,7 @@ function CardLayout({
 				</CCS.UserBox>
 
 				<CCS.ButtonBox>
-					{category === 'apply' ? (
+					{categoryKey === 'apply' ? (
 						<>
 							<CCS.OneButton onClick={showEditModal}>
 								첨삭하기
@@ -144,7 +147,7 @@ function CardLayout({
 								/>
 							)}
 						</>
-					) : category === 'completed' ? (
+					) : categoryKey === 'completed' ? (
 						<>
 							<CCS.OneButton onClick={showEditModal}>
 								수정하기
@@ -157,7 +160,7 @@ function CardLayout({
 								/>
 							)}
 						</>
-					) : category === 'refuse' ? (
+					) : categoryKey === 'refuse' ? (
 						<>
 							<CCS.OneButton
 								onClick={() => {
@@ -169,9 +172,9 @@ function CardLayout({
 						</>
 					) : (
 						<>
-							<CCS.TwoButton onClick={showRefuseModal}>
+							<CCS.RefuseButton onClick={showRefuseModal}>
 								거절하기
-							</CCS.TwoButton>
+							</CCS.RefuseButton>
 							{refuseModalOpenState && (
 								<RefuseModal
 									setRefuseModalOpenState={
@@ -179,14 +182,13 @@ function CardLayout({
 									}
 								/>
 							)}
-							<CCS.TwoButton
+							<CCS.ApplyButton
 								onClick={() => {
-									showEditModal();
-									console.log('수락하시겠습니까?');
+									alert('수락하시겠습니까?');
 								}}
 							>
 								수락하기
-							</CCS.TwoButton>
+							</CCS.ApplyButton>
 							{editModalOpenState && (
 								<EditViewModal
 									setEditModalOpenState={

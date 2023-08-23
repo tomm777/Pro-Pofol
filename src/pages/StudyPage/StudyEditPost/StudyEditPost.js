@@ -7,8 +7,9 @@ import Select from '../../../components/@common/Select/Select';
 import Button from '../../../components/@common/Button/Button';
 import Textarea from '../../../components/@common/Textarea/Textarea';
 import PostForm from '../../../components/pages/StudyPage/StudyEditPost/PostForm/PostForm';
+import MultiSelectDropdown from '../../../components/pages/StudyPage/StudyEditPost/MultiSelectDropdown/MultiSelectDropdown';
 
-function StudyPost() {
+function StudyEditPost() {
 	const [selectedOptions, setSelectedOptions] = useState({
 		category: 'study',
 		proceed: 'online',
@@ -18,10 +19,19 @@ function StudyPost() {
 		link: '',
 	});
 
+	// 중복 코드?
 	const handleSelectChange = (name, value) => {
 		setSelectedOptions(prevOptions => ({
 			...prevOptions,
 			[name]: value,
+		}));
+	};
+
+	// 중복 코드?
+	const handlePositionsChange = positions => {
+		setSelectedOptions(prevOptions => ({
+			...prevOptions,
+			position: positions,
 		}));
 	};
 
@@ -73,7 +83,11 @@ function StudyPost() {
 						<S.SelectWrapper>
 							<S.SelectBox>
 								<S.SelectTitle>모집 직무</S.SelectTitle>
-								<Select
+								<MultiSelectDropdown
+									onPositionsChange={handlePositionsChange}
+								/>
+
+								{/* <Select
 									options={STUDYOPTIONS.POSITION}
 									size={'large'}
 									font={'regular'}
@@ -84,7 +98,7 @@ function StudyPost() {
 										);
 									}}
 									value={selectedOptions.position}
-								/>
+								/> */}
 							</S.SelectBox>
 
 							<S.SelectBox>
@@ -147,4 +161,4 @@ function StudyPost() {
 	);
 }
 
-export default StudyPost;
+export default StudyEditPost;

@@ -80,54 +80,42 @@ function SignUp() {
 	}
 
 	return (
-		<>
-			<S.Wrap>
-				<S.RegisterForm onSubmit={handleSubmit}>
-					<p>회원 가입</p>
-					<div>
-						<label>이름</label>
-						<Input
-							type="text"
-							value={name}
-							readOnly
-							size={'medium'}
-						/>
-					</div>
-					<div>
-						<label>이메일</label>
-						<Input
-							type="text"
-							value={email}
-							readOnly
-							size={'medium'}
-						/>
-					</div>
-					<div>
-						<label>닉네임</label>
-						<Input
-							type="text"
-							value={nickname}
-							onChange={handleNicknameChange}
-							size={'medium'}
-						/>
-					</div>
-					<div>
-						<label>직무</label>
-						<select value={position} onChange={handleJobChange}>
-							<option value="">선택하세요</option>
-							<option value="backend">백엔드 개발자</option>
-							<option value="frontend">프론트엔드 개발자</option>
-							<option value="fullstack">풀스택 개발자</option>
-							<option value="android">안드로이드 개발자</option>
-							<option value="ios">iOS 개발자</option>
-						</select>
-					</div>
-					<Button variant={'primary'} shape={'default'} size={'big'}>
-						가입 완료하기
-					</Button>
-				</S.RegisterForm>
-			</S.Wrap>
-		</>
+		<S.Wrap>
+			<S.RegisterForm onSubmit={handleSubmit}>
+				<p>회원 가입</p>
+				<div>
+					<label>이름</label>
+					<Input type="text" value={name} readOnly size={'medium'} />
+				</div>
+				<div>
+					<label>이메일</label>
+					<Input type="text" value={email} readOnly size={'medium'} />
+				</div>
+				<div>
+					<label>닉네임</label>
+					<Input
+						type="text"
+						value={nickname}
+						onChange={handleNicknameChange}
+						size={'medium'}
+					/>
+				</div>
+				<div>
+					<label>직무</label>
+					<select value={position} onChange={handleJobChange}>
+						<option value="">선택하세요</option>
+						<option value="backend">백엔드 개발자</option>
+						<option value="frontend">프론트엔드 개발자</option>
+						<option value="fullstack">풀스택 개발자</option>
+						<option value="android">안드로이드 개발자</option>
+						<option value="ios">iOS 개발자</option>
+					</select>
+				</div>
+				<Button variant={'primary'} shape={'default'} size={'big'}>
+					가입 완료하기
+				</Button>
+			</S.RegisterForm>
+		</S.Wrap>
 	);
 }
 

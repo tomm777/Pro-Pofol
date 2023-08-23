@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import UserMentorApply from '../pages/UserMentoApply/UserMentorApply';
 
 const Layout = lazy(() => import('../components/@common/Layout'));
 
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
 			{
 				path: '/signupdone',
 				element: <SignUpDone />,
+			},
+			{
+				path: '/usermentorapply',
+				element: <UserMentorApply />,
 			},
 			{
 				path: 'MyPage',

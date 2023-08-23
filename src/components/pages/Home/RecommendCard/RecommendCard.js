@@ -26,3 +26,4 @@ export default function RecommendCard({
 		</H.Container>
 	);
 }
+// 주석 처리 

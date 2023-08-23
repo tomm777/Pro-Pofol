@@ -33,6 +33,9 @@ const shapeCSS = {
 	default: css`
 		border-radius: 0.25rem;
 	`,
+	medium: css`
+		border-radius: 0.625rem;
+	`,
 	round: css`
 		border-radius: 3.125rem;
 	`,

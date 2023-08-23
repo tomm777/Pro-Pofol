@@ -11,77 +11,77 @@ export const STUDYOPTIONS = {
 	],
 	PROCEED: [
 		{
-			value: 'online', // 소문자로 변경
+			value: 'online',
 			name: '온라인',
 		},
 		{
-			value: 'offline', // 소문자로 변경
+			value: 'offline',
 			name: '오프라인',
 		},
 	],
 	POSITION: [
 		{
-			value: 'frontend', // 소문자로 변경
+			value: 'frontend',
 			name: '프론트엔드',
 		},
 		{
-			value: 'backend', // 소문자로 변경
+			value: 'backend',
 			name: '백엔드',
 		},
 		{
-			value: 'full', // 소문자로 변경
+			value: 'full',
 			name: '웹 풀스택',
 		},
 		{
-			value: 'android', // 소문자로 변경
+			value: 'android',
 			name: '안드로이드',
 		},
 		{
-			value: 'ios', // 소문자로 변경
+			value: 'ios',
 			name: 'ios',
 		},
 	],
 	PERSONNEL: [
 		{
-			value: 'one', // 소문자로 변경
+			value: 'one',
 			name: '1명',
 		},
 		{
-			value: 'two', // 소문자로 변경
+			value: 'two',
 			name: '2명',
 		},
 		{
-			value: 'three', // 소문자로 변경
+			value: 'three',
 			name: '3명',
 		},
 		{
-			value: 'four', // 소문자로 변경
+			value: 'four',
 			name: '4명',
 		},
 		{
-			value: 'five', // 소문자로 변경
+			value: 'five',
 			name: '5명',
 		},
 		{
-			value: 'six', // 소문자로 변경
+			value: 'six',
 			name: '6명',
 		},
 		{
-			value: 'etc', // 소문자로 변경
+			value: 'etc',
 			name: '기타',
 		},
 	],
 	CONTACT: [
 		{
-			value: 'discord', // 소문자로 변경
+			value: 'discord',
 			name: '디스코드',
 		},
 		{
-			value: 'openchat', // 소문자로 변경
+			value: 'openchat',
 			name: '오픈채팅',
 		},
 		{
-			value: 'etc', // 소문자로 변경
+			value: 'etc',
 			name: '기타',
 		},
 	],

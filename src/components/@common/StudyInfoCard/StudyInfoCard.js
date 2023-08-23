@@ -47,3 +47,4 @@ export default function StudyInfoCard({
 		</H.Container>
 	);
 }
+// s주석처리 

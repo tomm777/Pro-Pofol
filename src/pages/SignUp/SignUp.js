@@ -13,40 +13,37 @@ function SignUp() {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const UserCode = new URL(window.location.href).searchParams.get('code');
-		sendCodeToServer(UserCode).then(accessToken => {
-			getUserProfile(accessToken).then(profile => {
-				setName(profile.name);
-				setEmail(profile.email);
-			});
-		});
+		const urlParams = new URLSearchParams(window.location.search);
+		const userCode = urlParams.get('code');
+		if (userCode) {
+			getAccessToken(userCode);
+		}
 	}, []);
 
-	async function sendCodeToServer(UserCode) {
-		console.log(UserCode);
+	async function getAccessToken(userCode) {
 		try {
-			const response = await axios.post('http://localhost:8080/signup', {
-				UserCode,
+			const response = await axios.post('/your-backend-endpoint/token', {
+				code: userCode,
 			});
 			const accessToken = response.data.access_token;
-			console.log('발급된 액세스 토큰:', accessToken);
+			getUserProfile(accessToken);
 		} catch (error) {
 			console.error('액세스 토큰을 받아오는데 실패했습니다.', error);
 		}
 	}
+
 	async function getUserProfile(accessToken) {
 		try {
-			const response = await axios.get(
-				'https://openapi.naver.com/v1/nid/me',
-				{
-					headers: {
-						Authorization: `Bearer ${accessToken}`,
-					},
+			const response = await axios.get('/your-backend-endpoint/user', {
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
 				},
-			);
-			return response.data.response;
+			});
+			const profile = response.data;
+			setName(profile.name);
+			setEmail(profile.email);
 		} catch (error) {
-			console.error('프로필을 가져오는데 실패했습니다.', error);
+			console.error('사용자 프로필을 가져오는데 실패했습니다.', error);
 		}
 	}
 

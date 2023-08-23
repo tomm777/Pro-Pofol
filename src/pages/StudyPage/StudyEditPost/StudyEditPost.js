@@ -86,19 +86,6 @@ function StudyEditPost() {
 								<MultiSelectDropdown
 									onPositionsChange={handlePositionsChange}
 								/>
-
-								{/* <Select
-									options={STUDYOPTIONS.POSITION}
-									size={'large'}
-									font={'regular'}
-									onChange={e => {
-										handleSelectChange(
-											'position',
-											e.target.value,
-										);
-									}}
-									value={selectedOptions.position}
-								/> */}
 							</S.SelectBox>
 
 							<S.SelectBox>

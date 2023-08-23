@@ -9,7 +9,7 @@ function SignUpDone() {
 		<S.Wrap>
 			<S.Contents>
 				<img
-					src="/assets/img/illustration/highfive.svg"
+					src="/assets/img/illustration/highfive.png"
 					alt="highfive"
 				/>
 				<div>

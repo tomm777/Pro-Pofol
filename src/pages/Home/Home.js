@@ -5,9 +5,9 @@ import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCa
 import PopularCard from '../../components/@common/Card/Card';
 import RollingSlider from './SlideBanner/SlideBanner';
 import Slider from '../../components/@common/Slider/Slider';
-
 function Home() {
 	const [popularData, setPopularData] = useState([]);
+	const [recommendedMentors, setRecommendedMentors] = useState([]);
 
 	useEffect(() => {
 		const getMentor = async () => {
@@ -19,7 +19,27 @@ function Home() {
 			setPopularData(newPopularData);
 		};
 
+		const getRecommendedMentors = async () => {
+			const res = await axios.get('/mock/mentor.json');
+			const allMentorData = res.data.mentor;
+
+			const userPosition = '프론트엔드 개발';
+
+			const mentorsWithSamePosition = allMentorData.filter(
+				mentor => mentor.job === userPosition,
+			);
+
+			const sortedMentors = mentorsWithSamePosition.sort(
+				(a, b) => Number(b.numCoaching) - Number(a.numCoaching),
+			);
+
+			const recommendedMentors = sortedMentors.slice(0, 5);
+
+			setRecommendedMentors(recommendedMentors);
+		};
+
 		getMentor();
+		getRecommendedMentors();
 	}, []);
 
 	return (
@@ -29,11 +49,17 @@ function Home() {
 				<H.RecommendMentor>
 					<H.Title>👀 000님에게 추천하는 멘토</H.Title>
 					<H.RecommendCards>
-						<RecommendCard link="#" />
-						<RecommendCard link="#" />
-						<RecommendCard link="#" />
-						<RecommendCard link="#" />
-						<RecommendCard link="#" />
+						{recommendedMentors.map(mentor => (
+							<RecommendCard
+								key={mentor.id}
+								profileimage={mentor.profileimage}
+								name={mentor.name}
+								company={mentor.company}
+								position={mentor.job}
+								career={mentor.career}
+								link={mentor.link}
+							/>
+						))}
 					</H.RecommendCards>
 				</H.RecommendMentor>
 				<H.NewStudy>

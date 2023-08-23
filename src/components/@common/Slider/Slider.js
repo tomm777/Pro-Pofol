@@ -59,8 +59,6 @@ function Slider() {
 		<SliderWrapper>
 			<StudyInfoCard background="lightBlueBackground" />
 			<StudyInfoCard background="lightBlueBackground" />
-			<StudyInfoCard background="lightBlueBackground" />
-			<StudyInfoCard background="lightBlueBackground" />
 			<Controls>
 				<PrevButton onClick={handlePrev}>
 					<img

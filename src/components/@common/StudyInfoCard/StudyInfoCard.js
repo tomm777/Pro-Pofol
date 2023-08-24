@@ -1,6 +1,7 @@
 import * as H from './StudyInfoCard.styles';
 import Chip from '../Chip/Chip';
 
+
 StudyInfoCard.defaultProps = {
 	category: 'study',
 	languages: ['React', 'JavaScript', 'Vue'],
@@ -49,4 +50,3 @@ export default function StudyInfoCard({
 		</H.Container>
 	);
 }
-// s주석처리 

@@ -1,45 +1,68 @@
 {
 	"data": [
 		{
-			"category": "스터디",
-			"title": "스터디모집",
-			"languages": ["React", "JavaScript","Vue"],
+			"category": "study",
+			"title": "스터디 모집",
+			"languages": ["React", "JavaScript", "Vue"],
 			"numberPeople": 10,
 			"position": ["프론트엔드 개발, 백엔드 개발"],
-			"deadline": ""
+			"deadline": "3"
 		},
 		{
-			"postId": "14",
-			"name": "박인수",
-			"career": "10",
-			"job": "프론트엔드 개발",
-			"company": "Google",
-			"title": "부족한 부분만 쏚쏙 골라~",
-			"content": "코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용14 끝",
-			"numCoaching": "78",
-			"createdAt": "2023.12.26"
+			"category": "project",
+			"title": "프로젝트 모집",
+			"languages": ["React", "JavaScript", "Vue"],
+			"numberPeople": 10,
+			"position": ["프론트엔드 개발, 백엔드 개발"],
+			"deadline": "3"
 		},
 		{
-			"postId": "6",
-			"name": "문수민",
-			"career": "6",
-			"job": "프론트엔드 개발",
-			"company": "배달의 민족",
-			"title": "완벽하진 않지만 해드립니다~",
-			"content": "코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용6 끝",
-			"numCoaching": "28",
-			"createdAt": "2023.08.20"
+			"category": "study",
+			"title": "스터디 모집",
+			"languages": ["React", "JavaScript", "Vue"],
+			"numberPeople": 10,
+			"position": ["프론트엔드 개발, 백엔드 개발"],
+			"deadline": "3"
 		},
 		{
-			"postId": "7",
-			"name": "이남경",
-			"career": "10",
-			"job": "IOS 개발",
-			"company": "coupang",
-			"title": "열심히 코칭해 보겠습니다!",
-			"content": "코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용, 코칭 내용7 끝",
-			"numCoaching": "24",
-			"createdAt": "2023.09.09"
+			"category": "project",
+			"title": "프로젝트 모집",
+			"languages": ["React", "JavaScript", "Vue"],
+			"numberPeople": 10,
+			"position": ["프론트엔드 개발, 백엔드 개발"],
+			"deadline": "3"
+		},
+		{
+			"category": "study",
+			"title": "스터디 모집",
+			"languages": ["React", "JavaScript", "Vue"],
+			"numberPeople": 10,
+			"position": ["프론트엔드 개발, 백엔드 개발"],
+			"deadline": "3"
+		},
+		{
+			"category": "project",
+			"title": "프로젝트 모집",
+			"languages": ["React", "JavaScript", "Vue"],
+			"numberPeople": 10,
+			"position": ["프론트엔드 개발, 백엔드 개발"],
+			"deadline": "3"
+		},
+		{
+			"category": "study",
+			"title": "스터디 모집",
+			"languages": ["React", "JavaScript", "Vue"],
+			"numberPeople": 10,
+			"position": ["프론트엔드 개발, 백엔드 개발"],
+			"deadline": "3"
+		},
+		{
+			"category": "project",
+			"title": "프로젝트 모집",
+			"languages": ["React", "JavaScript", "Vue"],
+			"numberPeople": 10,
+			"position": ["프론트엔드 개발, 백엔드 개발"],
+			"deadline": "3"
 		}
 	]
 }

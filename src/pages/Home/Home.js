@@ -2,26 +2,17 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import * as H from './Home.styles';
 import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCard';
-import PopularCard from '../../components/@common/Card/Card';
+import MentorCard from '../../components/@common/Card/Card';
 import RollingSlider from './SlideBanner/SlideBanner';
 import Slider from '../../components/@common/Slider/Slider';
+
 function Home() {
-	const [popularData, setPopularData] = useState([]);
 	const [recommendedMentors, setRecommendedMentors] = useState([]);
 
 	useEffect(() => {
-		const getMentor = async () => {
-			const res = await axios.get('/mock/mentor.json');
-			const data = res.data.mentor;
-			const newPopularData = [...data]
-				.sort((a, b) => Number(b.numCoaching) - Number(a.numCoaching))
-				.slice(0, 4);
-			setPopularData(newPopularData);
-		};
-
 		const getRecommendedMentors = async () => {
 			const res = await axios.get('/mock/mentor.json');
-			const allMentorData = res.data.mentor;
+			const allMentorData = res.data.data;
 
 			const userPosition = '프론트엔드 개발';
 
@@ -38,7 +29,6 @@ function Home() {
 			setRecommendedMentors(recommendedMentors);
 		};
 
-		getMentor();
 		getRecommendedMentors();
 	}, []);
 
@@ -52,12 +42,12 @@ function Home() {
 						{recommendedMentors.map(mentor => (
 							<RecommendCard
 								key={mentor.id}
+								postId={mentor.postId}
 								profileimage={mentor.profileimage}
 								name={mentor.name}
 								company={mentor.company}
 								position={mentor.job}
 								career={mentor.career}
-								link={mentor.link}
 							/>
 						))}
 					</H.RecommendCards>
@@ -89,9 +79,9 @@ function Home() {
 						</H.ViewAll>
 					</H.TitleBox>
 					<H.PopularCards>
-						<PopularCard
-							background="whiteBackground"
-							mentorData={popularData}
+						<MentorCard
+							variant={'white'}
+							url={'/mock/bestMentor.json'}
 						/>
 					</H.PopularCards>
 				</H.PopularMento>

@@ -10,7 +10,7 @@ RecommendCard.defaultProps = {
 
 export default function RecommendCard(props) {
 	return (
-		<H.Container href={props.link}>
+		<H.Container href={`/portfolio/post/${props.postId}`}>
 			<H.ProfileImage src={props.profileimage} alt="프로필 이미지" />
 			<H.NickName>{props.name}</H.NickName>
 			<H.Company>{props.company}</H.Company>

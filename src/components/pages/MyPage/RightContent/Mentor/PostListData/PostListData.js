@@ -1,6 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import * as PLD from './PostListData.styles';
 import { userData } from '../../../../../../recoil/atoms/myPage/myPage.atom';
+import { useEffect } from 'react';
 
 // 유저가 작성한 게시글(스터디/프로젝트 모집글, 멘토링 신청 게시글)
 function PostListData({ postList, onDelete }) {
@@ -10,6 +11,24 @@ function PostListData({ postList, onDelete }) {
 	const newUser = { ...user };
 	newUser.userRole = 'mentor';
 
+	// 게시물 보기
+	const showPost = postId => {
+		console.log(postId);
+		if (user.role === 'mentor') {
+			window.open(
+				`https://www.naver.com/${postId}`,
+				'_blank',
+				'noopener, noreferrer',
+			);
+		} // 멘토링 게시물 (멘토)
+
+		window.open(
+			`https://www.naver.com/${postId}`,
+			'_blank',
+			'noopener, noreferrer',
+		); // 프로젝트 / 스터디 게시물 (유저)
+	};
+
 	return (
 		<>
 			{postList.map((item, index) => {
@@ -17,7 +36,9 @@ function PostListData({ postList, onDelete }) {
 					<PLD.ContentList key={item.id}>
 						<PLD.ContentNumber>{index + 1}</PLD.ContentNumber>
 						<PLD.ContentCategory>{item.title}</PLD.ContentCategory>
-						<PLD.ContentTitle>{item.title}</PLD.ContentTitle>
+						<PLD.ContentTitle onClick={() => showPost(item.postId)}>
+							{item.title}
+						</PLD.ContentTitle>
 						{newUser.userRole === 'mentor' ? null : (
 							<PLD.ContentDate>{`~ ${item.id}`}</PLD.ContentDate>
 						)}

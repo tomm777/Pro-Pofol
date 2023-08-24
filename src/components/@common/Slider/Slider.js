@@ -32,23 +32,25 @@ function Slider({ background, url }) {
 	}, []);
 
 	return (
-		<H.SliderWrapper>
-			<H.SlideContainer
-				style={{ transform: `translateX(-${currentIndex * 50}%)` }}
-			>
-				{studyInfoList.map((studyInfo, index) => (
-					<StudyInfoCard
-						key={index}
-						category={studyInfo.category}
-						background={background}
-						title={studyInfo.title}
-						languages={studyInfo.languages}
-						numberPeople={studyInfo.numberPeople}
-						position={studyInfo.position}
-						deadline={studyInfo.deadline}
-					/>
-				))}
-			</H.SlideContainer>
+		<H.Wrap>
+			<H.SliderWrapper>
+				<H.SlideContainer
+					style={{ transform: `translateX(-${currentIndex * 50}%)` }}
+				>
+					{studyInfoList.map((studyInfo, index) => (
+						<StudyInfoCard
+							key={index}
+							category={studyInfo.category}
+							background={background}
+							title={studyInfo.title}
+							languages={studyInfo.languages}
+							numberPeople={studyInfo.numberPeople}
+							position={studyInfo.position}
+							deadline={studyInfo.deadline}
+						/>
+					))}
+				</H.SlideContainer>
+			</H.SliderWrapper>
 			<H.Controls>
 				<H.Button onClick={handlePrev}>
 					<img
@@ -60,7 +62,7 @@ function Slider({ background, url }) {
 					<img src="./assets/img/icons/rightarrow.png" alt="Next" />
 				</H.Button>
 			</H.Controls>
-		</H.SliderWrapper>
+		</H.Wrap>
 	);
 }
 

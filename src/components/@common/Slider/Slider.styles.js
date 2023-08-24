@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
-export const SliderWrapper = styled.div`
-	display: flex;
+export const Wrap = styled.div`
+	width: 100%;
 	position: relative;
+	display: flex;
+	justify-content: center;
+`;
+
+export const SliderWrapper = styled.div`
 	width: 100%;
 	overflow: hidden;
 	margin: auto;
@@ -17,8 +22,8 @@ export const SlideContainer = styled.div`
 
 export const Controls = styled.div`
 	position: absolute;
+	width: 102%;
 	top: 44%;
-	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

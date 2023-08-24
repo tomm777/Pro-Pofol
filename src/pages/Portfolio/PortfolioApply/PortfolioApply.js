@@ -9,9 +9,11 @@ import Button from '../../../components/@common/Button/Button';
 import Textarea from '../../../components/@common/Textarea/Textarea';
 import Input from '../../../components/@common/Input/Input';
 import MESSAGE from '../../../constants/message';
+import { useNavigate } from 'react-router-dom';
 
 function PortfolioApply() {
 	useFooter();
+	const navigate = useNavigate();
 
 	// 유저 정보 중에서 이름, 직무, 회사만 get으로 불러온 후 이름 제외 나머지는 수정 가능하게 처리 후 post로 보내기
 	// 정보가 다 들어갔는지 빈칸이 있으면 보내지 못하게 처리 → 우선 성공
@@ -70,6 +72,8 @@ function PortfolioApply() {
 					mentorPost,
 				})
 				.then(res => console.log(res));
+			alert('게시글 작성이 완료되었습니다.');
+			navigate(-1);
 		}
 	};
 

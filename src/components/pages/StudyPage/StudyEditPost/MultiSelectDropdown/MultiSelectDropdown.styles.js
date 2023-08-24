@@ -15,6 +15,7 @@ export const SelectBox = styled.div`
 	border-radius: 4px;
 
 	> select {
+		padding-left: 12px;
 		width: 100%;
 		height: 42px;
 		font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};

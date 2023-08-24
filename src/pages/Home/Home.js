@@ -11,21 +11,8 @@ function Home() {
 
 	useEffect(() => {
 		const getRecommendedMentors = async () => {
-			const res = await axios.get('/mock/mentor.json');
-			const allMentorData = res.data.data;
-
-			const userPosition = '프론트엔드 개발';
-
-			const mentorsWithSamePosition = allMentorData.filter(
-				mentor => mentor.job === userPosition,
-			);
-
-			const sortedMentors = mentorsWithSamePosition.sort(
-				(a, b) => Number(b.numCoaching) - Number(a.numCoaching),
-			);
-
-			const recommendedMentors = sortedMentors.slice(0, 5);
-
+			const res = await axios.get('/mock/recommendMentor.json');
+			const recommendedMentors = res.data.data;
 			setRecommendedMentors(recommendedMentors);
 		};
 
@@ -39,9 +26,9 @@ function Home() {
 				<H.RecommendMentor>
 					<H.Title>👀 000님에게 추천하는 멘토</H.Title>
 					<H.RecommendCards>
-						{recommendedMentors.map(mentor => (
+						{recommendedMentors.map((mentor, idx) => (
 							<RecommendCard
-								key={mentor.id}
+								key={idx}
 								postId={mentor.postId}
 								profileimage={mentor.profileimage}
 								name={mentor.name}

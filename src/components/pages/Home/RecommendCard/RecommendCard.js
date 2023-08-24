@@ -2,10 +2,6 @@ import * as H from './Recommend.styles';
 
 RecommendCard.defaultProps = {
 	profileimage: './assets/img/profile/profile.png',
-	nickname: '닉네임',
-	company: '회사',
-	position: '프론트엔드 개발',
-	career: 1,
 };
 
 export default function RecommendCard(props) {

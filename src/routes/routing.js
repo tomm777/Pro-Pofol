@@ -120,7 +120,7 @@ const router = createBrowserRouter([
 				element: <PortfolioApply />,
 			},
 			{
-				path: 'portfolio/post/:postId',
+				path: 'portfolio/post/:portfolioId',
 				element: <PortfolioPost />,
 			},
 			// 스터디 프로젝트 페이지

@@ -13,11 +13,11 @@ const MyPage = lazy(() => import('../pages/MyPage/MyPage'));
 const PostListPage = lazy(() =>
 	import('../components/pages/MyPage/RightContent/Mentor/PostList/PostList'),
 );
-const AccountManage = lazy(() =>
-	import('../pages/MyPage/AccountManage/AccountManage'),
+const AccountManagePage = lazy(() =>
+	import('../pages/MyPage/AccountManagePage/AccountManagePage'),
 );
-const AccountWithdrawal = lazy(() =>
-	import('../pages/MyPage/AccountWithdrawal/AccountWithdrawal'),
+const AccountWithdrawalPage = lazy(() =>
+	import('../pages/MyPage/AccountWithdrawalPage/AccountWithdrawalPage'),
 );
 const MyPageLayout = lazy(() =>
 	import('../components/pages/MyPage/MyPageLayout/MyPageLayout'),
@@ -99,11 +99,11 @@ const router = createBrowserRouter([
 					},
 					{
 						path: 'AccountManage',
-						element: <AccountManage />,
+						element: <AccountManagePage />,
 					},
 					{
 						path: 'AccountWithdrawal',
-						element: <AccountWithdrawal />,
+						element: <AccountWithdrawalPage />,
 					},
 				],
 			},

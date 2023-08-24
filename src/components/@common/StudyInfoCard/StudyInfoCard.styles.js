@@ -18,7 +18,7 @@ const backgroundCSS = {
 export const Container = styled.div`
 	box-sizing: border-box;
 	&:hover {
-		box-shadow: 0px 8px 24px 0px rgba(149, 157, 165, 0.2);
+		box-shadow: 0px 4px 10px 0px #c7d9ff;
 	}
 `;
 

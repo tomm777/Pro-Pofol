@@ -1,5 +1,6 @@
 import * as H from './StudyInfoCard.styles';
 import Chip from '../Chip/Chip';
+import axios from 'axios';
 
 StudyInfoCard.defaultProps = {
 	category: 'study',

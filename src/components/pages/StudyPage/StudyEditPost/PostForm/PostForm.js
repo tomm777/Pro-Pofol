@@ -57,6 +57,7 @@ function PostForm({ selectedOptions }) {
 		if (validationFailures.length > 0) {
 			const errorMessage = validationFailures[0].message;
 			alert(errorMessage);
+			return;
 		}
 
 		try {

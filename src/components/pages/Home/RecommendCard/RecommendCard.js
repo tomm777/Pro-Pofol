@@ -19,4 +19,3 @@ export default function RecommendCard(props) {
 		</H.Container>
 	);
 }
-//  주석처리

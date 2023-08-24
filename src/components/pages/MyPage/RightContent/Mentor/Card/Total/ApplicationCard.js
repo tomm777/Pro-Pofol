@@ -1,13 +1,17 @@
 import EditModal from '../../Modal/Mentor/EditModal/EditModal';
 import RefuseModal from '../../Modal/Mentor/RefuseModal/RefuseModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as CCS from './ApplicationCard.styles';
 import InfoViewModal from '../../Modal/Mentor/InfoViewModal/InfoViewModal';
 import RefuseViewModal from '../../Modal/Mentee/RefuseViewModal/RefuseViewModal';
 import InfoEditModal from '../../Modal/Mentee/InfoEditModal/InfoEditModal';
 import EditViewModal from '../../Modal/Mentee/EditViewModal/EditViewModal';
 import { useRecoilValue } from 'recoil';
-import { mentoringItem } from '../../../../../../../recoil/atoms/myPage/myPage.atom';
+import {
+	mentoringItem,
+	userData,
+} from '../../../../../../../recoil/atoms/myPage/myPage.atom';
+import axios from 'axios';
 
 // 카드 리스트
 function ApplicationCard({ categoryKey }) {
@@ -33,6 +37,45 @@ function ApplicationCard({ categoryKey }) {
 	const completedData = mentoringData.completed;
 	const refuseData = mentoringData.refuse;
 
+	const newUser = { ...useRecoilValue(userData) };
+	newUser.role = 'mentor';
+
+	const [mData, setMData] = useState('');
+
+	// 게시글 삭제
+	const onDelete = targetId => {
+		async function deleteList() {
+			try {
+				if (newUser.role === 'mentor') {
+					const response = await axios.delete(
+						`https://jsonplaceholder.typicode.com/posts/:${targetId}`, // 요청 주소 다르게
+					);
+					console.log(response);
+					console.log(response.data);
+					// const newpostList = mData.filter(
+					// 	data => data.id !== targetId,
+					// );
+					// console.log(newpostList);
+					// setMData(newpostList);
+				} else {
+					const response = await axios.delete(
+						`https://jsonplaceholder.typicode.com/posts/:${targetId}`, // 요청 주소를 다르게
+					);
+					console.log(response);
+					console.log(response.data);
+					// const newpostList = mData.filter(
+					// 	data => data.id !== targetId,
+					// );
+					// console.log(newpostList);
+					// setMData(newpostList);
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		deleteList();
+	};
+
 	return (
 		<>
 			{categoryKey === 'apply'
@@ -47,6 +90,7 @@ function ApplicationCard({ categoryKey }) {
 								editModalOpenState={editModalOpenState}
 								setEditModalOpenState={setEditModalOpenState}
 								categoryKey={categoryKey}
+								onDelete={onDelete}
 							></CardLayout>
 						);
 				  })
@@ -74,6 +118,7 @@ function ApplicationCard({ categoryKey }) {
 								infoModalOpenState={infoModalOpenState}
 								setInfoModalOpenState={setInfoModalOpenState}
 								categoryKey={categoryKey}
+								onDelete={onDelete}
 							></CardLayout>
 						);
 				  })
@@ -90,9 +135,7 @@ function ApplicationCard({ categoryKey }) {
 									setRefuseModalOpenState
 								}
 								categoryKey={categoryKey}
-								showEditModal={showEditModal} // 여긴 지워야함
-								editModalOpenState={editModalOpenState} // 여긴 지워야함
-								setEditModalOpenState={setEditModalOpenState} // 여긴 지워야함
+								onDelete={onDelete}
 							></CardLayout>
 						);
 				  })}
@@ -113,7 +156,9 @@ function CardLayout({
 	setEditModalOpenState,
 	setRefuseModalOpenState,
 	categoryKey,
+	onDelete,
 }) {
+	console.log(onDelete);
 	return (
 		<CCS.CardWrapper>
 			<CCS.Wrapper>
@@ -141,6 +186,7 @@ function CardLayout({
 							</CCS.OneButton>
 							{editModalOpenState && (
 								<EditModal
+									categoryKey={categoryKey}
 									setEditModalOpenState={
 										setEditModalOpenState
 									}
@@ -154,6 +200,7 @@ function CardLayout({
 							</CCS.OneButton>
 							{editModalOpenState && (
 								<EditModal
+									categoryKey={categoryKey}
 									setEditModalOpenState={
 										setEditModalOpenState
 									}
@@ -164,7 +211,7 @@ function CardLayout({
 						<>
 							<CCS.OneButton
 								onClick={() => {
-									console.log('거절을 취소하시겠습니까?');
+									alert('거절을 취소하시겠습니까?');
 								}}
 							>
 								거절 취소하기
@@ -180,6 +227,7 @@ function CardLayout({
 									setRefuseModalOpenState={
 										setRefuseModalOpenState
 									}
+									onDelete={onDelete}
 								/>
 							)}
 							<CCS.ApplyButton
@@ -189,13 +237,6 @@ function CardLayout({
 							>
 								수락하기
 							</CCS.ApplyButton>
-							{editModalOpenState && (
-								<EditViewModal
-									setEditModalOpenState={
-										setEditModalOpenState
-									}
-								/>
-							)}
 						</>
 					)}
 				</CCS.ButtonBox>

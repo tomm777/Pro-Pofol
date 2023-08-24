@@ -1,8 +1,9 @@
 import * as S from './Review.styles';
 
-import ReviewComment from './ReviewComment/ReviewComment';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Line from '../../../@common/Line/Line';
+import Textarea from '../../../@common/Textarea/Textarea';
 
 function Review() {
 	const [review, setReview] = useState([]);
@@ -25,9 +26,31 @@ function Review() {
 				<span>{review.length}</span>
 			</S.TopBox>
 
-			<S.CommentBox>
-				<ReviewComment review={review} />
-			</S.CommentBox>
+			<S.BottomBox>
+				{review.map((review, idx) => (
+					<S.CommentBox key={idx}>
+						<S.MiddleBox>
+							<S.NamingBox>
+								<strong>{review.nickName}</strong>
+								<span>{review.createdAt}</span>
+							</S.NamingBox>
+
+							<S.Buttons>
+								<button>수정</button>
+								<button>삭제</button>
+							</S.Buttons>
+						</S.MiddleBox>
+
+						<div>
+							{/* <Textarea size={'full'} value={review.content} /> */}
+
+							<S.Contents>{review.content}</S.Contents>
+						</div>
+
+						<Line size={'small'} />
+					</S.CommentBox>
+				))}
+			</S.BottomBox>
 		</S.ReviewBox>
 	);
 }

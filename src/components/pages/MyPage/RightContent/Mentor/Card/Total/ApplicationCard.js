@@ -42,7 +42,7 @@ function ApplicationCard({ categoryKey }) {
 
 	const [mData, setMData] = useState('');
 
-	//
+	// 게시글 삭제
 	const onDelete = targetId => {
 		async function deleteList() {
 			try {

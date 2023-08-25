@@ -62,7 +62,9 @@ const AdminMentorBoardList = lazy(() =>
 );
 
 // error page
-const Error = lazy(() => import('../pages/Error/Error'));
+const ErrorFallback = lazy(() =>
+	import('../components/@common/Error/ErrorFallback'),
+);
 
 const router = createBrowserRouter([
 	{
@@ -145,8 +147,8 @@ const router = createBrowserRouter([
 				element: <StudyPostDetail />,
 			},
 			{
-				path: 'error',
-				element: <Error />,
+				path: '/*',
+				element: <ErrorFallback />,
 			},
 		],
 	},

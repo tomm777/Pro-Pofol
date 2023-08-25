@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import * as S from './SignUp.styles';
 import Button from '../../components/@common/Button/Button';
@@ -8,49 +8,29 @@ import Input from '../../components/@common/Input/Input';
 function SignUp() {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
-	const [nickname, setNickname] = useState('');
+	const [nickName, setNickName] = useState('');
 	const [position, setPosition] = useState('');
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	useEffect(() => {
-		const urlParams = new URLSearchParams(window.location.search);
-		const userCode = urlParams.get('code');
-		if (userCode) {
-			getAccessToken(userCode);
+		const searchParams = new URLSearchParams(location.search);
+		const userJson = searchParams.get('user');
+		if (userJson) {
+			try {
+				const userData = JSON.parse(userJson);
+				setName(userData.name);
+				setEmail(userData.email);
+
+				console.log(userData);
+			} catch (error) {
+				console.error('사용자 정보를 파싱하는데 실패했습니다.', error);
+			}
 		}
 	}, []);
 
-	async function getAccessToken(userCode) {
-		try {
-			const response = await axios.post('/your-backend-endpoint/token', {
-				code: userCode,
-			});
-			const accessToken = response.data.access_token;
-			getUserProfile(accessToken);
-		} catch (error) {
-			console.error('액세스 토큰을 받아오는데 실패했습니다.', error);
-		}
-	}
-
-	
-
-	async function getUserProfile(accessToken) {
-		try {
-			const response = await axios.get('/your-backend-endpoint/user', {
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-				},
-			});
-			const profile = response.data;
-			setName(profile.name);
-			setEmail(profile.email);
-		} catch (error) {
-			console.error('사용자 프로필을 가져오는데 실패했습니다.', error);
-		}
-	}
-
 	function handleNicknameChange(event) {
-		setNickname(event.target.value);
+		setNickName(event.target.value);
 	}
 
 	function handleJobChange(event) {
@@ -64,7 +44,7 @@ function SignUp() {
 				{
 					name,
 					email,
-					nickname,
+					nickName,
 					position,
 				},
 			);
@@ -97,7 +77,7 @@ function SignUp() {
 					<label>닉네임</label>
 					<Input
 						type="text"
-						value={nickname}
+						value={nickName}
 						onChange={handleNicknameChange}
 						size={'medium'}
 					/>
@@ -108,9 +88,9 @@ function SignUp() {
 						<option value="">선택하세요</option>
 						<option value="backend">백엔드 개발자</option>
 						<option value="frontend">프론트엔드 개발자</option>
-						<option value="fullstack">풀스택 개발자</option>
 						<option value="android">안드로이드 개발자</option>
 						<option value="ios">iOS 개발자</option>
+						<option value="publisher">웹 퍼블리셔</option>
 					</select>
 				</div>
 				<Button variant={'primary'} shape={'default'} size={'big'}>

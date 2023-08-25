@@ -4,6 +4,7 @@ export const Wrap = styled.div`
 	width: 100%;
 	position: relative;
 	display: flex;
+	flex: 1;
 	justify-content: center;
 `;
 

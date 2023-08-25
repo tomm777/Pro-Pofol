@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import * as S from './SignUp.styles';
 import Button from '../../components/@common/Button/Button';
@@ -11,22 +11,24 @@ function SignUp() {
 	const [nickName, setNickName] = useState('');
 	const [position, setPosition] = useState('');
 	const navigate = useNavigate();
-	const location = useLocation();
 
 	useEffect(() => {
-		const searchParams = new URLSearchParams(location.search);
-		const userJson = searchParams.get('user');
-		if (userJson) {
+		async function fetchUserData() {
 			try {
-				const userData = JSON.parse(userJson);
-				setName(userData.name);
+				const response = await axios.get(
+					'http://localhost:8080/api/auth/signup',
+				);
+				const userData = response.data;
+				setName(userData.userName);
 				setEmail(userData.email);
 
 				console.log(userData);
 			} catch (error) {
-				console.error('사용자 정보를 파싱하는데 실패했습니다.', error);
+				console.error('사용자 정보를 가져오는데 실패했습니다.', error);
 			}
 		}
+
+		fetchUserData();
 	}, []);
 
 	function handleNicknameChange(event) {
@@ -37,7 +39,9 @@ function SignUp() {
 		setPosition(event.target.value);
 	}
 
-	async function handleSubmit() {
+	async function handleSubmit(event) {
+		event.preventDefault();
+
 		try {
 			const response = await axios.post(
 				'http://localhost:8080/api/auth/signup',
@@ -93,7 +97,12 @@ function SignUp() {
 						<option value="publisher">웹 퍼블리셔</option>
 					</select>
 				</div>
-				<Button variant={'primary'} shape={'default'} size={'big'}>
+				<Button
+					variant={'primary'}
+					shape={'default'}
+					size={'big'}
+					type="submit"
+				>
 					가입 완료하기
 				</Button>
 			</S.RegisterForm>

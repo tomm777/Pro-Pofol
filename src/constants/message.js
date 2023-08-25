@@ -33,6 +33,10 @@ const MESSAGE = {
 		COMPLETE: '댓글을 작성하시겠습니까?',
 		EDIT: '댓글을 수정하시겠습니까?',
 	},
+	REVIEW: {
+		COMPLETE: '후기 작성이 완료되었습니다.',
+		CANCEL: '후기 작성을 취소하시겠습니까?',
+	},
 	MYPAGE: {
 		EDIT: '수정이 완료되었습니다.',
 		NICKNAME: '',
@@ -45,44 +49,4 @@ const MESSAGE = {
 		UPLOAD: 'JPEG, JPG, PNG 파일만 업로드 가능합니다.',
 		NOFILE: '이미지를 첨부해 주세요.',
 	},
-	MYPAGE: {
-		MENTOR: {
-			TITLE: '멘토링 신청 받은 내역',
-			SUBTITLE: {
-				TOTAL: '신청 받은 건',
-				APPLY: '신청 수락 건',
-				COMPLETED: '리뷰 완료 건',
-				REFUSE: '신청 거절 건',
-			},
-			CARDTITLE: '포트폴리오 리뷰 신청',
-			BUTTONTITLE: {
-				APPLY: '수락하기',
-				REFUSE: '거절하기',
-				EDIT: '첨삭하기',
-				MODIFY: '수정하기',
-				REFUSECANCLE: '거절 취소하기',
-			},
-		},
-
-		MENTEE: {
-			TITLE: '멘토링 신청 내역',
-			SUBTITLE: {
-				TOTAL: '신청 완료 건',
-				APPLY: '진행 중인 건',
-				COMPLETED: '리뷰 완료 건',
-				REFUSE: '취소 건',
-			},
-			BUTTONTITLE: {
-				INFOVIEW: '신청서 보기',
-				CANCLE: '취소하기',
-				EDITVIEW: '리뷰 내용 보기',
-				REFUSEVIEW: '취소 사유 보기',
-			},
-		},
-	},
-	NODATA: {
-		LIST: '내역이 없습니다.',
-	},
 };
-
-export default MESSAGE;

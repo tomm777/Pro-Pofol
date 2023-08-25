@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import * as S from './StudyEditPost.styles';
@@ -16,12 +17,30 @@ function StudyEditPost() {
 	const [selectedOptions, setSelectedOptions] = useState({
 		category: '',
 		proceed: '',
-		position: '',
+		position: [],
 		personnel: '',
 		contact: '',
 		link: '',
 		deadline: new Date(),
 	});
+	const { postId } = useParams();
+
+	console.log('편집 페이지 PostId 확인', postId);
+
+	// 게시글 수정
+	useEffect(() => {
+		if (postId) {
+			const loadPostDataForEdit = async () => {
+				try {
+					// const postData = await getPostForEdit(postId);
+					// setSelectedOptions(postData);
+				} catch (error) {
+					console.error(error);
+				}
+			};
+			loadPostDataForEdit();
+		}
+	}, [postId]);
 
 	const handleOptionChange = (name, value) => {
 		if (name === 'positions') {

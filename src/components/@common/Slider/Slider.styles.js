@@ -10,14 +10,15 @@ export const Wrap = styled.div`
 export const SliderWrapper = styled.div`
 	width: 100%;
 	overflow: hidden;
-	margin: auto;
 `;
 
 export const SlideContainer = styled.div`
 	display: flex;
 	justify-content: flex-start;
 	transition: transform 0.5s ease-in-out;
-	gap: 20px;
+	> div + div {
+		margin-left: 20px;
+	}
 `;
 
 export const Controls = styled.div`

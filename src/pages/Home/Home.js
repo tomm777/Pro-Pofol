@@ -52,7 +52,7 @@ function Home() {
 					</H.TitleBox>
 					<H.SlideStudyCard>
 						<Slider
-							background="whiteBackground"
+							background="lightBlueBackground"
 							url={'/mock/studyInfo.json'}
 						/>
 					</H.SlideStudyCard>

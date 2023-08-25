@@ -19,10 +19,10 @@ const backgroundCSS = {
 
 export const Container = styled.div`
 	box-sizing: border-box;
-	/* &:hover {
-		box-shadow: 0px 4px 10px 0px #c7d9ff;
+	&:hover {
+		box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
 	}
-	border-radius: 10px; */
+	border-radius: 10px;
 `;
 
 export const StudyInfoCard = styled.a`

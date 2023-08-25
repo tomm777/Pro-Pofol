@@ -5,8 +5,10 @@ import * as M from './MyPageLayout.Styles';
 import axios from 'axios';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userData } from '../../../../recoil/atoms/myPage/myPage.atom';
+import useFooter from '../../../../hooks/useFooter';
 
 function MyPageLayout() {
+	useFooter();
 	const [user, setUser] = useRecoilState(userData);
 
 	// 데이터 정상적으로 불러와지면 삭제

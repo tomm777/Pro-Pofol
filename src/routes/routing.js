@@ -125,6 +125,10 @@ const router = createBrowserRouter([
 				path: 'portfolio/post/:portfolioId',
 				element: <PortfolioPost />,
 			},
+			{
+				path: 'portfolio/edit/:portfolioId',
+				element: <PortfolioApply />,
+			},
 			// 스터디 프로젝트 페이지
 			// 스터디 페이지 메인
 			{

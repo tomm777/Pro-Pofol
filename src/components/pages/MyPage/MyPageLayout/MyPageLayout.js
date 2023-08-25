@@ -11,11 +11,6 @@ function MyPageLayout() {
 	useFooter();
 	const [user, setUser] = useRecoilState(userData);
 
-	// 데이터 정상적으로 불러와지면 삭제
-	const users = useRecoilValue(userData);
-	const newUser = { ...users };
-	newUser.role = 'mentor';
-
 	// 서버통신 (GET)
 	useEffect(() => {
 		async function getUserData() {
@@ -35,7 +30,7 @@ function MyPageLayout() {
 		<M.Wrapper>
 			<SideMenu
 				userState={
-					newUser.role === 'mentor'
+					!user.completed // 임시
 						? `${user.userId} 멘토님`
 						: `${user.userId} 님`
 				}

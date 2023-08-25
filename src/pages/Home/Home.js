@@ -11,9 +11,17 @@ function Home() {
 
 	useEffect(() => {
 		const getRecommendedMentors = async () => {
-			const res = await axios.get('/mock/recommendMentor.json');
-			const recommendedMentors = res.data.data;
-			setRecommendedMentors(recommendedMentors);
+			try {
+				const res = await axios.get(
+					'http://localhost:8080/api/recommendMentor',
+				);
+
+				console.log(res);
+				const recommendedMentors = res.data;
+				setRecommendedMentors(recommendedMentors);
+			} catch (err) {
+				console.log(err);
+			}
 		};
 
 		getRecommendedMentors();
@@ -29,7 +37,7 @@ function Home() {
 						{recommendedMentors.map((mentor, idx) => (
 							<RecommendCard
 								key={idx}
-								postId={mentor.postId}
+								postId={mentor.portfolioId}
 								profileimage={mentor.profileimage}
 								name={mentor.name}
 								company={mentor.company}

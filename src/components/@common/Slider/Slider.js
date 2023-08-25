@@ -49,8 +49,8 @@ function Slider({ background, url }) {
 							numberPeople={studyInfo.numberPeople}
 							position={studyInfo.position}
 							deadline={studyInfo.deadline}
-						/>  
-					))}               
+						/>
+					))}
 				</H.SlideContainer>
 			</H.SliderWrapper>
 			<H.Controls>

@@ -4,6 +4,7 @@ import UserMentorApply from '../pages/UserMentoApply/UserMentorApply';
 
 const Layout = lazy(() => import('../components/@common/Layout'));
 
+// home and signup page
 const Home = lazy(() => import('../pages/Home/Home'));
 const SignUp = lazy(() => import('../pages/SignUp/SignUp'));
 const SignUpDone = lazy(() => import('../pages/SignUp/SignUpDone/SignUpDone'));
@@ -59,6 +60,9 @@ const AdminStudyProject = lazy(() =>
 const AdminMentorBoardList = lazy(() =>
 	import('../pages/Admin/MentorBoardList/AdminMentorBoardList'),
 );
+
+// error page
+const Error = lazy(() => import('../pages/Error/Error'));
 
 const router = createBrowserRouter([
 	{
@@ -116,7 +120,7 @@ const router = createBrowserRouter([
 				element: <PortfolioApply />,
 			},
 			{
-				path: 'portfolio/post/:postId',
+				path: 'portfolio/post/:portfolioId',
 				element: <PortfolioPost />,
 			},
 			// 스터디 프로젝트 페이지
@@ -127,13 +131,22 @@ const router = createBrowserRouter([
 			},
 			// 스터디 게시글 작성
 			{
-				path: 'study/edit',
+				path: 'study/post',
+				element: <StudyEditPost />,
+			},
+			// 스터디 게시글 수정
+			{
+				path: 'study/edit/:postId',
 				element: <StudyEditPost />,
 			},
 			// 스터디 게시글 상세
 			{
-				path: 'study/detail',
+				path: 'study/detail/:postId',
 				element: <StudyPostDetail />,
+			},
+			{
+				path: 'error',
+				element: <Error />,
 			},
 		],
 	},

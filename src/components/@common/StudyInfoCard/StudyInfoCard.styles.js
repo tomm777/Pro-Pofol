@@ -4,21 +4,25 @@ const backgroundCSS = {
 	whiteBackground: css`
 		background: ${({ theme }) => theme.PALETTE.white};
 		border: 2px solid ${({ theme }) => theme.PALETTE.gray[100]};
-		width: 258px;
-		height: 199px;
+		width: 254px;
+		height: 200px;
+		padding: 20px;
 	`,
 
 	lightBlueBackground: css`
 		background-color: ${({ theme }) => theme.PALETTE.primary[100]};
 		width: 530px;
 		height: 200px;
+		padding: 30px;
 	`,
 };
 
 export const Container = styled.div`
-	/* :hover {
-		box-shadow: 0px 8px 24px 0px rgba(149, 157, 165, 0.2);
-	} */
+	box-sizing: border-box;
+	&:hover {
+		box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+	}
+	border-radius: 10px;
 `;
 
 export const StudyInfoCard = styled.a`
@@ -28,8 +32,8 @@ export const StudyInfoCard = styled.a`
 	justify-content: center;
 	cursor: pointer;
 	text-decoration: none;
-	padding: 30px;
 	border-radius: 10px;
+	box-sizing: border-box;
 `;
 export const Category = styled.p`
 	color: ${({ theme }) => theme.PALETTE.white};
@@ -48,9 +52,9 @@ export const Title = styled.p`
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	margin-bottom: 32px;
 	white-space: nowrap;
-	overflow: hidden;
+	margin-top: 16px;
 	text-overflow: ellipsis;
-	max-width: 100%;
+	width: 218px;
 `;
 export const LanguagesWrapper = styled.div`
 	display: flex;
@@ -64,6 +68,7 @@ export const Language = styled.p`
 
 export const DetailInfoWrapper = styled.div`
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	> div {
 		display: flex;
@@ -85,6 +90,7 @@ export const Position = styled.p`
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 	margin-bottom: 8px;
+	text-overflow: ellipsis;
 `;
 
 export const Deadline = styled.p`

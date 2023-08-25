@@ -22,7 +22,7 @@ function PortfolioPost() {
 	const path = params.portfolioId;
 
 	const [contents, setContents] = useState({});
-	const [openModal, setOpenModal] = useState(false);
+	const [infoModalOpenState, setInfoModalOpenState] = useState(false);
 
 	useEffect(() => {
 		const getContent = async () => {
@@ -45,7 +45,7 @@ function PortfolioPost() {
 	}, []);
 
 	const handleOpenModal = () => {
-		setOpenModal(prev => !prev);
+		setInfoModalOpenState(true);
 	};
 
 	const handleDelete = async () => {
@@ -75,7 +75,13 @@ function PortfolioPost() {
 								<span>{createdAt}</span>
 							</S.NameBox>
 
-							{openModal && <InfoEditModal />}
+							{infoModalOpenState && (
+								<InfoEditModal
+									setInfoModalOpenState={
+										setInfoModalOpenState
+									}
+								/>
+							)}
 
 							<Button
 								variant={'primary'}

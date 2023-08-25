@@ -22,6 +22,44 @@ const MESSAGE = {
 		COMMUNICATION: '연락 가능한 링크를 입력해 주세요.',
 		ALL: '모든 항목을 선택해 주세요.',
 	},
+	MYPAGE: {
+		MENTOR: {
+			TITLE: '멘토링 신청 받은 내역',
+			SUBTITLE: {
+				TOTAL: '신청 받은 건',
+				APPLY: '신청 수락 건',
+				COMPLETED: '리뷰 완료 건',
+				REFUSE: '신청 거절 건',
+			},
+			CARDTITLE: '포트폴리오 리뷰 신청',
+			BUTTONTITLE: {
+				APPLY: '수락하기',
+				REFUSE: '거절하기',
+				EDIT: '첨삭하기',
+				MODIFY: '수정하기',
+				REFUSECANCLE: '거절 취소하기',
+			},
+		},
+
+		MENTEE: {
+			TITLE: '멘토링 신청 내역',
+			SUBTITLE: {
+				TOTAL: '신청 완료 건',
+				APPLY: '진행 중인 건',
+				COMPLETED: '리뷰 완료 건',
+				REFUSE: '취소 건',
+			},
+			BUTTONTITLE: {
+				INFOVIEW: '신청서 보기',
+				CANCLE: '취소하기',
+				EDITVIEW: '리뷰 내용 보기',
+				REFUSEVIEW: '취소 사유 보기',
+			},
+		},
+	},
+	NODATA: {
+		LIST: '내역이 없습니다.',
+	},
 };
 
 export default MESSAGE;

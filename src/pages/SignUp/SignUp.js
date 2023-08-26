@@ -16,13 +16,8 @@ function SignUp() {
 	useEffect(() => {
 		async function fetchUserData() {
 			try {
-				const name = getCookie('userName');
 				const email = decodeURIComponent(getCookie('email'));
 				setEmail(email);
-				setName(name);
-
-				console.log(name);
-				console.log(email);
 			} catch (error) {
 				console.error('사용자 정보를 가져오는데 실패했습니다.', error);
 			}
@@ -31,6 +26,9 @@ function SignUp() {
 		fetchUserData();
 	}, []);
 
+	function handleNameChange(event) {
+		setName(event.target.value);
+	}
 	function handleNicknameChange(event) {
 		setNickName(event.target.value);
 	}
@@ -44,7 +42,7 @@ function SignUp() {
 
 		try {
 			const response = await axios.post(
-				'http://localhost:8080/api/auth/signup',
+				'http://34.64.245.195/api/auth/signup',
 				{
 					name,
 					email,
@@ -70,12 +68,17 @@ function SignUp() {
 			<S.RegisterForm onSubmit={handleSubmit}>
 				<p>회원 가입</p>
 				<div>
-					<label>이름</label>
-					<Input type="text" value={name} readOnly size={'medium'} />
-				</div>
-				<div>
 					<label>이메일</label>
 					<Input type="text" value={email} readOnly size={'medium'} />
+				</div>
+				<div>
+					<label>이름</label>
+					<Input
+						type="text"
+						value={name}
+						size={'medium'}
+						onChange={handleNameChange}
+					/>
 				</div>
 				<div>
 					<label>닉네임</label>
@@ -90,11 +93,11 @@ function SignUp() {
 					<label>직무</label>
 					<select value={position} onChange={handleJobChange}>
 						<option value="">선택하세요</option>
-						<option value="backend">백엔드 개발자</option>
-						<option value="frontend">프론트엔드 개발자</option>
-						<option value="android">안드로이드 개발자</option>
-						<option value="ios">iOS 개발자</option>
-						<option value="publisher">웹 퍼블리셔</option>
+						<option value="백엔드 개발">백엔드 개발</option>
+						<option value="프론트엔드 개발">프론트엔드 개발</option>
+						<option value="안드로이드 개발">안드로이드 개발</option>
+						<option value="IOS 개발">IOS 개발</option>
+						<option value="웹 퍼블리셔">웹 퍼블리셔</option>
 					</select>
 				</div>
 				<Button

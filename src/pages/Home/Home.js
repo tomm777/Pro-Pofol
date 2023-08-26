@@ -5,13 +5,18 @@ import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCa
 import MentorCard from '../../components/@common/Card/Card';
 import RollingSlider from './SlideBanner/SlideBanner';
 import Slider from '../../components/@common/Slider/Slider';
+import { getCookie } from '../../utils/cookie';
 
 function Home() {
 	const [recommendedMentors, setRecommendedMentors] = useState([]);
+	const userName = getCookie('userName');
+	console.log(userName);
 
 	useEffect(() => {
 		const getRecommendedMentors = async () => {
 			const res = await axios.get('/mock/recommendMentor.json');
+
+			console.log(res);
 			const recommendedMentors = res.data.data;
 			setRecommendedMentors(recommendedMentors);
 		};
@@ -24,14 +29,14 @@ function Home() {
 			<H.Content>
 				<RollingSlider />
 				<H.RecommendMentor>
-					<H.Title>👀 000님에게 추천하는 멘토</H.Title>
+					<H.Title>👀 {userName}님에게 추천하는 멘토</H.Title>
 					<H.RecommendCards>
 						{recommendedMentors.map((mentor, idx) => (
 							<RecommendCard
 								key={idx}
-								postId={mentor.postId}
-								profileimage={mentor.profileimage}
-								name={mentor.name}
+								postId={mentor.portfolioId}
+								profileimage={mentor.profileImageUrl}
+								nickName={mentor.nickName}
 								company={mentor.company}
 								position={mentor.job}
 								career={mentor.career}
@@ -54,6 +59,7 @@ function Home() {
 						<Slider
 							background="lightBlueBackground"
 							url={'/mock/studyInfo.json'}
+							itemsPerPage={2}
 						/>
 					</H.SlideStudyCard>
 				</H.NewStudy>
@@ -69,10 +75,7 @@ function Home() {
 						</H.ViewAll>
 					</H.TitleBox>
 					<H.PopularCards>
-						<MentorCard
-							variant={'white'}
-							url={'/mock/bestMentor.json'}
-						/>
+						<MentorCard variant={'white'} url={'/api/portfolio'} />
 					</H.PopularCards>
 				</H.PopularMento>
 			</H.Content>

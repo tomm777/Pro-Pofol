@@ -7,6 +7,8 @@ import {
 import AdminTable from '../../../components/pages/Admin/Table/AdminTable';
 import Searchbar from '../../../components/pages/Admin/Searchbar/Searchbar';
 import axios from 'axios';
+import { api } from '../../../utils/api';
+import useApi from '../../../hooks/useApi';
 
 const AdminHome = () => {
 	// const data = [
@@ -83,14 +85,38 @@ const AdminHome = () => {
 	const [userData, setUsersData] = useState([]);
 	// const [tableData, setTableData] = useState([]);
 
-	useEffect(() => {
-		getUserList();
-	}, []);
+	/**
+	 * 사용 예시
+	 */
+	// const { result, trigger, isLoading, error } = useApi({
+	// 	path: '/users',
+	// 	shouldFetch: true,
+	// });
+
+	// useEffect(() => {
+	// 	if (result && result.length > 0) {
+	// 		const modifiedData = result.map((item, index) => ({
+	// 			...item,
+	// 			key: index,
+	// 			// id: item.id, // 번호 값을 index로부터 생성
+	// 		}));
+	// 		setUsersData(modifiedData);
+	// 	}
+	// }, [result]);
+
+	// useEffect(() => {
+	// 	console.log('useApi error :: \n', error);
+	// }, [error]);
+
+	// if (test1) {
+	// }
+
 	const getUserList = async () => {
 		try {
 			const response = await axios.get(
 				'https://jsonplaceholder.typicode.com/users',
 			);
+			console.log(response.data);
 			const modifiedData = response.data.map((item, index) => ({
 				...item,
 				key: index,
@@ -101,8 +127,11 @@ const AdminHome = () => {
 			console.error('API 호출 중 오류:', error);
 		}
 	};
+	useEffect(() => {
+		getUserList();
+	}, []);
 
-	console.log(userData);
+	// console.log(userData);
 	// console.log(data);
 
 	const removeHandler = id => {
@@ -117,6 +146,8 @@ const AdminHome = () => {
 	return (
 		<AdminContent background={colorBgContainer}>
 			<Searchbar type={'Search'} />
+			{/* /로딩 컴포넌트 교체 예정 */}
+			{/* {isLoading && <h2>IsLoading</h2>} */}
 			<AdminTable
 				columns={columns}
 				dataSource={userData}

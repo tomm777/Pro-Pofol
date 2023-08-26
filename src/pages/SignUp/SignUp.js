@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as S from './SignUp.styles';
 import Button from '../../components/@common/Button/Button';
 import Input from '../../components/@common/Input/Input';
+import { getCookie } from '../../utils/cookie';
 
 function SignUp() {
 	const [name, setName] = useState('');
@@ -15,21 +16,12 @@ function SignUp() {
 	useEffect(() => {
 		async function fetchUserData() {
 			try {
-				const cookies = document.cookie;
-				const emailCookie = cookies
-					.split(';')
-					.find(cookie => cookie.includes('email'));
-				const nameCookie = cookies
-					.split(';')
-					.find(cookie => cookie.includes('name'));
-
-				const email = emailCookie ? emailCookie.split('=')[1] : '';
-				const userName = nameCookie
-					? decodeURIComponent(nameCookie.split('=')[1])
-					: '';
-
+				const userName = getCookie('name');
+				const email = getCookie('email');
 				setEmail(email);
 				setName(userName);
+
+				console.log(userName, email);
 			} catch (error) {
 				console.error('사용자 정보를 가져오는데 실패했습니다.', error);
 			}

@@ -10,6 +10,7 @@ import { getCookie } from '../../utils/cookie';
 function Home() {
 	const [recommendedMentors, setRecommendedMentors] = useState([]);
 	const userName = getCookie('name');
+	console.log(userName);
 
 	useEffect(() => {
 		const getRecommendedMentors = async () => {

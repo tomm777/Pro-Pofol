@@ -39,8 +39,22 @@ const MESSAGE = {
 		CANCEL: '후기 작성을 취소하시겠습니까?',
 	},
 	MYPAGE: {
-		EDIT: '수정이 완료되었습니다.',
+		APPLY: {
+			REQUSET: '수락하시겠습니까?',
+		},
+		EDIT: {
+			COMPLETE: '수정이 완료되었습니다.',
+			NOCHANGE: '변경 사항이 없습니다.',
+		},
 		NICKNAME: '',
+		NODATA: {
+			LIST: '내역이 없습니다.',
+		},
+		REFUSE: {
+			REQUSET: '거절하시겠습니까?',
+			CANCLE: '거절을 취소하시겠습니까?',
+			COMPLETE: '거절이 취소되었습니다.',
+		},
 	},
 	REJECT: {
 		COMPLETE: '거절 사유 작성이 완료되었습니다.',

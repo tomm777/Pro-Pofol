@@ -56,6 +56,7 @@ function Home() {
 						<Slider
 							background="lightBlueBackground"
 							url={'/mock/studyInfo.json'}
+							itemsPerPage={2}
 						/>
 					</H.SlideStudyCard>
 				</H.NewStudy>
@@ -73,7 +74,9 @@ function Home() {
 					<H.PopularCards>
 						<MentorCard
 							variant={'white'}
-							url={'/mock/bestMentor.json'}
+							url={
+								'http://localhost:8080/api/portfolio/recommend/topMentor'
+							}
 						/>
 					</H.PopularCards>
 				</H.PopularMento>

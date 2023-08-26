@@ -15,14 +15,21 @@ function SignUp() {
 	useEffect(() => {
 		async function fetchUserData() {
 			try {
-				const response = await axios.get(
-					'http://localhost:8080/api/auth/signup',
-				);
-				const userData = response.data;
-				setName(userData.userName);
-				setEmail(userData.email);
+				const cookies = document.cookie;
+				const emailCookie = cookies
+					.split(';')
+					.find(cookie => cookie.includes('email'));
+				const nameCookie = cookies
+					.split(';')
+					.find(cookie => cookie.includes('name'));
 
-				console.log(userData);
+				const email = emailCookie ? emailCookie.split('=')[1] : '';
+				const userName = nameCookie
+					? decodeURIComponent(nameCookie.split('=')[1])
+					: '';
+
+				setEmail(email);
+				setName(userName);
 			} catch (error) {
 				console.error('사용자 정보를 가져오는데 실패했습니다.', error);
 			}

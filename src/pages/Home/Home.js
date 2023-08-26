@@ -11,17 +11,11 @@ function Home() {
 
 	useEffect(() => {
 		const getRecommendedMentors = async () => {
-			try {
-				const res = await axios.get(
-					'http://localhost:8080/api/recommendMentor',
-				);
+			const res = await axios.get('/mock/recommendMentor.json');
 
-				console.log(res);
-				const recommendedMentors = res.data;
-				setRecommendedMentors(recommendedMentors);
-			} catch (err) {
-				console.log(err);
-			}
+			console.log(res);
+			const recommendedMentors = res.data.data;
+			setRecommendedMentors(recommendedMentors);
 		};
 
 		getRecommendedMentors();
@@ -38,8 +32,8 @@ function Home() {
 							<RecommendCard
 								key={idx}
 								postId={mentor.portfolioId}
-								profileimage={mentor.profileimage}
-								name={mentor.name}
+								profileimage={mentor.profileImageUrl}
+								nickName={mentor.nickName}
 								company={mentor.company}
 								position={mentor.job}
 								career={mentor.career}

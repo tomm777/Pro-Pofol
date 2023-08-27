@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { checkToken, clearToken } from '../../../../utils/cookie';
+import axios from 'axios';
 
 import * as S from './Header.styles';
 
@@ -9,20 +10,42 @@ import Button from '../../Button/Button';
 
 function Header() {
 	const [openModal, setOpenModal] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
 	const navigate = useNavigate();
-	const isLoggedIn = checkToken();
 
-	function handleSignupClick() {
+	const handleTokenChange = () => {
+		const tokenStatus = checkToken();
+		setIsLoggedIn(tokenStatus);
+
+		console.log('isLoggedIn updated:', tokenStatus);
+	};
+
+	useEffect(() => {
+		handleTokenChange();
+	}, [isLoggedIn]);
+
+	const handleSignupClick = () => {
 		setOpenModal(true);
-	}
-	function handleSignupClose() {
+	};
+	const handleSignupClose = () => {
 		setOpenModal(false);
-	}
+	};
 
-	function handleLogoutClick() {
-		clearToken();
-		navigate('/');
-	}
+	const handleLogoutClick = async () => {
+		try {
+			const response = await axios.post('/api/auth/logout');
+
+			if (response.status === 200) {
+				clearToken();
+
+				setIsLoggedIn(false);
+
+				navigate('/');
+			}
+		} catch (error) {
+			console.error('로그아웃 오류:', error);
+		}
+	};
 
 	return (
 		<S.Header>
@@ -41,7 +64,7 @@ function Header() {
 					{isLoggedIn ? (
 						<>
 							<a onClick={handleLogoutClick}>로그아웃</a>
-							<a href="#">마이페이지</a>
+							<a href="/mypage">마이페이지</a>
 							<a href="#">
 								<img
 									src="/assets/img/icons/bell.png"

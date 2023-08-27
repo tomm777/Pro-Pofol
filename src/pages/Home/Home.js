@@ -15,7 +15,7 @@ function Home() {
 	useEffect(() => {
 		const getRecommendedMentors = async () => {
 			const res = await axios.get(
-				'http://localhost:8080/portfolio/recommendMentor',
+				'http://localhost:8080/api/portfolio/recommend/recommendMentor',
 			);
 
 			console.log(res);

@@ -48,6 +48,16 @@ const MYPAGEOPTION = {
 			REFUSEVIEW: '취소 사유 보기',
 		},
 	},
+
+	ACCOUNT: {
+		MANAGE: {
+			TITLE: '내 정보 관리',
+		},
+		WITHDRAWER: {
+			TITLE: '회원 탈퇴',
+			BUTTONTITLE: '탈퇴 하기',
+		},
+	},
 };
 
 export default MYPAGEOPTION;

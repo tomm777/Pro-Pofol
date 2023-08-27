@@ -55,6 +55,10 @@ const MESSAGE = {
 			CANCLE: '거절을 취소하시겠습니까?',
 			COMPLETE: '거절이 취소되었습니다.',
 		},
+		ACCOUNT: {
+			AGREE: '안내 사항을 모두 확인했으며 이에 동의합니다.',
+			THANKS: '이용해 주셔서 감사합니다.',
+		},
 	},
 	REJECT: {
 		COMPLETE: '거절 사유 작성이 완료되었습니다.',

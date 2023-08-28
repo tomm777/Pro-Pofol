@@ -28,7 +28,7 @@ function StudyInfoCard({
 				</H.PositionWrapper>
 				<H.DetailInfoWrapper>
 					<div>
-						<H.NumberPeople>{recruits}명</H.NumberPeople>
+						<H.NumberPeople>{recruits}</H.NumberPeople>
 						<span>|</span>
 						<H.Process>{process}</H.Process>
 					</div>

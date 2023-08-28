@@ -14,12 +14,12 @@ function Home() {
 
 	useEffect(() => {
 		const getRecommendedMentors = async () => {
-			// const res = await axios.get(
-			// 	'http://localhost:8080/api/portfolio/recommend/recommendMentor',
-			// );
 			const res = await axios.get(
-				'http://34.64.245.195/api/portfolio/recommend/recommendMentor',
+				'http://localhost:8080/api/portfolio/recommend/recommendMentor',
 			);
+			// const res = await axios.get(
+			// 	'http://34.64.245.195/api/portfolio/recommend/recommendMentor',
+			// );
 
 			console.log(res);
 			const recommendedMentors = res.data;
@@ -64,7 +64,7 @@ function Home() {
 						<Slider
 							background="lightBlueBackground"
 							url={
-								'http://localhost:8080/api/projectStudy/recommend/latestProjectStudy'
+								'http://localhost:8080/api/portfolio/recommend/recommendMentor'
 							}
 							slidesToShow={2}
 						/>
@@ -84,7 +84,7 @@ function Home() {
 					<H.PopularCards>
 						<MentorCard
 							variant={'white'}
-							url={'/api/portfolio/recommend/topMentor'}
+							url={'/portfolio/recommend/topMentor'}
 						/>
 					</H.PopularCards>
 				</H.PopularMento>

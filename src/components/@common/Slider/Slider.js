@@ -4,7 +4,7 @@ import * as H from './Slider.styles';
 import axios from 'axios';
 
 function Slider({ background, url, slidesToShow }) {
-	const [slide, setSlide] = useState(0);
+	const [slide, setSlide] = useState(1);
 	const [studyInfoData, setStudyInfoData] = useState([]);
 
 	useEffect(() => {
@@ -12,6 +12,8 @@ function Slider({ background, url, slidesToShow }) {
 			try {
 				const res = await axios.get(`${url}`);
 				setStudyInfoData(res.data);
+
+				console.log(res.data);
 			} catch (error) {
 				console.log(error);
 			}
@@ -21,7 +23,6 @@ function Slider({ background, url, slidesToShow }) {
 	}, []);
 
 	const totalSlides = Math.ceil(studyInfoData.length / slidesToShow);
-
 	const handlePrevClick = () => {
 		setSlide((slide - 1 + totalSlides) % totalSlides);
 	};
@@ -46,7 +47,7 @@ function Slider({ background, url, slidesToShow }) {
 								process={studyInfo.process}
 								recruits={studyInfo.recruits}
 								position={studyInfo.position}
-								deadline={studyInfo.deadline}
+								deadline={studyInfo.deadline.split('T')[0]}
 							/>
 						))}
 				</H.SlideContainer>

@@ -14,10 +14,15 @@ function Home() {
 
 	useEffect(() => {
 		const getRecommendedMentors = async () => {
-			const res = await axios.get('/mock/recommendMentor.json');
+			// const res = await axios.get(
+			// 	'http://localhost:8080/api/portfolio/recommend/recommendMentor',
+			// );
+			const res = await axios.get(
+				'http://34.64.245.195/api/portfolio/recommend/recommendMentor',
+			);
 
 			console.log(res);
-			const recommendedMentors = res.data.data;
+			const recommendedMentors = res.data;
 			setRecommendedMentors(recommendedMentors);
 		};
 

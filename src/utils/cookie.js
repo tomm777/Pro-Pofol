@@ -17,12 +17,6 @@ export const checkToken = () => {
 	const tokenMatch = document.cookie.match(/(^|; )isToken=([^;]*)/);
 	const token = tokenMatch ? tokenMatch[2] : undefined;
 
-	console.log('Token value:', token);
+	console.log('isToken value:', token);
 	return !!token;
-};
-
-// 쿠키를 삭제하는 함수(토큰을 만료하는 함수)
-
-export const clearToken = () => {
-	document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { checkToken, clearToken } from '../../../../utils/cookie';
+import { checkToken } from '../../../../utils/cookie';
 import axios from 'axios';
 
 import * as S from './Header.styles';
@@ -16,8 +16,6 @@ function Header() {
 	const handleTokenChange = () => {
 		const tokenStatus = checkToken();
 		setIsLoggedIn(tokenStatus);
-
-		console.log('isLoggedIn updated:', tokenStatus);
 	};
 
 	useEffect(() => {
@@ -36,10 +34,8 @@ function Header() {
 			const response = await axios.post('/api/auth/logout');
 
 			if (response.status === 200) {
-				clearToken();
-
 				setIsLoggedIn(false);
-
+				window.alert('로그아웃 되었습니다 ');
 				navigate('/');
 			}
 		} catch (error) {

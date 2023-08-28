@@ -2,25 +2,23 @@ import React, { useState, useEffect } from 'react';
 import StudyInfoCard from '../StudyInfoCard/StudyInfoCard';
 import * as H from './Slider.styles';
 import axios from 'axios';
+import useApi from '../../../hooks/useApi';
 
 function Slider({ background, url, slidesToShow }) {
 	const [slide, setSlide] = useState(1);
 	const [studyInfoData, setStudyInfoData] = useState([]);
 
+	const { result, trigger, isLoading, error } = useApi({
+		path: `${url}`,
+		shouldFetch: true,
+	});
+
 	useEffect(() => {
-		const fetchStudyInfo = async () => {
-			try {
-				const res = await axios.get(`${url}`);
-				setStudyInfoData(res.data);
-
-				console.log(res.data);
-			} catch (error) {
-				console.log(error);
-			}
-		};
-
-		fetchStudyInfo();
-	}, []);
+		if (result && result.length > 0) {
+			setStudyInfoData([...result]);
+			console.log(error);
+		}
+	}, [result]);
 
 	const totalSlides = Math.ceil(studyInfoData.length / slidesToShow);
 	const handlePrevClick = () => {

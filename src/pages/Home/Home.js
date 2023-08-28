@@ -6,28 +6,24 @@ import MentorCard from '../../components/@common/Card/Card';
 import RollingSlider from './SlideBanner/SlideBanner';
 import Slider from '../../components/@common/Slider/Slider';
 import { getCookie } from '../../utils/cookie';
+import useApi from '../../hooks/useApi';
 
 function Home() {
 	const [recommendedMentors, setRecommendedMentors] = useState([]);
 	const userName = getCookie('userName');
 	console.log(userName);
 
+	const { result, trigger, isLoading, error } = useApi({
+		path: '/portfolio/recommend/recommendMentor',
+		shouldFetch: true,
+	});
+
 	useEffect(() => {
-		const getRecommendedMentors = async () => {
-			const res = await axios.get(
-				'http://localhost:8080/api/portfolio/recommend/recommendMentor',
-			);
-			// const res = await axios.get(
-			// 	'http://34.64.245.195/api/portfolio/recommend/recommendMentor',
-			// );
-
-			console.log(res);
-			const recommendedMentors = res.data;
-			setRecommendedMentors(recommendedMentors);
-		};
-
-		getRecommendedMentors();
-	}, []);
+		if (result && result.length > 0) {
+			setRecommendedMentors([...result]);
+			console.log(error);
+		}
+	}, [result]);
 
 	return (
 		<H.Wrap>

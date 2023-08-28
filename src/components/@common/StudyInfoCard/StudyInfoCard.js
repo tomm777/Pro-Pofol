@@ -4,8 +4,8 @@ import Chip from '../Chip/Chip';
 function StudyInfoCard({
 	category,
 	title,
-	languages,
-	numberPeople,
+	process,
+	recruits,
 	position,
 	deadline,
 	background,
@@ -19,29 +19,20 @@ function StudyInfoCard({
 			>
 				<Chip category={category} />
 				<H.Title>{title}</H.Title>
-				<H.LanguagesWrapper>
-					{languages.map((lang, idx) => {
-						return (
-							<H.Language
-								key={`${lang}-${idx}-${title}`}
-								lang={lang}
-							>
-								{lang}
-							</H.Language>
-						);
-					})}
-				</H.LanguagesWrapper>
+				<H.PositionWrapper>
+					{position.map((pos, idx) => (
+						<H.Position key={`${pos}-${idx}-${title}`}>
+							{pos}
+						</H.Position>
+					))}
+				</H.PositionWrapper>
 				<H.DetailInfoWrapper>
 					<div>
-						<H.NumberPeople>{numberPeople}명</H.NumberPeople>
+						<H.NumberPeople>{recruits}명</H.NumberPeople>
 						<span>|</span>
-						{position.map((pos, idx) => (
-							<H.Position key={`${pos}-${idx}-${title}`}>
-								{pos}
-							</H.Position>
-						))}
+						<H.Process>{process}</H.Process>
 					</div>
-					<H.Deadline>마감 {deadline}일 전</H.Deadline>
+					<H.Deadline>{deadline}</H.Deadline>
 				</H.DetailInfoWrapper>
 			</H.StudyInfoCard>
 		</H.Container>

@@ -43,8 +43,8 @@ function Slider({ background, url, slidesToShow }) {
 								category={studyInfo.category}
 								background={background}
 								title={studyInfo.title}
-								languages={studyInfo.languages}
-								numberPeople={studyInfo.numberPeople}
+								process={studyInfo.process}
+								recruits={studyInfo.recruits}
 								position={studyInfo.position}
 								deadline={studyInfo.deadline}
 							/>

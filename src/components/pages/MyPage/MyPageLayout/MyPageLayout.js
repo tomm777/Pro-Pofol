@@ -8,17 +8,42 @@ import { userData } from '../../../../recoil/atoms/myPage/myPage.atom';
 import useFooter from '../../../../hooks/useFooter';
 
 function MyPageLayout() {
-	useFooter();
+	useFooter(); // 마이페이지 푸터 제거
 	const [user, setUser] = useRecoilState(userData);
 
-	// 서버통신 (GET)
+	function getCookie(name) {
+		const nameOfCookie = name + '=';
+		let x = 0;
+
+		while (x <= document.cookie.length) {
+			const y = x + nameOfCookie.length;
+			let endOfCookie = document.cookie.indexOf(';', y);
+			if (document.cookie.substring(x, y) === nameOfCookie) {
+				if (endOfCookie === -1) endOfCookie = document.cookie.length;
+
+				return unescape(document.cookie.substring(y, endOfCookie));
+			}
+
+			x = document.cookie.indexOf(' ', x) + 1;
+
+			if (x === 0) break;
+		}
+
+		return '';
+	}
+
+	const emailCookie = getCookie('email');
+	console.log(emailCookie);
+
+	// 서버통신(GET);
 	useEffect(() => {
 		async function getUserData() {
 			try {
 				const response = await axios.get(
-					'https://jsonplaceholder.typicode.com/todos/1',
+					`http://localhost:8080/api/user/${emailCookie}`,
 				);
 				setUser(response.data);
+				console.log(response.data);
 			} catch (err) {
 				console.log(err);
 			}

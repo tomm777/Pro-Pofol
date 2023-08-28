@@ -1,15 +1,6 @@
 import * as H from './StudyInfoCard.styles';
 import Chip from '../Chip/Chip';
 
-StudyInfoCard.defaultProps = {
-	category: 'study',
-	languages: ['React', 'JavaScript', 'Vue'],
-	title: '성수역 모각코 하실분 구합니다.',
-	numberPeople: '10',
-	position: ['프론트엔드 개발, 백엔드 개발'],
-	deadline: 2,
-};
-
 function StudyInfoCard({
 	category,
 	title,
@@ -17,12 +8,15 @@ function StudyInfoCard({
 	numberPeople,
 	position,
 	deadline,
-	link,
 	background,
+	postId,
 }) {
 	return (
 		<H.Container>
-			<H.StudyInfoCard href={link} background={background}>
+			<H.StudyInfoCard
+				href={`/study/detail/${postId}`}
+				background={background}
+			>
 				<Chip category={category} />
 				<H.Title>{title}</H.Title>
 				<H.LanguagesWrapper>

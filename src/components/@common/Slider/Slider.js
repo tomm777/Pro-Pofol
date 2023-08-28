@@ -39,6 +39,7 @@ function Slider({ background, url, slidesToShow }) {
 						.map((studyInfo, index) => (
 							<StudyInfoCard
 								key={index}
+								postId={studyInfo.postId}
 								category={studyInfo.category}
 								background={background}
 								title={studyInfo.title}

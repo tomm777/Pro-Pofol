@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import * as H from './Home.styles';
 import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCard';
 import MentorCard from '../../components/@common/Card/Card';

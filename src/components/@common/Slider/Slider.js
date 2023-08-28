@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StudyInfoCard from '../StudyInfoCard/StudyInfoCard';
 import * as H from './Slider.styles';
-import axios from 'axios';
 import useApi from '../../../hooks/useApi';
 
 function Slider({ background, url, slidesToShow }) {

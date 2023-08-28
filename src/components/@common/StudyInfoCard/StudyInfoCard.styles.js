@@ -50,16 +50,15 @@ export const Title = styled.p`
 	color: ${({ theme }) => theme.PALETTE.black};
 	font-size: ${({ theme }) => theme.FONT_SIZE.md};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
-	margin-bottom: 32px;
-	white-space: nowrap;
 	margin-top: 16px;
+	margin-bottom: 32px;
 	text-overflow: ellipsis;
-	width: 218px;
+	max-width: 214px;
 `;
 export const PositionWrapper = styled.div`
 	display: flex;
 	margin-bottom: 8px;
-	gap: 16px;
+	gap: 8px;
 `;
 
 export const Position = styled.p`
@@ -67,7 +66,6 @@ export const Position = styled.p`
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 	margin-bottom: 8px;
-	text-overflow: ellipsis;
 `;
 
 export const DetailInfoWrapper = styled.div`

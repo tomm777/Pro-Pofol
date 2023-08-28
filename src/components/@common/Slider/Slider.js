@@ -4,7 +4,7 @@ import * as H from './Slider.styles';
 import useApi from '../../../hooks/useApi';
 
 function Slider({ background, url, slidesToShow }) {
-	const [slide, setSlide] = useState(1);
+	const [slide, setSlide] = useState(0);
 	const [studyInfoData, setStudyInfoData] = useState([]);
 
 	const { result, trigger, isLoading, error } = useApi({

@@ -4,15 +4,20 @@ import RecommendCard from '../../components/pages/Home/RecommendCard/RecommendCa
 import MentorCard from '../../components/@common/Card/Card';
 import RollingSlider from './SlideBanner/SlideBanner';
 import Slider from '../../components/@common/Slider/Slider';
-import { getCookie } from '../../utils/cookie';
+import { getCookie, checkToken } from '../../utils/cookie';
 import useApi from '../../hooks/useApi';
 
 function Home() {
 	const [recommendedMentors, setRecommendedMentors] = useState([]);
+	const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
 	const userName = getCookie('userName');
-	console.log(userName);
 
-	const { result, trigger, isLoading, error } = useApi({
+	useEffect(() => {
+		const tokenStatus = checkToken();
+		setIsLoggedIn(tokenStatus);
+	}, []);
+
+	const { result, error } = useApi({
 		path: '/portfolio/recommend/recommendMentor',
 		shouldFetch: true,
 	});
@@ -28,22 +33,24 @@ function Home() {
 		<H.Wrap>
 			<H.Content>
 				<RollingSlider />
-				<H.RecommendMentor>
-					<H.Title>👀 {userName}님에게 추천하는 멘토</H.Title>
-					<H.RecommendCards>
-						{recommendedMentors.map((mentor, idx) => (
-							<RecommendCard
-								key={idx}
-								postId={mentor.portfolioId}
-								profileimage={mentor.profileImageUrl}
-								nickName={mentor.nickName}
-								company={mentor.company}
-								position={mentor.job}
-								career={mentor.career}
-							/>
-						))}
-					</H.RecommendCards>
-				</H.RecommendMentor>
+				{isLoggedIn && (
+					<H.RecommendMentor>
+						<H.Title>👀 {userName}님에게 추천하는 멘토</H.Title>
+						<H.RecommendCards>
+							{recommendedMentors.map((mentor, idx) => (
+								<RecommendCard
+									key={idx}
+									postId={mentor.portfolioId}
+									profileimage={mentor.profileImageUrl}
+									nickName={mentor.nickName}
+									company={mentor.company}
+									position={mentor.job}
+									career={mentor.career}
+								/>
+							))}
+						</H.RecommendCards>
+					</H.RecommendMentor>
+				)}
 				<H.NewStudy>
 					<H.TitleBox>
 						<H.Title>🔥 방금 올라온 스터디/ 프로젝트</H.Title>
@@ -89,4 +96,3 @@ function Home() {
 }
 
 export default Home;
-// 주석

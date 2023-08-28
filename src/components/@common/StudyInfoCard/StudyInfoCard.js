@@ -20,11 +20,7 @@ function StudyInfoCard({
 				<Chip classification={classification} />
 				<H.Title>{title}</H.Title>
 				<H.PositionWrapper>
-					{position.map((pos, idx) => (
-						<H.Position key={`${pos}-${idx}-${title}`}>
-							{pos}
-						</H.Position>
-					))}
+					<H.Position>{position.join('/ ')}</H.Position>
 				</H.PositionWrapper>
 				<H.DetailInfoWrapper>
 					<div>

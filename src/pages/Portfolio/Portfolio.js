@@ -14,20 +14,17 @@ function Portfolio() {
 	// 로그인한 유저가 멘토인지 아닌지 검사하는 로직
 	const [isMentor, setIsMentor] = useState(false);
 
-	const { result, error } = useApi({
+	const { result, trigger, isLoading, error } = useApi({
 		path: '/user', // 유저인지 멘토인지 확인할 수 있는 api 필요
 		shouldFetch: true,
 	});
 
 	useEffect(() => {
-		const checkMentor = () => {
-			if (result.role === 'user') {
-				setIsMentor(true);
-			}
-		};
+		const mentor = result.role === 'mentor';
 
-		checkMentor();
-	}, []);
+		if (mentor) setIsMentor(true);
+		else setIsMentor(false);
+	}, [result]);
 
 	return (
 		<S.PortfolioBox>

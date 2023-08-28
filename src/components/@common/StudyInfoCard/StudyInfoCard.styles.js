@@ -50,22 +50,22 @@ export const Title = styled.p`
 	color: ${({ theme }) => theme.PALETTE.black};
 	font-size: ${({ theme }) => theme.FONT_SIZE.md};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
-	margin-top: 16px;
-	margin-bottom: 32px;
+	margin: 16px 0;
+	max-width: 100%;
+	line-height: 20px;
 	text-overflow: ellipsis;
-	max-width: 214px;
+	white-space: nowrap;
+	overflow: hidden;
 `;
-export const PositionWrapper = styled.div`
-	display: flex;
-	margin-bottom: 8px;
-	gap: 8px;
-`;
-
 export const Position = styled.p`
 	color: #7d7d7d;
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
-	margin-bottom: 8px;
+	margin-bottom: 16px;
+	max-width: 214px;
+	height: 30px;
+	text-overflow: ellipsis;
+	line-height: 16px;
 `;
 
 export const DetailInfoWrapper = styled.div`

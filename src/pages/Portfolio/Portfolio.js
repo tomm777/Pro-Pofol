@@ -45,7 +45,7 @@ function Portfolio() {
 				<S.MentorCardBox>
 					<MentorCard
 						variant={'blue'}
-						url={'/api/portfolio/recommend/topMentor'}
+						url={'/portfolio/recommend/topMentor'}
 					/>
 				</S.MentorCardBox>
 			</div>
@@ -63,7 +63,7 @@ function Portfolio() {
 					<MentorCard
 						ref={ref}
 						variant={'white'}
-						url={'/api/portfolio'}
+						url={'/portfolio'}
 					/>
 				</S.MentorCardBox>
 			</S.MentorBox>

@@ -64,7 +64,7 @@ function Home() {
 						<Slider
 							background="lightBlueBackground"
 							url={
-								'http://localhost:8080/api/portfolio/recommend/recommendMentor'
+								'http://localhost:8080/api/projectStudy/recommend/latestProjectStudy'
 							}
 							slidesToShow={2}
 						/>

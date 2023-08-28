@@ -86,17 +86,18 @@ export const DetailInfoWrapper = styled.div`
 export const Process = styled.p`
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+	color: #000;
 `;
 
 export const NumberPeople = styled.p`
-	color: #5e5f61;
+	color: #000;
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 	margin-bottom: 8px;
 `;
 
 export const Deadline = styled.p`
-	color: #7d7d7d;
+	color: #5e5f61;
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 `;

@@ -11,7 +11,7 @@ function Slider({ background, url, slidesToShow }) {
 		const fetchStudyInfo = async () => {
 			try {
 				const res = await axios.get(`${url}`);
-				setStudyInfoData(res.data.data);
+				setStudyInfoData(res.data);
 			} catch (error) {
 				console.log(error);
 			}
@@ -39,8 +39,8 @@ function Slider({ background, url, slidesToShow }) {
 						.map((studyInfo, index) => (
 							<StudyInfoCard
 								key={index}
-								postId={studyInfo.postId}
-								category={studyInfo.category}
+								postId={studyInfo._id}
+								classification={studyInfo.classification}
 								background={background}
 								title={studyInfo.title}
 								process={studyInfo.process}

@@ -63,7 +63,9 @@ function Home() {
 					<H.SlideStudyCard>
 						<Slider
 							background="lightBlueBackground"
-							url={'/mock/studyInfo.json'}
+							url={
+								'http://localhost:8080/api/projectStudy/recommend/latestProjectStudy'
+							}
 							slidesToShow={2}
 						/>
 					</H.SlideStudyCard>

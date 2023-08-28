@@ -2,22 +2,22 @@ import * as H from './StudyInfoCard.styles';
 import Chip from '../Chip/Chip';
 
 function StudyInfoCard({
-	category,
+	classification,
 	title,
 	process,
 	recruits,
 	position,
 	deadline,
 	background,
-	postId,
+	id,
 }) {
 	return (
 		<H.Container>
 			<H.StudyInfoCard
-				href={`/study/detail/${postId}`}
+				href={`/study/detail/${id}`}
 				background={background}
 			>
-				<Chip category={category} />
+				<Chip classification={classification} />
 				<H.Title>{title}</H.Title>
 				<H.PositionWrapper>
 					{position.map((pos, idx) => (

@@ -14,6 +14,9 @@ function Home() {
 
 	useEffect(() => {
 		const getRecommendedMentors = async () => {
+			// const res = await axios.get(
+			// 	'http://localhost:8080/api/portfolio/recommend/recommendMentor',
+			// );
 			const res = await axios.get(
 				'http://34.64.245.195/api/portfolio/recommend/recommendMentor',
 			);
@@ -61,7 +64,7 @@ function Home() {
 						<Slider
 							background="lightBlueBackground"
 							url={'/mock/studyInfo.json'}
-							itemsPerPage={2}
+							slidesToShow={2}
 						/>
 					</H.SlideStudyCard>
 				</H.NewStudy>

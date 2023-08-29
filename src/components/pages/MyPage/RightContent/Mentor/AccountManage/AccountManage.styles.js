@@ -65,6 +65,7 @@ export const UserCardImg = styled.div`
 		background:
 			url(<path-to-image>),
 			lightgray 50% / cover no-repeat;
+		border-radius: 100%;
 	}
 
 	& span {

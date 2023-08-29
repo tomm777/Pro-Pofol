@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { checkToken } from '../../../../utils/cookie';
 import axios from 'axios';
-
 import * as S from './Header.styles';
-
 import SignupModal from '../../../pages/SignUp/Modal/SignUpModal';
 import Button from '../../Button/Button';
+import useApi from '../../../../hooks/useApi';
 
 function Header() {
 	const [openModal, setOpenModal] = useState(false);
@@ -28,6 +27,11 @@ function Header() {
 	const handleSignupClose = () => {
 		setOpenModal(false);
 	};
+
+	const { result, trigger, isLoading, error } = useApi({
+		path: '/auth/logout',
+		method: 'post',
+	});
 
 	const handleLogoutClick = async () => {
 		try {
@@ -51,11 +55,16 @@ function Header() {
 
 			<S.NavBox>
 				<S.NavBar>
-					<a href="/">홈</a>
-					<a href="/portfolio">포트폴리오 리뷰</a>
-					<a href="/study">프로젝트 / 스터디 모집</a>
+					<S.NavLinkItem to="/" activeClassName="active">
+						홈
+					</S.NavLinkItem>
+					<S.NavLinkItem to="/portfolio" activeClassName="active">
+						포트폴리오 리뷰
+					</S.NavLinkItem>
+					<S.NavLinkItem to="/study" activeClassName="active">
+						프로젝트 / 스터디 모집
+					</S.NavLinkItem>
 				</S.NavBar>
-
 				<S.LoginBar>
 					{isLoggedIn ? (
 						<>

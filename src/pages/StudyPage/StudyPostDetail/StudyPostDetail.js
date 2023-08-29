@@ -1,3 +1,4 @@
+/* eslint-disable no-unneeded-ternary */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -12,6 +13,7 @@ function StudyPostDetail() {
 	console.log('postId', postId);
 	const [postDetail, setPostDetail] = useState(null);
 	const [user, setUser] = useState(null);
+	const [isRecruitClosed, setIsRecruitClosed] = useState(null);
 	const navigate = useNavigate();
 
 	const { result: userData } = useApi({
@@ -41,11 +43,18 @@ function StudyPostDetail() {
 	useEffect(() => {
 		if (result) {
 			setPostDetail(result);
+			setIsRecruitClosed(
+				result.recruitsStatus === '모집마감' ? true : false,
+			);
 			console.log('RESULT', postDetail);
 		}
 	}, [result]);
 
+	console.log('isRecruitClosed', isRecruitClosed);
+
 	const isUser = userData._id === result.ownerId;
+
+	// const isRecruitClosed = result.recruitsStatus === "모집마감" ? true : false;
 
 	const {
 		ownerId,
@@ -63,9 +72,6 @@ function StudyPostDetail() {
 		title,
 		description,
 	} = postDetail || {};
-
-	// const isUserPost =
-	// 	loggedInUser && postDetail && loggedInUser._id === ownerId;
 
 	const handleEditClick = () => {
 		if (confirm('작성한 글을 수정할까요?')) {
@@ -254,14 +260,6 @@ function StudyPostDetail() {
 							{isUser ? (
 								<S.ButtonContainer>
 									<Button
-										variant={'primary'}
-										shape={'default'}
-										size={'normal'}
-										onClick={handleEditClick}
-									>
-										수정
-									</Button>
-									<Button
 										variant={'cancel'}
 										shape={'default'}
 										size={'normal'}
@@ -269,14 +267,29 @@ function StudyPostDetail() {
 									>
 										삭제
 									</Button>
-									<Button
-										variant={'reverse'}
-										shape={'default'}
-										size={'normal'}
-										onClick={handleDeadLineClick}
-									>
-										마감
-									</Button>
+									{isRecruitClosed ? (
+										<></>
+									) : (
+										<>
+											<Button
+												variant={'primary'}
+												shape={'default'}
+												size={'normal'}
+												onClick={handleEditClick}
+											>
+												수정
+											</Button>
+
+											<Button
+												variant={'reverse'}
+												shape={'default'}
+												size={'normal'}
+												onClick={handleDeadLineClick}
+											>
+												마감
+											</Button>
+										</>
+									)}
 								</S.ButtonContainer>
 							) : (
 								<></>

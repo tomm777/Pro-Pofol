@@ -10,18 +10,41 @@ function AccountManage() {
 	// 유저 정보 담을 state
 	const [user, setUser] = useState({});
 	// 유저 정보 통신(GET)
-	const { result, trigger, isLoading, error } = useApi({
+	const {
+		result: users,
+		trigger: usersT,
+		isLoading: usersL,
+		error: usersE,
+	} = useApi({
 		path: `/user`,
 		shouldFetch: true,
 	});
 
-	// 유저 정보 state에 저장
+	// 직무 담을 state
+	const [position, setPosition] = useState([]);
+	const {
+		result: positions,
+		trigger: positionsT,
+		isLoading: positionsL,
+		error: positionsE,
+	} = useApi({
+		path: '/position',
+		shouldFetch: true,
+	});
+
 	useEffect(() => {
-		if (result) {
-			setUser(result);
+		if (users) {
+			setUser(users);
 		}
 		console.log(user);
-	}, [result]);
+	}, [users]);
+
+	useEffect(() => {
+		if (positions && positions.length > 0) {
+			setPosition([...positions]);
+		}
+		console.log(position);
+	}, [positions]);
 
 	//
 	const {
@@ -35,35 +58,26 @@ function AccountManage() {
 		console.log(errors.currentPassword?.type);
 	}, [errors.currentPassword?.type]);
 
-	const submitHandler = data => {
-		// const newArr = Object.entries(data);
-		// const filterArr = newArr.filter(element => !(element[1] === ''));
-		// const confirmText = filterArr
-		// 	.map(element => `${element[0]}:${element[1]}`)
-		// 	.join('\n');
-		// const apply = confirm(confirmText);
-		// const apply = confirm('정보를 변경하시겠습니까?');
-		// if (apply) {
-		// 	axios
-		// 		.post('https://jsonplaceholder.typicode.com/posts', data)
-		// 		.then(res => console.log(res))
-		// 		.then(alert(`변경이 완료되었습니다.`));
-		// } else {
-		// 	return alert('변경이 취소 되었습니다.');
-		// }
-
-		// axios
-		// 	.post('https://jsonplaceholder.typicode.com/posts', data)
-		// 	.then(res => console.log(res))
-		// 	.then(alert(`변경이 완료되었습니다.`));
-
+	// post
+	const submitHandler = async data => {
 		if (data.nickName === '') {
 			data.nickName = user.nickName;
 		}
 
-		console.log(data);
+		if (data.position === 'default' || data.position === '') {
+			data.position = user.position;
+		}
 
-		console.log({ ...user, ...data });
+		try {
+			const postData = {
+				...user,
+				...data,
+			};
+			await usersT({ method: 'put', data: { postData } });
+			alert('수정되었습니다.');
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	return (
@@ -85,33 +99,34 @@ function AccountManage() {
 
 				<form onSubmit={handleSubmit(submitHandler)}>
 					<AM.SubTitleBox>
-						<AM.SubTitle>닉네임</AM.SubTitle>
+						<AM.SubTitle id="nickName">닉네임</AM.SubTitle>
 						<input
 							defaultValue={user.nickName}
+							label="#nickName"
 							placeholder={'닉네임을 입력해 주세요.'}
 							{...register('nickName')}
 						/>
 					</AM.SubTitleBox>
 					<AM.SubTitleBox>
-						<AM.SubTitle>직무</AM.SubTitle>
+						<AM.SubTitle id="position">직무</AM.SubTitle>
 						<select
 							defaultValue={user.position}
 							{...register('position')}
 						>
-							<option value="프론트 엔드">프론트 엔드</option>
-							<option value="백엔드">백엔드</option>
-							<option value="풀스택">풀스택</option>
-							<option value="안드로이드">안드로이드</option>
-							<option value="IOS">IOS</option>
-							<option value="ios">IOS</option>
-							<option value="ios">IOS</option>
-							<option value="ios">IOS</option>
+							<option value={'default'} hidden>
+								직무를 선택해 주세요.
+							</option>
+							{position.map((el, idx) => (
+								<option value={el.name} key={idx}>
+									{el.name}
+								</option>
+							))}
 						</select>
 					</AM.SubTitleBox>
 					{user.role === 'mentor' ? (
 						<>
 							<AM.SubTitleBox>
-								<AM.SubTitle>경력</AM.SubTitle>
+								<AM.SubTitle id="career">경력</AM.SubTitle>
 								<input
 									type="number"
 									defaultValue={user.career}
@@ -122,7 +137,9 @@ function AccountManage() {
 								/>
 							</AM.SubTitleBox>
 							<AM.SubTitleBox>
-								<AM.SubTitle>재직중인 회사</AM.SubTitle>
+								<AM.SubTitle id="company">
+									재직중인 회사
+								</AM.SubTitle>
 								<input
 									defaultValue={user.company}
 									placeholder={'재직중인 회사'}

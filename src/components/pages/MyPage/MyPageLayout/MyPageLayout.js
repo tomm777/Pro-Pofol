@@ -9,20 +9,16 @@ function MyPageLayout() {
 	// 마이페이지 내 모든 푸터 삭제
 	useFooter();
 
-	// 유저 정보 담을 state
-	const [user, setUser] = useState({});
 	// 유저 정보 통신(GET)
-	const { result, trigger, isLoading, error } = useApi({
+	const {
+		result: user,
+		trigger,
+		isLoading,
+		error,
+	} = useApi({
 		path: `/user`,
 		shouldFetch: true,
 	});
-
-	// 유저 정보 state에 저장
-	useEffect(() => {
-		if (result) {
-			setUser(result);
-		}
-	}, [result]);
 
 	return (
 		<M.Wrapper>

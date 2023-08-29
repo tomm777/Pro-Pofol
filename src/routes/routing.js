@@ -150,10 +150,6 @@ const router = createBrowserRouter([
 				path: 'study/detail/:postId',
 				element: <StudyPostDetail />,
 			},
-			{
-				path: '/*',
-				element: <ErrorFallback />,
-			},
 		],
 	},
 	{

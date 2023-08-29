@@ -40,3 +40,8 @@ export const RegisterForm = styled.form`
 		margin-top: 32px;
 	}
 `;
+
+export const StyledError = styled.span`
+	color: ${({ theme }) => theme.PALETTE.mainColor};
+	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+`;

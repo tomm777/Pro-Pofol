@@ -5,15 +5,11 @@ const backgroundCSS = {
 		background: ${({ theme }) => theme.PALETTE.white};
 		border: 2px solid ${({ theme }) => theme.PALETTE.gray[100]};
 		width: 254px;
-		height: 200px;
-		padding: 20px;
 	`,
 
 	lightBlueBackground: css`
 		background-color: ${({ theme }) => theme.PALETTE.primary[100]};
 		width: 530px;
-		height: 200px;
-		padding: 30px;
 	`,
 };
 
@@ -34,6 +30,8 @@ export const StudyInfoCard = styled.a`
 	text-decoration: none;
 	border-radius: 10px;
 	box-sizing: border-box;
+	height: 200px;
+	padding: 20px;
 `;
 export const Category = styled.p`
 	color: ${({ theme }) => theme.PALETTE.white};

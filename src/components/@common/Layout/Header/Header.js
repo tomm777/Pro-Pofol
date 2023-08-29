@@ -28,18 +28,15 @@ function Header() {
 		setOpenModal(false);
 	};
 
-	const { result, trigger, isLoading, error } = useApi({
-		path: '/auth/logout',
-		method: 'post',
-	});
-
 	const handleLogoutClick = async () => {
 		try {
 			const response = await axios.post('/api/auth/logout');
+			console.log(response);
 
 			if (response.status === 200) {
 				setIsLoggedIn(false);
 				window.alert('로그아웃 되었습니다 ');
+				window.location.reload();
 				navigate('/');
 			}
 		} catch (error) {

@@ -27,8 +27,8 @@ function EditComments() {
 		}
 		try {
 			await trigger({ data: { content: comment } });
+			console.log('comment', comment);
 			setComment('');
-			console.log('성공ㄱ');
 		} catch (error) {
 			console.error(error);
 		}

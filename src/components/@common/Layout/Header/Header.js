@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { checkToken } from '../../../../utils/cookie';
-import axios from 'axios';
 import * as S from './Header.styles';
 import SignupModal from '../../../pages/SignUp/Modal/SignUpModal';
 import Button from '../../Button/Button';
@@ -28,17 +27,16 @@ function Header() {
 		setOpenModal(false);
 	};
 
+	const { result, trigger, isLoading, error } = useApi({});
+
 	const handleLogoutClick = async () => {
 		try {
-			const response = await axios.post('/api/auth/logout');
-			console.log(response);
+			trigger({ path: '/auth/logout', method: 'post' });
 
-			if (response.status === 200) {
-				setIsLoggedIn(false);
-				window.alert('로그아웃 되었습니다 ');
-				window.location.reload();
-				navigate('/');
-			}
+			setIsLoggedIn(false);
+			window.alert('로그아웃 되었습니다 ');
+			window.location.reload();
+			navigate('/');
 		} catch (error) {
 			console.error('로그아웃 오류:', error);
 		}

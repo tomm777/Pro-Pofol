@@ -51,7 +51,6 @@ function SignUp() {
 	async function handleSubmit(event) {
 		event.preventDefault();
 
-		// Check if name is valid
 		if (name.length > 10) {
 			setNameError('이름은 10자 이하로 입력해 주세요');
 			return;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { css, styled } from 'styled-components';
 
 export const Wrap = styled.div`
 	width: 100%;
@@ -33,6 +33,9 @@ export const RegisterForm = styled.form`
 			padding: 0 12px 0 6px;
 			border: 1px solid #0000001a;
 			border-radius: 4px;
+		}
+		> input {
+			border: 1px solid ${props => (props.error ? 'blue' : '#ccc')};
 		}
 	}
 	> button {

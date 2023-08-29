@@ -18,13 +18,6 @@ export const TextInput = styled.input`
 	padding: 0 12px;
 	border-radius: 4px;
 	border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};
-	${props =>
-		props.hasError &&
-		css`
-			input {
-				border-color: blue;
-			}
-		`}
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 
 	&:read-only {

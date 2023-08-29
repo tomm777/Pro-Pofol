@@ -14,14 +14,18 @@ const MESSAGE = {
 		POSITION: '직무를 선택해 주세요.',
 		COMPANY: '다니는 회사를 입력해 주세요.',
 		TITLE: '제목을 작성해 주세요.',
+		TITLELENGTH: '제목은 50자 이하로 작성해 주세요.',
 		DESCRIPTION: '소개 내용을 작성해 주세요.',
+		DESCRIPTIONLENGTH: '내용은 1000자 이하로 작성해 주세요.',
 		COMMUNICATION: '연락 가능한 링크를 입력해 주세요.',
+		CAREER: '경력을 입력해 주세요.',
 		ALL: '모든 항목을 선택해 주세요.',
 		MODAL: '항목이 비었습니다.\n다시 한번 확인해 주세요.',
 	},
 	POST: {
 		COMPLETE: '게시글 작성이 완료되었습니다.',
 		EDIT: '작성한 글을 수정하시겠습니까?',
+		EDITFIN: '게시글 수정이 완료되었습니다.',
 		DELETE: '게시글을 삭제하시겠습니까?',
 	},
 	STUDY: {
@@ -40,8 +44,26 @@ const MESSAGE = {
 		DELETE: '후기를 삭제하시겠습니까?',
 	},
 	MYPAGE: {
-		EDIT: '수정이 완료되었습니다.',
+		APPLY: {
+			REQUSET: '수락하시겠습니까?',
+		},
+		EDIT: {
+			COMPLETE: '수정이 완료되었습니다.',
+			NOCHANGE: '변경 사항이 없습니다.',
+		},
 		NICKNAME: '',
+		NODATA: {
+			LIST: '내역이 없습니다.',
+		},
+		REFUSE: {
+			REQUSET: '거절하시겠습니까?',
+			CANCLE: '거절을 취소하시겠습니까?',
+			COMPLETE: '거절이 취소되었습니다.',
+		},
+		ACCOUNT: {
+			AGREE: '안내 사항을 모두 확인했으며 이에 동의합니다.',
+			THANKS: '이용해 주셔서 감사합니다.',
+		},
 	},
 	REJECT: {
 		COMPLETE: '거절 사유 작성이 완료되었습니다.',

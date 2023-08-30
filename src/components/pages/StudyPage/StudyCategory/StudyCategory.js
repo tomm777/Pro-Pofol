@@ -5,8 +5,8 @@ import useApi from '../../../../hooks/useApi';
 
 function StudyCategory() {
 	const [category, setCategory] = useState([
-		{ name: '스터디' },
-		{ name: '프로젝트' },
+		{ name: '스터디', id: 0 },
+		{ name: '프로젝트', id: 1 },
 	]);
 	const [position, setPosition] = useState([]);
 	const [projectStudy, setProjectStudy] = useState([]);
@@ -38,16 +38,12 @@ function StudyCategory() {
 		shouldFetch: true,
 	});
 
-	console.log('RESULT****************', resultProjectStudy);
-	console.log('classification : 스터디 파람스로', resultProjectStudy);
-
 	useEffect(() => {
 		if (resultProjectStudy) {
 			setProjectStudy(resultProjectStudy);
 		}
 	}, [resultProjectStudy, selectedValues]);
 
-	console.log('프로젝트 스터디 리스트', projectStudy);
 	// console.log(
 	// 	'selectedValue - 버튼 선택한 값 (파람스로 보내는 값)',
 	// 	selectedValues,
@@ -68,7 +64,7 @@ function StudyCategory() {
 		triggerProjectStudy({
 			params: {
 				classification: classificationValue,
-				position: selectedValues.position, // 이 부분을 추가하여 position 값도 포함시킴
+				position: selectedValues.position,
 			},
 			applyResult: true,
 		});
@@ -82,7 +78,7 @@ function StudyCategory() {
 
 		triggerProjectStudy({
 			params: {
-				classification: selectedValues.classification, // classification 값도 포함시킴
+				classification: selectedValues.classification,
 				position: positionValue,
 			},
 			applyResult: true,
@@ -96,15 +92,15 @@ function StudyCategory() {
 			<S.CategoryList>
 				<S.CategoryItem
 					onClick={() => handleCategoryClick('')}
-					isSelected={selectedValues.classification === ''}
+					$isSelected={selectedValues.classification === ''}
 				>
 					전체
 				</S.CategoryItem>
 				{category.map(el => (
 					<S.CategoryItem
-						key={el._id}
+						key={el.id}
 						onClick={() => handleCategoryClick(el.name)}
-						isSelected={selectedValues.classification === el.name}
+						$isSelected={selectedValues.classification === el.name}
 					>
 						{el.name}
 					</S.CategoryItem>
@@ -121,14 +117,14 @@ function StudyCategory() {
 						<>
 							<S.PositionCategoryItem
 								onClick={() => handlePositionClick('')}
-								isSelected={selectedValues.position === ''}
+								$isSelected={selectedValues.position === ''}
 							>
 								전체
 							</S.PositionCategoryItem>
 
 							{position.map(el => (
 								<S.PositionCategoryItem
-									isSelected={
+									$isSelected={
 										selectedValues.position === el.name
 									}
 									key={el._id}

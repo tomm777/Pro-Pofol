@@ -36,7 +36,9 @@ function Home() {
 				<RollingSlider />
 				{isLoggedIn && (
 					<H.RecommendMentor>
-						<H.Title>👀 {userNickName}님에게 추천하는 멘토</H.Title>
+						<H.Title>
+							👀 {userNickName} 님에게 추천하는 멘토
+						</H.Title>
 						<H.RecommendCards>
 							{recommendedMentors.map((mentor, idx) => (
 								<RecommendCard

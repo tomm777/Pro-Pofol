@@ -6,7 +6,7 @@ import RollingSlider from './SlideBanner/SlideBanner';
 import Slider from '../../components/@common/Slider/Slider';
 import { checkToken } from '../../utils/cookie';
 import useApi from '../../hooks/useApi';
-import EmptyMessage from '../../components/@common/EmptyImage/EmptyMessage';
+import EmptyMessage from '../../components/@common/EmptyMessage/EmptyMessage';
 
 function Home() {
 	const [recommendedMentors, setRecommendedMentors] = useState([]);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as S from './StudyCategory.styles';
 import PostCard from '../PostCard/PostCard';
 import useApi from '../../../../hooks/useApi';
+import EmptyMessage from '../../../@common/EmptyMessage/EmptyMessage';
 
 function StudyCategory() {
 	const [category, setCategory] = useState([
@@ -109,39 +110,29 @@ function StudyCategory() {
 
 			<S.CategoryBottomList>
 				<S.PositionCategoryList>
-					{position.length === 0 ? (
-						<>
-							<p>아무것도 없어요</p>
-						</>
-					) : (
-						<>
-							<S.PositionCategoryItem
-								onClick={() => handlePositionClick('')}
-								$isSelected={selectedValues.position === ''}
-							>
-								전체
-							</S.PositionCategoryItem>
+					<S.PositionCategoryItem
+						onClick={() => handlePositionClick('')}
+						$isSelected={selectedValues.position === ''}
+					>
+						전체
+					</S.PositionCategoryItem>
 
-							{position.map(el => (
-								<S.PositionCategoryItem
-									$isSelected={
-										selectedValues.position === el.name
-									}
-									key={el._id}
-									onClick={() => handlePositionClick(el.name)}
-								>
-									{el.name}
-								</S.PositionCategoryItem>
-							))}
-						</>
-					)}
+					{position.map(el => (
+						<S.PositionCategoryItem
+							$isSelected={selectedValues.position === el.name}
+							key={el._id}
+							onClick={() => handlePositionClick(el.name)}
+						>
+							{el.name}
+						</S.PositionCategoryItem>
+					))}
 				</S.PositionCategoryList>
 			</S.CategoryBottomList>
 
 			<S.PostCardContainer>
 				{isLoading && <S.EmptyText>로딩 중입니다...!</S.EmptyText>}
 				{!Array.isArray(projectStudy) || projectStudy.length === 0 ? (
-					<S.EmptyText>아직 아무것도 없어요! 😭</S.EmptyText>
+					<EmptyMessage />
 				) : (
 					projectStudy.map((projectStudy, idx) => (
 						<PostCard data={projectStudy} key={idx} />

@@ -38,7 +38,11 @@ function SideMenu({ userState }) {
 							: '멘토링 신청 내역'}
 					</button>
 					{users.role === 'mentor' ? (
-						<button onClick={() => handleClickButton('postlist')}>
+						<button
+							onClick={() =>
+								handleClickButton('mentoringpostlist')
+							}
+						>
 							멘토링 신청 게시물 관리
 						</button>
 					) : undefined}

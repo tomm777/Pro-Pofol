@@ -84,18 +84,22 @@ function AccountManage() {
 				<AM.MainTitle>{MYPAGEOPTION.ACCOUNT.MANAGE.TITLE}</AM.MainTitle>
 			</AM.MainTitleBox>
 			<AM.ContentBox>
-				<AM.UserCard>
-					<AM.UserCardImg>
-						<img src={user.profileImage} alt="프로필 사진"></img>
-						<span>프로필 수정</span>
-					</AM.UserCardImg>
-					<AM.UserCardInfo>
-						<AM.UserName>{user.name}</AM.UserName>
-						<AM.UserEmail>{user.email}</AM.UserEmail>
-					</AM.UserCardInfo>
-				</AM.UserCard>
-
 				<form onSubmit={handleSubmit(submitHandler)}>
+					<AM.UserCard>
+						<AM.UserCardImg>
+							<img
+								{...register('image')}
+								src={user.profileImage}
+								alt="프로필 사진"
+							></img>
+							<span>프로필 수정</span>
+						</AM.UserCardImg>
+						<AM.UserCardInfo>
+							<AM.UserName>{user.name}</AM.UserName>
+							<AM.UserEmail>{user.email}</AM.UserEmail>
+						</AM.UserCardInfo>
+					</AM.UserCard>
+
 					<AM.SubTitleBox>
 						<AM.SubTitle id="nickName">닉네임</AM.SubTitle>
 						<input
@@ -107,12 +111,9 @@ function AccountManage() {
 					</AM.SubTitleBox>
 					<AM.SubTitleBox>
 						<AM.SubTitle id="position">직무</AM.SubTitle>
-						<select
-							defaultValue={user.position}
-							{...register('position')}
-						>
+						<select {...register('position')}>
 							<option value={'default'} hidden>
-								직무를 선택해 주세요.
+								{user.position}
 							</option>
 							{position.map((el, idx) => (
 								<option value={el.name} key={idx}>

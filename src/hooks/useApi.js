@@ -35,10 +35,10 @@ const useApi = ({
 			setResult(fetchResult);
 		} catch (err) {
 			// 비동기 에러 검출 가능
-			occuredError(() => {
-				throw new Error(err);
-			});
-			setError(err);
+			// occuredError(() => {
+			// 	throw new Error(err);
+			// });
+			// setError(err);
 		}
 		setIsLoading(false);
 	}, [initMethod, initData, initPath]);

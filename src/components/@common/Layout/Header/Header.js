@@ -29,13 +29,13 @@ function Header() {
 
 	const { trigger } = useApi({});
 
-	const handleLogoutClick = async () => {
+	const handleLogoutClick = () => {
 		trigger({ path: '/auth/logout', method: 'post' });
 
 		setIsLoggedIn(false);
 		window.alert('로그아웃 되었습니다 ');
 		window.location.reload();
-		navigate('/');
+		// navigate('/');
 	};
 
 	return (

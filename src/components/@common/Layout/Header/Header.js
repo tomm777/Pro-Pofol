@@ -19,7 +19,7 @@ function Header() {
 
 	useEffect(() => {
 		handleTokenChange();
-	}, [isLoggedIn]);
+	}, []);
 
 	const { result, trigger } = useApi({
 		path: isLoggedIn ? '/user' : '', // 유저인지 멘토인지 확인할 수 있는 api 필요

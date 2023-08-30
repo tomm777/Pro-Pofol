@@ -30,16 +30,12 @@ function Header() {
 	const { trigger } = useApi({});
 
 	const handleLogoutClick = async () => {
-		try {
-			trigger({ path: '/auth/logout', method: 'post' });
+		trigger({ path: '/auth/logout', method: 'post' });
 
-			setIsLoggedIn(false);
-			window.alert('로그아웃 되었습니다 ');
-			window.location.reload();
-			navigate('/');
-		} catch (error) {
-			console.error('로그아웃 오류:', error);
-		}
+		setIsLoggedIn(false);
+		window.alert('로그아웃 되었습니다 ');
+		window.location.reload();
+		navigate('/');
 	};
 
 	return (

@@ -18,18 +18,27 @@ function SignUp() {
 	const navigate = useNavigate();
 	useFooter();
 
+	const { result, trigger, isLoading, error } = useApi({});
+
 	useEffect(() => {
 		async function fetchUserData() {
 			try {
-				const decodedEmail = decodeURIComponent(getCookie('email'));
-				setEmail(decodedEmail);
+				const email = decodeURIComponent(getCookie('email'));
+				setEmail(email);
 			} catch (error) {
-				console.error('Failed to fetch user information', error);
+				console.error('사용자 정보를 가져오는데 실패했습니다.', error);
 			}
 		}
 
 		fetchUserData();
 	}, []);
+
+	useEffect(() => {
+		if (error) {
+			console.log(result);
+		}
+		console.log(error);
+	}, [error]);
 
 	const handleNameChange = event => {
 		const newName = event.target.value;
@@ -44,35 +53,47 @@ function SignUp() {
 	const handleNicknameChange = event => {
 		const value = event.target.value;
 		const regex = /^[ㄱ-ㅎ|가-힣|a-zA-Z0-9]*$/;
-		if (regex.test(value)) {
-			setNickName(value);
-			setNicknameError('');
+		if (value.length <= 10) {
+			if (regex.test(value)) {
+				setNickName(value);
+				setNicknameError('');
+			} else {
+				setNicknameError('한글, 영어, 숫자만 입력 가능합니다.');
+			}
 		} else {
-			setNicknameError('한글, 영어, 숫자만 입력 가능합니다.');
+			setNicknameError('닉네임은 10자 이하로 입력해 주세요');
 		}
 	};
-
 	const handleJobChange = event => {
 		setPosition(event.target.value);
 	};
 
-	const { result, trigger, isLoading, error } = useApi();
 	const handleSubmit = async event => {
 		event.preventDefault();
 
-		const userInfoData = { name, email, nickName, position };
+		await trigger({
+			path: '/auth/signup',
+			method: 'post',
+			data: {
+				name,
+				email,
+				nickName,
+				position,
+			},
+		});
+		console.log(error);
 
-		try {
-			await trigger({
-				path: '/auth/signup',
-				method: 'post',
-				data: userInfoData,
-			});
+		// if (result.result === 'MongoServerError') {
+		// 	if (result.reason.includes('duplicate key')) {
+		// 		alert('이미 사용중인 닉네임입니다.');
+		// 		return;
+		// 	} else {
+		// 		alert('회원가입에 실패하였습니다. 다시 시도해 주세요.');
+		// 		return;
+		// 	}
+		// }
 
-			navigate('/signupdone');
-		} catch (error) {
-			console.error('회원가입 실패:', error);
-		}
+		// navigate('/signupdone');
 	};
 
 	return (
@@ -86,7 +107,7 @@ function SignUp() {
 				<div>
 					<label>이름</label>
 					<Input
-						type="text"
+						type="이름을 입력해 주세요"
 						value={name}
 						size={'medium'}
 						onChange={handleNameChange}
@@ -97,7 +118,7 @@ function SignUp() {
 				<div>
 					<label>닉네임</label>
 					<Input
-						type="text"
+						type="한글, 영어, 숫자만 입력해주세요"
 						value={nickName}
 						onChange={handleNicknameChange}
 						size={'medium'}
@@ -129,4 +150,3 @@ function SignUp() {
 }
 
 export default SignUp;
-// 주석

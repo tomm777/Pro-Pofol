@@ -40,16 +40,21 @@ function Header() {
 	};
 
 	const handleLogoutClick = () => {
-		trigger({ path: '/auth/logout', method: 'post' });
-		setIsLoggedIn(false);
-		alert('로그아웃이 완료되었습니다.');
-		navigate(0);
+		trigger({ path: '/auth/logout', method: 'post' })
+			.then(() => {
+				setIsLoggedIn(false);
+				alert('로그아웃이 완료되었습니다.');
+				navigate(0);
+			})
+			.catch(error => {
+				console.error('로그아웃 중 오류 발생:', error);
+			});
 	};
 
 	const handleMentorApplyClick = () => {
 		if (!isLoggedIn) {
 			alert('로그인 후 이용 가능합니다.');
-			window.location.href = 'http://localhost:3000/api/auth/login/naver';
+			setOpenModal(true);
 		} else {
 			navigate('/usermentorapply');
 		}

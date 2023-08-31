@@ -44,7 +44,7 @@ function Header() {
 			.then(() => {
 				setIsLoggedIn(false);
 				alert('로그아웃이 완료되었습니다.');
-				navigate('/');
+				navigate(0);
 			})
 			.catch(error => {
 				console.error('로그아웃 중 오류 발생:', error);

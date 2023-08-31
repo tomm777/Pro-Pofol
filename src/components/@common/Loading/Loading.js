@@ -6,7 +6,7 @@ const Loading = () => {
 				top: '40%',
 				left: '50%',
 				transform: 'translate(-50%, -50%)',
-				backgroundColor: 'rgba(255, 255, 255, 0.7)', // 흰색 배경의 투명도를 조절합니다.
+				backgroundColor: 'rgba(255, 255, 255, 0.5)', // 흰색 배경의 투명도를 조절합니다.
 				display: 'flex',
 				flexDirection: 'column',
 				alignItems: 'center',

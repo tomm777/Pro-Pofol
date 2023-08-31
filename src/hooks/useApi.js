@@ -27,9 +27,12 @@ const useApi = ({
 	const initFetch = useCallback(async () => {
 		try {
 			setIsLoading(true);
-
+			const queryParams = new URLSearchParams(initParams).toString();
+			const urlWithParams = queryParams
+				? `${initPath}?${queryParams}`
+				: initPath;
 			const fetchResult = await mapMethodToFetcher[initMethod](
-				initPath,
+				urlWithParams,
 				initData,
 			);
 			setResult(fetchResult);
@@ -39,7 +42,7 @@ const useApi = ({
 			// 	throw new Error(err);
 			// });
 
-			setError(err);
+			// setError(err);
 		}
 		setIsLoading(false);
 	}, [initMethod, initData, initPath]);
@@ -49,7 +52,7 @@ const useApi = ({
 			path: triggerPath = initPath,
 			method: triggerMethod = initMethod,
 			data: triggerData = initData,
-			params: triggerParams = initParams,
+			params: triggerParams = {},
 			applyResult = false,
 		}) => {
 			try {
@@ -85,7 +88,7 @@ const useApi = ({
 				// occurredError(() => {
 				// 	throw new Error(err);
 				// });
-				setError(err);
+				// setError(err);
 			}
 			setIsLoading(false);
 		},

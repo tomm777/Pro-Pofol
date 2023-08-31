@@ -1,16 +1,19 @@
 /* eslint-disable no-unneeded-ternary */
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as S from './StudyPostDetail.styles';
 import Button from '../../../components/@common/Button/Button';
 import EditComments from '../../../components/@common/EditComments/EditComments';
 import useApi from '../../../hooks/useApi';
 import { checkToken } from '../../../utils/cookie';
+import useFooter from '../../../hooks/useFooter';
 
 function StudyPostDetail() {
+	useFooter();
 	const { postId } = useParams();
 	const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
+
+	// console.log('isLoggedIn', isLoggedIn);
 
 	const [postDetail, setPostDetail] = useState(null);
 	const [user, setUser] = useState(null);
@@ -26,6 +29,8 @@ function StudyPostDetail() {
 		path: isLoggedIn ? '/user' : '',
 		shouldFetch: isLoggedIn,
 	});
+
+	// console.log('USERDATA', userData, user);
 
 	useEffect(() => {
 		if (userData) {
@@ -44,7 +49,7 @@ function StudyPostDetail() {
 		shouldFetch: true,
 	});
 
-	console.log('postDetail', postDetail);
+	// console.log('postDetail', postDetail);
 
 	useEffect(() => {
 		if (result) {
@@ -56,7 +61,7 @@ function StudyPostDetail() {
 		}
 	}, [result]);
 
-	console.log('isRecruitClosed', isRecruitClosed);
+	// console.log('isRecruitClosed', isRecruitClosed);
 
 	const isUser = userData._id === result.ownerId;
 
@@ -216,24 +221,12 @@ function StudyPostDetail() {
 											<S.PostDetailBasicItemTitle>
 												<p>마감 기간</p>
 											</S.PostDetailBasicItemTitle>
+
 											<p>
 												{deadline
-													? new Date(deadline)
-															.toISOString()
-															.substr(0, 10)
-															.split('-')
-															.map(
-																(
-																	part,
-																	index,
-																) =>
-																	index === 1
-																		? parseInt(
-																				part,
-																		  )
-																		: part,
-															)
-															.join('. ')
+													? deadline
+															.split('T')[0]
+															.replace(/-/g, '. ')
 													: ''}
 											</p>
 										</S.PostDetailBasicItem>

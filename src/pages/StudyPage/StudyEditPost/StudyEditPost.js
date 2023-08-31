@@ -36,8 +36,8 @@ function StudyEditPost() {
 
 	// 게시글 정보
 	const { result: postData, trigger: getEditPostData } = useApi({
-		path: isEdit ? `/projectStudy/${postId}` : '',
-		shouldFetch: isEdit,
+		path: `/projectStudy/${postId}`,
+		shouldFetch: true,
 	});
 
 	useEffect(() => {
@@ -125,6 +125,7 @@ function StudyEditPost() {
 									handleOptionChange('position', position);
 								}}
 								name="position"
+								selectedData={selectedOptions.position}
 							/>
 						</S.SelectBox>
 
@@ -183,7 +184,7 @@ function StudyEditPost() {
 							)
 						}
 						required
-						value={selectedOptions.howContactContent}
+						value={selectedOptions.howContactContent || ''}
 					/>
 				</S.SelectContainer>
 			</S.BasicInfoBox>

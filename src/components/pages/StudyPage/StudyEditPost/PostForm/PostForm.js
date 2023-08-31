@@ -19,7 +19,7 @@ function PostForm({ selectedOptions, postId, postData }) {
 		if (isTitle && isDescription) {
 			setValues({
 				title: postData.title,
-				description: postData.title,
+				description: postData.description,
 			});
 		}
 	}, [isTitle]);
@@ -67,7 +67,7 @@ function PostForm({ selectedOptions, postId, postData }) {
 			message: '모든 항목을 선택해주세요.',
 		},
 	];
-	console.log('selectedOptions', selectedOptions);
+	// console.log('selectedOptions', selectedOptions);
 
 	const { trigger, isLoading, error, result } = useApi({
 		path: '/projectStudy',

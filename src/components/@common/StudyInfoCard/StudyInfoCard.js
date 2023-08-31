@@ -8,14 +8,14 @@ function StudyInfoCard({
 	recruits,
 	position,
 	deadline,
-	background,
+	$background,
 	postId,
 }) {
 	return (
 		<H.Container>
 			<H.StudyInfoCard
 				href={`/study/detail/${postId}`}
-				background={background}
+				$background={$background}
 			>
 				<Chip classification={classification} />
 				<H.Title>{title}</H.Title>

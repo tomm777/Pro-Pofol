@@ -19,7 +19,7 @@ function StudyInfoCard({
 			>
 				<Chip classification={classification} />
 				<H.Title>{title}</H.Title>
-				<H.Position>{position.join('/ ')}</H.Position>
+				<H.Position>{position.join(' / ')}</H.Position>
 				<H.DetailInfoWrapper>
 					<div>
 						<H.NumberPeople>{recruits}</H.NumberPeople>

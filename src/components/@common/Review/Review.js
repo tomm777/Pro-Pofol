@@ -7,16 +7,18 @@ import useApi from '../../../hooks/useApi';
 import MESSAGE from '../../../constants/message';
 import Textarea from '../Textarea/Textarea';
 import { checkToken } from '../../../utils/cookie';
+import Pagination from '../Pagination/Pagination';
 
 function Review(props) {
-	// 댓글 페이지네이션 처리 필요
-	// 댓글도 댓글 작성자인 경우만 수정/삭제 버튼 오픈
-
 	const { title, getUrl } = props;
+
+	// review && comments 데이터
 	const [review, setReview] = useState([]);
 
+	// 로그인 체크
 	const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
 
+	// 수정시 데이터 보낼 state
 	const [editReview, setEditReview] = useState({
 		author: '',
 		content: '',
@@ -27,15 +29,18 @@ function Review(props) {
 	const [userInfo, setUserInfo] = useState({});
 	const [edit, setEdit] = useState(false);
 
-	// user Info
+	// 페이지네이션
+	const itemsPerPage = 10; // 페이지 당 표시될 아이템 개수
+	const [currentPage, setCurrentPage] = useState(1); // 초기값을 1로 설정
+
+	// api 통신
 	const { result: userResult } = useApi({
 		path: isLoggedIn ? '/user' : '',
 		shouldFetch: isLoggedIn,
 	});
 
-	// 댓글 목록
 	const { result, trigger, isLoading, error } = useApi({
-		path: `${getUrl}`,
+		path: `${getUrl}/comments`,
 		shouldFetch: true,
 	});
 
@@ -50,7 +55,7 @@ function Review(props) {
 		}
 	}, [result.comments, userResult]);
 
-	// 댓글 수정하기
+	// 댓글 바뀌는 값
 	const handleChange = e => {
 		const { name, value } = e.target;
 
@@ -60,6 +65,7 @@ function Review(props) {
 		}));
 	};
 
+	// 댓글 수정
 	const handleEdit = id => {
 		const selectedComment = review.find(comment => comment._id === id);
 		const alertMessage =
@@ -81,6 +87,7 @@ function Review(props) {
 		}
 	};
 
+	// 댓글 수정 완료
 	const handleComplete = () => {
 		trigger({
 			method: 'put',
@@ -91,19 +98,53 @@ function Review(props) {
 		alert('수정이 완료되었습니다.');
 	};
 
-	// 댓글 삭제하기
-	const handleDelete = id => {
+	// 페이지 변경 핸들러
+	const handlePageChange = pageNumber => {
+		trigger({
+			params: {
+				skip: pageNumber * 10 - 10,
+				limit: 10,
+			},
+
+			applyResult: true,
+		});
+
+		setReview(result.comments);
+		setCurrentPage(pageNumber);
+	};
+
+	// 댓글 삭제
+	const handleDelete = async id => {
 		const selectedComment = review.find(comment => comment._id === id);
 
 		if (selectedComment.ownerId === userInfo._id) {
 			if (confirm(MESSAGE.COMMENT.DELETE)) {
-				trigger({
+				await trigger({
 					method: 'delete',
 					path: `${getUrl}/comments/${id}`,
 					data: selectedComment, // 삭제할 review data 들어갈 곳
+					applyResult: true,
 				});
 
-				alert(MESSAGE.DELETE.COMPLETE);
+				if (result.comments.length === 1) {
+					alert(MESSAGE.DELETE.COMPLETE);
+					await trigger({
+						params: {
+							skip: (currentPage - 1) * 10 - 10,
+						},
+						applyResult: true,
+					});
+					setCurrentPage(prev => prev - 1);
+				} else {
+					await trigger({
+						params: {
+							skip: currentPage * 10 - 10,
+						},
+						applyResult: true,
+					});
+
+					alert(MESSAGE.DELETE.COMPLETE);
+				}
 			}
 		} else {
 			alert('삭제할 권한이 없습니다.');
@@ -129,50 +170,65 @@ function Review(props) {
 		<S.ReviewBox>
 			<S.TopBox>
 				<strong>{title}</strong>
-				<span>{review.length}</span>
+				<span>{result.total}</span>
 			</S.TopBox>
 
 			<S.BottomBox>
-				{review.map((comment, idx) => (
-					<S.CommentBox key={idx}>
-						<S.MiddleBox>
-							<S.NamingBox>
-								<strong>{comment.author}</strong>
-								<span>{dateAndTime(comment.createdAt)}</span>
-							</S.NamingBox>
+				{isLoading ? (
+					<h2>로딩 중입니다.</h2>
+				) : (
+					<>
+						{review.map((comment, idx) => (
+							<S.CommentBox key={idx}>
+								<S.MiddleBox>
+									<S.NamingBox>
+										<strong>{comment.author}</strong>
+										<span>{dateAndTime(comment.createdAt)}</span>
+									</S.NamingBox>
 
-							{edit === comment._id ? (
-								<S.Buttons>
-									<button onClick={handleComplete}>완료</button>
-									<button onClick={() => setEdit(null)}>취소</button>
-								</S.Buttons>
-							) : (
-								<S.Buttons>
-									<button onClick={() => handleEdit(comment._id)}>수정</button>
-									<button onClick={() => handleDelete(comment._id)}>
-										삭제
-									</button>
-								</S.Buttons>
-							)}
-						</S.MiddleBox>
+									{edit === comment._id ? (
+										<S.Buttons>
+											<button onClick={handleComplete}>완료</button>
+											<button onClick={() => setEdit(null)}>취소</button>
+										</S.Buttons>
+									) : (
+										<S.Buttons>
+											<button onClick={() => handleEdit(comment._id)}>
+												수정
+											</button>
+											<button onClick={() => handleDelete(comment._id)}>
+												삭제
+											</button>
+										</S.Buttons>
+									)}
+								</S.MiddleBox>
 
-						<div>
-							{edit === comment._id ? (
-								<Textarea
-									size={'full'}
-									name="content"
-									defaultValue={editReview.content}
-									onChange={handleChange}
-								/>
-							) : (
-								<S.Contents>{comment.content}</S.Contents>
-							)}
-						</div>
+								<div>
+									{edit === comment._id ? (
+										<Textarea
+											size={'full'}
+											name="content"
+											defaultValue={editReview.content}
+											onChange={handleChange}
+										/>
+									) : (
+										<S.Contents>{comment.content}</S.Contents>
+									)}
+								</div>
 
-						<Line size={'small'} />
-					</S.CommentBox>
-				))}
+								<Line size={'small'} />
+							</S.CommentBox>
+						))}
+					</>
+				)}
 			</S.BottomBox>
+
+			<Pagination
+				itemsPerPage={itemsPerPage}
+				totalItems={result.totalPages}
+				currentPage={currentPage}
+				onPageChange={handlePageChange}
+			/>
 		</S.ReviewBox>
 	);
 }

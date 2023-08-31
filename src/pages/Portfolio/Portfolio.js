@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { checkToken } from '../../utils/cookie';
 import useApi from '../../hooks/useApi';
 
@@ -8,31 +9,46 @@ import Line from '../../components/@common/Line/Line';
 import MentorCard from '../../components/@common/Card/Card';
 import Button from '../../components/@common/Button/Button';
 import Select from '../../components/@common/Select/Select';
-import PortfolioCategory from '../../components/pages/Portfolio/PortfolioCategory/PortfolioCategory';
 
 function Portfolio() {
-	// 버튼 클릭시 렌더링 되는 데이터 다르게 하는 로직 작성
-
-	// 로그인한 유저가 멘토인지 아닌지 검사하는 로직
+	// 로그인 유저 체크
 	const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
+
+	// 멘토 체크
 	const [isMentor, setIsMentor] = useState(false);
 
+	// 포지션 === 카테고리 관리
+	const [positions, setPositions] = useState([]);
+
+	// api 통신 1. 유저 정보 / 2. 포지션 === 카테고리 정보
+	const { result, trigger, isLoading, error } = useApi({
+		path: isLoggedIn ? '/user' : '',
+		shouldFetch: isLoggedIn,
+	});
+
+	const { result: positionResult } = useApi({
+		path: '/position',
+		shouldFetch: true,
+	});
+
+	// 로그인 체크
 	useEffect(() => {
 		const tokenStatus = checkToken();
 		setIsLoggedIn(tokenStatus);
 	}, []);
 
-	const { result, trigger, isLoading, error } = useApi({
-		path: isLoggedIn ? '/user' : '', // 유저인지 멘토인지 확인할 수 있는 api 필요
-		shouldFetch: isLoggedIn,
-	});
-
+	// 멘토 롤 체크 && 카테고리 값 들어오는지 체크
 	useEffect(() => {
 		const mentor = result.role === 'mentor';
 
 		if (mentor) setIsMentor(true);
 		else setIsMentor(false);
-	}, [result]);
+
+		if (positionResult.positions) {
+			setPositions(positionResult.positions);
+			console.log(error);
+		}
+	}, [result, positionResult]);
 
 	return (
 		<S.PortfolioBox>
@@ -43,11 +59,7 @@ function Portfolio() {
 				{isMentor && (
 					<S.ApplyBox>
 						<a href="/portfolio/apply">
-							<Button
-								variant={'add'}
-								shape={'default'}
-								size={'normal'}
-							>
+							<Button variant={'add'} shape={'default'} size={'normal'}>
 								작성하기
 							</Button>
 						</a>
@@ -55,11 +67,24 @@ function Portfolio() {
 				)}
 			</S.BannerBox>
 
-			<PortfolioCategory
-				variant={'cancel'}
-				shape={'round'}
-				size={'medium'}
-			/>
+			<S.ButtonBox>
+				<div>
+					<Button variant={'primary'} shape={'round'} size={'medium'}>
+						전체
+					</Button>
+
+					{positions.map((position, idx) => (
+						<Button
+							variant={'primary'}
+							shape={'round'}
+							size={'medium'}
+							key={idx}
+						>
+							{position.name}
+						</Button>
+					))}
+				</div>
+			</S.ButtonBox>
 
 			<div>
 				{/* 지금 인기 있는 멘토들 제목 */}
@@ -69,10 +94,14 @@ function Portfolio() {
 
 				{/* 지금 인기 있는 멘토들 목록 */}
 				<S.MentorCardBox>
-					<MentorCard
-						variant={'blue'}
-						url={'/portfolio/recommend/topMentor'}
-					/>
+					{isLoading ? (
+						<h2>로딩 중입니다.</h2>
+					) : (
+						<MentorCard
+							variant={'blue'}
+							url={'/portfolio/recommend/topMentor'}
+						/>
+					)}
 				</S.MentorCardBox>
 			</div>
 
@@ -82,14 +111,19 @@ function Portfolio() {
 				{/* 모든 멘토 제목 */}
 				<S.MentorTitleBox>
 					<span>🌟 모든 멘토</span>
+
 					<Select variant={'none'} font={'regular'}>
-						<option>인기순</option>
-						<option>최신순</option>
+						<option value="popular">인기순</option>
+						<option value="newest">최신순</option>
 					</Select>
 				</S.MentorTitleBox>
 
 				<S.MentorCardBox>
-					<MentorCard variant={'white'} url={'/portfolio'} />
+					{isLoading ? (
+						<h2>로딩 중입니다.</h2>
+					) : (
+						<MentorCard variant={'white'} url={'/portfolio'} />
+					)}
 				</S.MentorCardBox>
 			</S.MentorBox>
 		</S.PortfolioBox>

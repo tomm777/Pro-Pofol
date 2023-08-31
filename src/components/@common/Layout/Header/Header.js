@@ -12,13 +12,9 @@ function Header() {
 	const [isMentor, setIsMentor] = useState(false);
 	const navigate = useNavigate();
 
-	const handleTokenChange = () => {
+	useEffect(() => {
 		const tokenStatus = checkToken();
 		setIsLoggedIn(tokenStatus);
-	};
-
-	useEffect(() => {
-		handleTokenChange();
 	}, []);
 
 	const { result, trigger } = useApi({
@@ -44,11 +40,15 @@ function Header() {
 	};
 
 	const handleLogoutClick = () => {
-		trigger({ path: '/auth/logout', method: 'post' });
-
-		setIsLoggedIn(false);
-		alert('로그아웃이 완료되었습니다.');
-		navigate('/');
+		trigger({ path: '/auth/logout', method: 'post' })
+			.then(() => {
+				setIsLoggedIn(false);
+				alert('로그아웃이 완료되었습니다.');
+				window.location.reload();
+			})
+			.catch(error => {
+				console.error('로그아웃 중 오류 발생:', error);
+			});
 	};
 
 	return (

@@ -1,4 +1,4 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import * as MP from './MentoringPage.styles';
 import {
 	mentoringItem,
@@ -10,7 +10,7 @@ import useApi from '../../../../../../hooks/useApi';
 
 // 멘토 코칭 페이지
 function MentoringPage() {
-	// const mentoringData = useRecoilValue(mentoringItem);
+	const mentoringData = useRecoilValue(mentoringItem);
 
 	// 유저 정보 담을 state
 	const [user, setUser] = useState({});
@@ -27,21 +27,6 @@ function MentoringPage() {
 		}
 		console.log(user);
 	}, [users]);
-
-	// 멘토링 신청 정보 담을 state
-	const [mentoringData, setMentoringDatas] = useState([]);
-	// 멘토링 신청 정보 통신(GET)
-	const { result: mentoringDatas, trigger: mentoringDatasT } = useApi({
-		path: `/portfolio/mentoringRequests`,
-		shouldFetch: true,
-	});
-	// 멘토링 신청 정보가 변경될 때 리렌더링
-	useEffect(() => {
-		if (mentoringDatas) {
-			setMentoringDatas(mentoringDatas);
-		}
-		console.log(mentoringData);
-	}, [mentoringDatas]);
 
 	const ApplicationArr = [
 		{

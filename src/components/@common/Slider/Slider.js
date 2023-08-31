@@ -8,7 +8,7 @@ function Slider({ $background, url, slidesToShow }) {
 	const [slide, setSlide] = useState(0);
 	const [studyInfoData, setStudyInfoData] = useState([]);
 
-	const { result, trigger, isLoading, error } = useApi({
+	const { result } = useApi({
 		path: `${url}`,
 		shouldFetch: true,
 	});

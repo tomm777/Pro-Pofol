@@ -13,22 +13,23 @@ import useApi from '../../../../../../hooks/useApi';
 // 카드 리스트
 function CardList() {
 	const mentoringData = useRecoilValue(mentoringItem);
-	const totalLength = mentoringData?.total?.length;
-	const applyLength = mentoringData?.apply?.length;
+
+	const requestedLength = mentoringData?.requested?.length;
+	const acceptedLength = mentoringData?.accepted?.length;
 	const completedLength = mentoringData?.completed?.length;
-	const refuseLength = mentoringData?.refuse?.length;
+	const rejectedLength = mentoringData?.rejected?.length;
 	const subTitles = {
 		mentor: {
-			total: MYPAGEOPTION.MENTOR.SUBTITLE.TOTAL,
-			apply: MYPAGEOPTION.MENTOR.SUBTITLE.APPLY,
+			requested: MYPAGEOPTION.MENTOR.SUBTITLE.REQUESTED,
+			accepted: MYPAGEOPTION.MENTOR.SUBTITLE.ACCEPTED,
 			completed: MYPAGEOPTION.MENTOR.SUBTITLE.COMPLETED,
-			refuse: MYPAGEOPTION.MENTOR.SUBTITLE.REFUSE,
+			rejected: MYPAGEOPTION.MENTOR.SUBTITLE.REJECTED,
 		},
 		mentee: {
-			total: MYPAGEOPTION.MENTEE.SUBTITLE.TOTAL,
-			apply: MYPAGEOPTION.MENTEE.SUBTITLE.APPLY,
+			requested: MYPAGEOPTION.MENTEE.SUBTITLE.REQUESTED,
+			accepted: MYPAGEOPTION.MENTEE.SUBTITLE.ACCEPTED,
 			completed: MYPAGEOPTION.MENTEE.SUBTITLE.COMPLETED,
-			refuse: MYPAGEOPTION.MENTEE.SUBTITLE.REFUSE,
+			rejected: MYPAGEOPTION.MENTEE.SUBTITLE.REJECTED,
 		},
 	};
 
@@ -39,9 +40,9 @@ function CardList() {
 
 	return (
 		<>
-			{category === 'apply' ? (
+			{category === 'accepted' ? (
 				<CardListLayout
-					length={applyLength}
+					length={acceptedLength}
 					fun={buttonHandler}
 					categoryKey={category}
 					subTitles={subTitles}
@@ -53,16 +54,16 @@ function CardList() {
 					categoryKey={category}
 					subTitles={subTitles}
 				/>
-			) : category === 'refuse' ? (
+			) : category === 'rejected' ? (
 				<CardListLayout
-					length={refuseLength}
+					length={rejectedLength}
 					fun={buttonHandler}
 					categoryKey={category}
 					subTitles={subTitles}
 				/>
 			) : (
 				<CardListLayout
-					length={totalLength}
+					length={requestedLength}
 					fun={buttonHandler}
 					categoryKey={category}
 					subTitles={subTitles}
@@ -88,7 +89,6 @@ function CardListLayout({ length, fun, categoryKey, subTitles }) {
 		if (users) {
 			setUser(users);
 		}
-		console.log(user);
 	}, [users]);
 
 	return (
@@ -96,96 +96,96 @@ function CardListLayout({ length, fun, categoryKey, subTitles }) {
 			<CL.SubContentBox>
 				<CL.SubContentBar>
 					<CL.SubTitleFlexBox>
-						{categoryKey === 'apply' ? (
+						{categoryKey === 'accepted' ? (
 							<>
-								<CL.NonClicked id={'total'} onClick={fun}>
+								<CL.NonClicked id={'requested'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.total
-										: subTitles.mentee.total}
+										? subTitles.mentor.requested
+										: subTitles.mentee.requested}
 								</CL.NonClicked>
-								<CL.Clicked id={'apply'} onClick={fun}>
+								<CL.Clicked id={'accepted'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.apply
-										: subTitles.mentee.apply}
+										? subTitles.mentor.accepted
+										: subTitles.mentee.accepted}
 								</CL.Clicked>
 								<CL.NonClicked id={'completed'} onClick={fun}>
 									{users.role === 'mentor'
 										? subTitles.mentor.completed
 										: subTitles.mentee.completed}
 								</CL.NonClicked>
-								<CL.NonClicked id={'refuse'} onClick={fun}>
+								<CL.NonClicked id={'rejected'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.refuse
-										: subTitles.mentee.refuse}
+										? subTitles.mentor.rejected
+										: subTitles.mentee.rejected}
 								</CL.NonClicked>
 							</>
 						) : categoryKey === 'completed' ? (
 							<>
-								<CL.NonClicked id={'total'} onClick={fun}>
+								<CL.NonClicked id={'requested'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.total
-										: subTitles.mentee.total}
+										? subTitles.mentor.requested
+										: subTitles.mentee.requested}
 								</CL.NonClicked>
-								<CL.NonClicked id={'apply'} onClick={fun}>
+								<CL.NonClicked id={'accepted'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.apply
-										: subTitles.mentee.apply}
+										? subTitles.mentor.accepted
+										: subTitles.mentee.accepted}
 								</CL.NonClicked>
 								<CL.Clicked id={'completed'} onClick={fun}>
 									{users.role === 'mentor'
 										? subTitles.mentor.completed
 										: subTitles.mentee.completed}
 								</CL.Clicked>
-								<CL.NonClicked id={'refuse'} onClick={fun}>
+								<CL.NonClicked id={'rejected'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.refuse
-										: subTitles.mentee.refuse}
+										? subTitles.mentor.rejected
+										: subTitles.mentee.rejected}
 								</CL.NonClicked>
 							</>
-						) : categoryKey === 'refuse' ? (
+						) : categoryKey === 'rejected' ? (
 							<>
-								<CL.NonClicked id={'total'} onClick={fun}>
+								<CL.NonClicked id={'requested'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.total
-										: subTitles.mentee.total}
+										? subTitles.mentor.requested
+										: subTitles.mentee.requested}
 								</CL.NonClicked>
-								<CL.NonClicked id={'apply'} onClick={fun}>
+								<CL.NonClicked id={'accepted'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.apply
-										: subTitles.mentee.apply}
+										? subTitles.mentor.accepted
+										: subTitles.mentee.accepted}
 								</CL.NonClicked>
 								<CL.NonClicked id={'completed'} onClick={fun}>
 									{users.role === 'mentor'
 										? subTitles.mentor.completed
 										: subTitles.mentee.completed}
 								</CL.NonClicked>
-								<CL.Clicked id={'refuse'} onClick={fun}>
+								<CL.Clicked id={'rejected'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.refuse
-										: subTitles.mentee.refuse}
+										? subTitles.mentor.rejected
+										: subTitles.mentee.rejected}
 								</CL.Clicked>
 							</>
 						) : (
 							<>
-								<CL.Clicked id={'total'} onClick={fun}>
+								<CL.Clicked id={'requested'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.total
-										: subTitles.mentee.total}
+										? subTitles.mentor.requested
+										: subTitles.mentee.requested}
 								</CL.Clicked>
-								<CL.NonClicked id={'apply'} onClick={fun}>
+								<CL.NonClicked id={'accepted'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.apply
-										: subTitles.mentee.apply}
+										? subTitles.mentor.accepted
+										: subTitles.mentee.accepted}
 								</CL.NonClicked>
 								<CL.NonClicked id={'completed'} onClick={fun}>
 									{users.role === 'mentor'
 										? subTitles.mentor.completed
 										: subTitles.mentee.completed}
 								</CL.NonClicked>
-								<CL.NonClicked id={'refuse'} onClick={fun}>
+								<CL.NonClicked id={'rejected'} onClick={fun}>
 									{users.role === 'mentor'
-										? subTitles.mentor.refuse
-										: subTitles.mentee.refuse}
+										? subTitles.mentor.rejected
+										: subTitles.mentee.rejected}
 								</CL.NonClicked>
 							</>
 						)}

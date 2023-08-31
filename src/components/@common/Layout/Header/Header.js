@@ -59,13 +59,13 @@ function Header() {
 
 			<S.NavBox>
 				<S.NavBar>
-					<S.NavLinkItem to="/" activeClassName="active">
+					<S.NavLinkItem to="/" activeclassname="active">
 						홈
 					</S.NavLinkItem>
-					<S.NavLinkItem to="/portfolio" activeClassName="active">
+					<S.NavLinkItem to="/portfolio" activeclassname="active">
 						포트폴리오 리뷰
 					</S.NavLinkItem>
-					<S.NavLinkItem to="/study" activeClassName="active">
+					<S.NavLinkItem to="/study" activeclassname="active">
 						프로젝트 / 스터디 모집
 					</S.NavLinkItem>
 				</S.NavBar>

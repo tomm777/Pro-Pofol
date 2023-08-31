@@ -8,15 +8,15 @@ import {
 } from '../../../../../../recoil/atoms/myPage/myPage.atom';
 import MYPAGEOPTION from '../../../../../../constants/mypage';
 import MESSAGE from '../../../../../../constants/message';
+import useApi from '../../../../../../hooks/useApi';
 
 // 카드 리스트
 function CardList() {
 	const mentoringData = useRecoilValue(mentoringItem);
-	const totalLength = mentoringData.total.length;
-	const applyLength = mentoringData.apply.length;
-	const completedLength = mentoringData.completed.length;
-	const refuseLength = mentoringData.refuse.length;
-
+	const totalLength = mentoringData?.total?.length;
+	const applyLength = mentoringData?.apply?.length;
+	const completedLength = mentoringData?.completed?.length;
+	const refuseLength = mentoringData?.refuse?.length;
 	const subTitles = {
 		mentor: {
 			total: MYPAGEOPTION.MENTOR.SUBTITLE.TOTAL,
@@ -75,9 +75,22 @@ function CardList() {
 export default CardList;
 
 function CardListLayout({ length, fun, categoryKey, subTitles }) {
-	const user = useRecoilValue(userData);
-	const users = { ...user };
-	users.role = 'mentor';
+	// 유저 정보 담을 state
+	const [user, setUser] = useState({});
+	// 유저 정보 통신(GET)
+	const { result: users, trigger: usersT } = useApi({
+		path: `/user`,
+		shouldFetch: true,
+	});
+
+	// 유저 정보가 변경될 때 리렌더링
+	useEffect(() => {
+		if (users) {
+			setUser(users);
+		}
+		console.log(user);
+	}, [users]);
+
 	return (
 		<>
 			<CL.SubContentBox>

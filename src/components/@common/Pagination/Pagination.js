@@ -1,7 +1,7 @@
 import React from 'react';
-import * as S from '';
+import * as S from './Pagination.styles';
 
-const Pagination = props => {
+function Pagination(props) {
 	const { totalItems, currentPage, onPageChange } = props;
 
 	return (
@@ -27,6 +27,6 @@ const Pagination = props => {
 			</div>
 		</S.PaginationBox>
 	);
-};
+}
 
 export default Pagination;

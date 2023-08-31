@@ -179,7 +179,7 @@ function CardLayout(props) {
 							<CCS.UserBox>
 								<CCS.UserImage></CCS.UserImage>
 								<CCS.UserInfoBox>
-									<CCS.UserName>{`사용자 이름: ${element.userId}`}</CCS.UserName>
+									<CCS.UserName>{`${element.userId}`}</CCS.UserName>
 									<CCS.ApplicationTitle
 										onClick={() => {
 											showInfoModal(element);
@@ -187,7 +187,7 @@ function CardLayout(props) {
 										}}
 									>
 										{users.role === 'mentor'
-											? `신청서 제목: ${element.title}`
+											? `${element.title}`
 											: `개발 경력:${element.title}`}
 									</CCS.ApplicationTitle>
 									{users.role === 'mentor'
@@ -204,11 +204,16 @@ function CardLayout(props) {
 													setInfoModalOpenState={
 														setInfoModalOpenState
 													}
-													postAddress={
-														'https://jsonplaceholder.typicode.com/posts'
-													}
 													action={'수정'}
+													path={'/'}
+													nowData={nowData}
 												/>
+												// <InfoEditModal
+												// 	setInfoModalOpenState={
+												// 		setInfoModalOpenState
+												// 	}
+												// 	nowData={nowData}
+												// />
 										  )}
 								</CCS.UserInfoBox>
 							</CCS.UserBox>

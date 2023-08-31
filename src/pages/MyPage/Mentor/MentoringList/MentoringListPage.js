@@ -5,46 +5,45 @@ import CardList from '../../../../components/pages/MyPage/RightContent/Mentor/Ca
 import axios from 'axios';
 import { mentoringItem } from '../../../../recoil/atoms/myPage/myPage.atom';
 import { useRecoilState } from 'recoil';
+import useApi from '../../../../hooks/useApi';
 
 function MentoringListPage() {
-	const [userData, setUserData] = useRecoilState(mentoringItem); // 멘토링 신청 받은 총 내역
-	const [error, setError] = useState(null); // 에러 state
+	// const [userData, setUserData] = useRecoilState(mentoringItem); // 멘토링 신청 받은 총 내역
+	// const [error, setError] = useState(null); // 에러 state
 
-	// 서버통신 (GET)
+	// 멘토링 신청 정보 담을 state
+	const [mentoringData, setMentoringData] = useRecoilState(mentoringItem);
+	// 멘토링 신청 정보 통신(GET)
+	const { result: mentoringDatas, trigger: mentoringDatasT } = useApi({
+		path: `/portfolio/mentor/mentoringRequests`,
+		shouldFetch: true,
+	});
+
+	// 멘토링 신청 정보가 변경될 때 리렌더링
 	useEffect(() => {
-		async function getData() {
-			try {
-				const response = await axios.get(
-					'https://jsonplaceholder.typicode.com/posts',
-				);
-				const totalData = response.data.filter(
-					// (item, index) => item.state === 'total',
-					(item, index) => index % 86 === 1,
-				);
-				const applyData = response.data.filter(
-					// (item, index) => item.state === 'apply',
-					(item, index) => index % 20 === 1,
-				);
-				const completedData = response.data.filter(
-					// (item, index) => item.state === 'completed',
-					(item, index) => index % 50 === 1,
-				);
-				const refuseData = response.data.filter(
-					// (item, index) => item.state === 'refuse',
-					(item, index) => index % 30 === 1,
-				);
-				setUserData({
-					total: totalData,
-					apply: applyData,
-					completed: completedData,
-					refuse: refuseData,
-				});
-			} catch (err) {
-				setError(err);
-			}
+		if (mentoringDatas && mentoringDatas.length > 0) {
+			setMentoringData(mentoringDatas);
+			const totalData = mentoringDatas.filter(
+				item => item.status === 'requested',
+			);
+			const applyData = mentoringDatas.filter(
+				item => item.status === 'apply',
+			);
+			const completedData = mentoringDatas.filter(
+				item => item.status === 'completed',
+			);
+			const refuseData = mentoringDatas.filter(
+				item => item.status === 'refuse',
+			);
+			setMentoringData({
+				total: totalData,
+				apply: applyData,
+				completed: completedData,
+				refuse: refuseData,
+			});
 		}
-		getData();
-	}, []);
+		// console.log(mentoringData);
+	}, [mentoringDatas]);
 
 	return (
 		<M.Wrapper>

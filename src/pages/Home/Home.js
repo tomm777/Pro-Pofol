@@ -71,7 +71,7 @@ function Home() {
 					</H.TitleBox>
 					<H.SlideStudyCard>
 						<Slider
-							background="lightBlueBackground"
+							$background="lightBlueBackground"
 							url={'/projectStudy/recommend/latestProjectStudy'}
 							slidesToShow={2}
 						/>

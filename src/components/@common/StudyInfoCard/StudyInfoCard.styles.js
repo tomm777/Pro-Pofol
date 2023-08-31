@@ -22,7 +22,7 @@ export const Container = styled.div`
 `;
 
 export const StudyInfoCard = styled.a`
-	${({ background }) => backgroundCSS[background]}
+	${({ $background }) => backgroundCSS[$background]}
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

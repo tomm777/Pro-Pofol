@@ -31,7 +31,7 @@ export const StudyInfoCard = styled.a`
 	border-radius: 10px;
 	box-sizing: border-box;
 	height: 200px;
-	padding: 20px;
+	padding: 30px;
 `;
 export const Category = styled.p`
 	color: ${({ theme }) => theme.PALETTE.white};

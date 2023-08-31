@@ -1,13 +1,8 @@
 import styled from 'styled-components';
+import { ModalBackground } from '../../../../styles/common';
 
 export const ModalWrapper = styled.div`
-	display: ${props => (props.open ? 'block' : 'none')};
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.2);
+	${ModalBackground}
 	z-index: 9999;
 	display: flex;
 	align-items: center;

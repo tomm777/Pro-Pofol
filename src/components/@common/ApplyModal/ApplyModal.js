@@ -103,9 +103,9 @@ function ApplyModal(props) {
 									size={'regular'}
 									placeholder="신청 제목을 작성해 주세요!"
 									defaultValue={
-										result.title
-											? result.title
-											: nowData.title
+										result?.title
+											? result?.title
+											: nowData?.title
 									}
 									onChange={handleChange}
 								/>
@@ -119,9 +119,9 @@ function ApplyModal(props) {
 										'질문할 내용을 자세하게 작성해 주세요!'
 									}
 									defaultValue={
-										result.content
-											? result.content
-											: nowData.content
+										result?.content
+											? result?.content
+											: nowData?.content
 									}
 									onChange={handleChange}
 								/>
@@ -134,9 +134,9 @@ function ApplyModal(props) {
 									size={'regular'}
 									placeholder="example@naver.com"
 									defaultValue={
-										result.email
-											? result.email
-											: nowData.email
+										result?.email
+											? result?.email
+											: nowData?.email
 									}
 									onChange={handleChange}
 								/>
@@ -151,9 +151,9 @@ function ApplyModal(props) {
 									size={'regular'}
 									placeholder="https://github/example"
 									defaultValue={
-										result.portfolioAddress
-											? result.portfolioAddress
-											: nowData.portfolioAddress
+										result?.portfolioAddress
+											? result?.portfolioAddress
+											: nowData?.portfolioAddress
 									}
 									onChange={handleChange}
 								/>

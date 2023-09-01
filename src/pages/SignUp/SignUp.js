@@ -81,7 +81,7 @@ function SignUp() {
 					position,
 				},
 			});
-			navigate('/signupdone');
+			navigate('/signup/done');
 		} catch (err) {
 			if (err.response.data.result === 'MongoServerError') {
 				if (err.response.data.reason.includes('duplicate key')) {

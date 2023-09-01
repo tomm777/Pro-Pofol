@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import * as RM from './RefuseModal.styles';
-import axios from 'axios';
+import * as RVM from './ReviewModal.styles';
 import Textarea from '../../../../../../../@common/Textarea/Textarea';
 import useApi from '../../../../../../../../hooks/useApi';
 
 // 멘토 - 멘토링 거절 사유 작성 모달
-function RefuseModal({ setRefuseModalOpenState, item }) {
+function ReviewModal({ setReviewModalOpenState, item }) {
 	const [textValue, setTextValue] = useState({
 		message: '',
 		action: 'reject',
@@ -42,51 +41,51 @@ function RefuseModal({ setRefuseModalOpenState, item }) {
 			console.log(portfolioId, requestId, postsData);
 			trigger({
 				method: 'post',
-				path: `/portfolio/mentor/respondToMentoringRequest/${portfolioId}/${requestId}`,
+				path: `/portfolio/${portfolioId}/comments`,
 				data: postsData,
 				shouldFetch: true,
 			});
 
-			alert('거절되었습니다.');
+			alert('후기를 작성했습니다.');
 			window.location.replace('/mypage');
 		}
 	};
 
 	// 모달 끄기
 	const closeModal = () => {
-		setRefuseModalOpenState(false);
+		setReviewModalOpenState(false);
 	};
 
 	return (
 		<>
-			<RM.Modal>
+			<RVM.Modal>
 				<form onSubmit={handleSubmit}>
-					<RM.InfoWrapper>
-						<RM.InfoTitle>거절 사유 작성</RM.InfoTitle>
-						<RM.InfoBox>
-							<RM.InfoSubTitleBox>
-								<RM.InfoSubTitle>거절 사유</RM.InfoSubTitle>
+					<RVM.InfoWrapper>
+						<RVM.InfoTitle>후기 작성</RVM.InfoTitle>
+						<RVM.InfoBox>
+							<RVM.InfoSubTitleBox>
+								<RVM.InfoSubTitle>후기</RVM.InfoSubTitle>
 								<Textarea
 									name={'message'}
 									size={'regular'}
 									placeholder={'거절 사유를 적어주세요'}
 									onChange={handleChange}
 								/>
-							</RM.InfoSubTitleBox>
-						</RM.InfoBox>
-					</RM.InfoWrapper>
-					<RM.ButtonBox>
-						<RM.CancelButton onClick={closeModal}>
+							</RVM.InfoSubTitleBox>
+						</RVM.InfoBox>
+					</RVM.InfoWrapper>
+					<RVM.ButtonBox>
+						<RVM.CancelButton onClick={closeModal}>
 							취소
-						</RM.CancelButton>
-						<RM.CompleteButton type="submit">
+						</RVM.CancelButton>
+						<RVM.CompleteButton type="submit">
 							완료
-						</RM.CompleteButton>
-					</RM.ButtonBox>
+						</RVM.CompleteButton>
+					</RVM.ButtonBox>
 				</form>
-			</RM.Modal>
+			</RVM.Modal>
 		</>
 	);
 }
 
-export default RefuseModal;
+export default ReviewModal;

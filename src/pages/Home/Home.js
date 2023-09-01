@@ -48,7 +48,7 @@ function Home() {
 									profileImageUrl={mentor.profileImageUrl}
 									nickName={mentor.nickName}
 									company={mentor.company}
-									position={mentor.job}
+									position={mentor.position}
 									career={mentor.career}
 								/>
 							))}

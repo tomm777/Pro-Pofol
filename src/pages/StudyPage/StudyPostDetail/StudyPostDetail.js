@@ -7,6 +7,7 @@ import EditComments from '../../../components/@common/EditComments/EditComments'
 import useApi from '../../../hooks/useApi';
 import { checkToken } from '../../../utils/cookie';
 import useFooter from '../../../hooks/useFooter';
+import MESSAGE from '../../../constants/message';
 import Review from '../../../components/@common/Review/Review';
 
 function StudyPostDetail() {
@@ -41,9 +42,11 @@ function StudyPostDetail() {
 		}
 	}, [userData]);
 
-	useEffect(() => {
-		setUser(userData);
-	}, [userData]);
+	// console.log('user', user);
+
+	// useEffect(() => {
+	// 	setUser(userData);
+	// }, [userData]);
 
 	const { trigger, isLoading, error, result } = useApi({
 		path: `/projectStudy/${postId}`,
@@ -61,8 +64,6 @@ function StudyPostDetail() {
 		}
 	}, [result, postDetail]);
 
-	// console.log('isRecruitClosed', isRecruitClosed);
-
 	const isUser = userData._id === result.ownerId;
 
 	const {
@@ -76,6 +77,7 @@ function StudyPostDetail() {
 		createdAt,
 		process,
 		name,
+		nickName,
 		recruits,
 		deadline,
 		title,
@@ -83,52 +85,39 @@ function StudyPostDetail() {
 	} = postDetail || {};
 
 	const handleEditClick = () => {
-		if (confirm('작성한 글을 수정할까요?')) {
+		if (confirm(MESSAGE.POST.EDIT)) {
 			navigate(`/study/edit/${postId}`);
 		}
 	};
 
 	const handleDeadLineClick = async () => {
-		if (
-			confirm(
-				'마감한 게시글은 수정 및 마감 취소가 불가능해요.\n모집을 마감할까요? ',
-			)
-		) {
-			try {
-				await trigger({
-					method: 'put',
-					path: `/projectStudy/${postId}`,
-					data: {
-						recruitsStatus: '모집마감',
-					},
-				});
-			} catch (error) {
-				console.error(error);
-			}
+		if (confirm(MESSAGE.POST.DEADLINE)) {
+			await trigger({
+				method: 'put',
+				path: `/projectStudy/${postId}`,
+				data: {
+					recruitsStatus: '모집마감',
+				},
+			});
 		}
 	};
 
 	const handleDeleteClick = async () => {
-		if (confirm('게시글을 삭제할까요?')) {
-			try {
-				await trigger({
-					method: 'delete',
-					path: `/projectStudy/${postId}`,
-				});
-				navigate('/study');
-			} catch (error) {
-				console.error(error);
-			}
+		if (confirm(MESSAGE.POST.DELETE)) {
+			await trigger({
+				method: 'delete',
+				path: `/projectStudy/${postId}`,
+			});
+			navigate('/study');
 		}
 	};
 
 	const handleLinkCopy = async () => {
-		// console.log(howContactContent);
 		try {
 			await navigator.clipboard.writeText(howContactContent);
-			alert('링크가 클립보드에 복사되었습니다.');
+			alert(MESSAGE.LINK.COMPLETE);
 		} catch (error) {
-			console.error('문제가 발생했어요.\n관리자에게 문의해주세요.');
+			console.error(MESSAGE.ERROR.DEFAULT);
 		}
 	};
 
@@ -153,7 +142,7 @@ function StudyPostDetail() {
 								<S.UserProfileContainer>
 									{/* 프로필 이미지 */}
 									<S.UserProfileImage src={profileImageUrl} />
-									<S.UserName>{name}</S.UserName>
+									<S.UserName>{nickName}</S.UserName>
 								</S.UserProfileContainer>
 								{/* 작성 날짜 */}
 								<S.Date>

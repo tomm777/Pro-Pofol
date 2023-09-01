@@ -44,7 +44,7 @@ function Home() {
 							{recommendedMentors.map((mentor, idx) => (
 								<RecommendCard
 									key={idx}
-									postId={mentor.portfolioId}
+									id={mentor._id}
 									profileImageUrl={mentor.profileImageUrl}
 									nickName={mentor.nickName}
 									company={mentor.company}

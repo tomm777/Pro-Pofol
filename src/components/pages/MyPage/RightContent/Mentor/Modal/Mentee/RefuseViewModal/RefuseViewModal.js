@@ -34,12 +34,7 @@ function RefuseViewModal({ setRefuseModalOpenState, item }) {
 						</RVM.InfoBox>
 					</RVM.InfoWrapper>
 					<RVM.ButtonBox>
-						<RVM.CancleButton onClick={closeModal}>
-							닫기
-						</RVM.CancleButton>
-						<RVM.CompleteButton onClick={closeModal}>
-							완료
-						</RVM.CompleteButton>
+						<RVM.OneButton onClick={closeModal}>닫기</RVM.OneButton>
 					</RVM.ButtonBox>
 				</form>
 			</RVM.Modal>

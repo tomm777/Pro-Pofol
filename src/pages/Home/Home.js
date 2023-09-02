@@ -100,5 +100,3 @@ function Home() {
 }
 
 export default Home;
-
-// 주석

@@ -64,7 +64,7 @@ export const Contents = styled(ContentsBox)`
 
 export const ContentSpan = styled.span`
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
-	color: ${({ theme }) => theme.PALETTE.gray[300]};
+	color: ${({ theme }) => theme.PALETTE.gray[400]};
 `;
 
 export const TitleBox = styled.div`

@@ -83,14 +83,16 @@ function Review(props) {
 	};
 
 	// 댓글 수정 완료
-	const handleComplete = () => {
-		trigger({
+	const handleComplete = async () => {
+		await trigger({
 			method: 'put',
 			path: `${getUrl}/comments/${edit}`,
 			data: editReview, // review data 들어갈 곳
+			applyResult: true,
 		});
 
 		alert('수정이 완료되었습니다.');
+		setEdit(false);
 	};
 
 	// 페이지 변경 핸들러
@@ -217,7 +219,7 @@ function Review(props) {
 								</S.MiddleBox>
 
 								<div>
-									{edit === comment._id ? (
+									{edit && edit === comment._id ? (
 										<Textarea
 											maxLength="200"
 											size={'full'}

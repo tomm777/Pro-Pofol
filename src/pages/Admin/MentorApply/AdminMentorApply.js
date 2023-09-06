@@ -77,7 +77,9 @@ const AdminMentorApply = () => {
 							승인
 						</HandlerButton>
 						<HandlerButton
-							onClick={() => refuseHandler(record._id)}
+							onClick={() =>
+								refuseHandler(record._id, record.key)
+							}
 						>
 							거절
 						</HandlerButton>
@@ -90,6 +92,7 @@ const AdminMentorApply = () => {
 		// console.log(result);
 		if (result.mentorRequests && result.mentorRequests.length > 0) {
 			const startIndex = (currentPage - 1) * 10;
+
 			setApplyData(
 				result.mentorRequests
 					.filter(item => item.status === 'requested')
@@ -102,8 +105,10 @@ const AdminMentorApply = () => {
 				company: item.company,
 				career: item.career,
 			}));
+			// console.log(newData);
 			setData(newData);
 		}
+
 		if (result.total) {
 			setTotalPages(result.total);
 		}
@@ -131,7 +136,9 @@ const AdminMentorApply = () => {
 		setIsOpen(false);
 	};
 	// 거절
-	const refuseHandler = async requestId => {
+	const refuseHandler = async (requestId, key) => {
+		// console.log(key);
+
 		await trigger({
 			path: `/mentorRequest/${requestId}`,
 			method: 'put',
@@ -139,13 +146,24 @@ const AdminMentorApply = () => {
 			applyResult: true,
 		});
 		if (result.mentorRequests.length === 1) {
-			await trigger({
-				params: {
-					skip: (currentPage - 1) * 10 - 10,
-					status: 'requested',
-				},
-				applyResult: true,
-			});
+			if (key === 1) {
+				// console.log('key값이 1일때~~~~~~~~~~~');
+				await trigger({
+					params: {
+						skip: (currentPage - 1) * 10 - 10,
+						status: 'requested',
+					},
+				});
+			} else {
+				await trigger({
+					params: {
+						skip: (currentPage - 1) * 10 - 10,
+						status: 'requested',
+					},
+					applyResult: true,
+				});
+			}
+
 			setCurrentPage(prev => prev - 1);
 		} else {
 			await trigger({
@@ -188,13 +206,23 @@ const AdminMentorApply = () => {
 			applyResult: true,
 		});
 		if (result.mentorRequests.length === 1) {
-			await trigger({
-				params: {
-					skip: (currentPage - 1) * 10 - 10,
-					status: 'requested',
-				},
-				applyResult: true,
-			});
+			if (key === 1) {
+				await trigger({
+					params: {
+						skip: (currentPage - 1) * 10 - 10,
+						status: 'requested',
+					},
+				});
+			} else {
+				await trigger({
+					params: {
+						skip: (currentPage - 1) * 10 - 10,
+						status: 'requested',
+					},
+					applyResult: true,
+				});
+			}
+
 			setCurrentPage(prev => prev - 1);
 		} else {
 			await trigger({

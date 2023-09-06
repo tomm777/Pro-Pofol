@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { checkToken } from '../../../../utils/cookie';
 import * as S from './Header.styles';
 import SignupModal from '../../../pages/SignUp/Modal/SignUpModal';
@@ -81,16 +81,15 @@ function Header() {
 		setOpenModal(false);
 	};
 
-	const handleLogoutClick = () => {
-		trigger({ path: '/auth/logout', method: 'post' })
-			.then(() => {
-				setIsLoggedIn(false);
-				alert('로그아웃이 완료되었습니다.');
-				navigate(0);
-			})
-			.catch(error => {
-				console.error('로그아웃 중 오류 발생:', error);
-			});
+	const handleLogoutClick = async () => {
+		try {
+			await trigger({ path: '/auth/logout', method: 'post' });
+			setIsLoggedIn(false);
+			alert('로그아웃이 완료되었습니다.');
+			// navigate(0);
+		} catch (error) {
+			alert('로그아웃이 실패 하였습니다.');
+		}
 	};
 
 	const handleMentorApplyClick = () => {
@@ -163,10 +162,11 @@ function Header() {
 
 	return (
 		<S.Header>
-			<S.ImgBox href="/">
-				<S.Image src="/assets/img/logo/logo.svg" />
-			</S.ImgBox>
-
+			<Link to="/">
+				<S.ImgBox>
+					<S.Image src="/assets/img/logo/logo.svg" />
+				</S.ImgBox>
+			</Link>
 			<S.NavBox>
 				<S.NavBar>
 					<S.NavLinkItem to="/" activeclassname="active">
@@ -183,9 +183,14 @@ function Header() {
 					{isLoggedIn ? (
 						<>
 							<a onClick={handleLogoutClick}>로그아웃</a>
-							<a href="/mypage">마이페이지</a>
+							<S.NavLinkItem
+								to="/mypage"
+								activeclassname="active"
+							>
+								마이페이지
+							</S.NavLinkItem>
 							{result && result.role === 'admin' && (
-								<a href="/admin/user">관리자 페이지</a>
+								<Link to="/admin/user">관리자 페이지</Link>
 							)}
 							<a onClick={notiHandler}>
 								<img
@@ -208,6 +213,9 @@ function Header() {
 							)}
 							{notiBox ? (
 								<S.notiWrap>
+									<S.notiTitle>
+										<span>🕊️ 알림이 왔어요 !</span>
+									</S.notiTitle>
 									{notiData.length !== 0 ? (
 										notiData?.map((item, index) => (
 											<S.notiBox
@@ -221,12 +229,13 @@ function Header() {
 												}}
 											>
 												<span>{item.content}</span>
+												<span>2020-12-10</span>
 											</S.notiBox>
 										))
 									) : (
-										<S.notiBox>
-											<span>알림이 없습니다!</span>
-										</S.notiBox>
+										<S.notiNone>
+											<span>지금은 알림이 없어요.</span>
+										</S.notiNone>
 									)}
 								</S.notiWrap>
 							) : (
@@ -254,7 +263,6 @@ function Header() {
 					)}
 				</S.LoginBar>
 			</S.NavBox>
-
 			{openModal && <SignupModal onClose={handleSignupClose} />}
 		</S.Header>
 	);

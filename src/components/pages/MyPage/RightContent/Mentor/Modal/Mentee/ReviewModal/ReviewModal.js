@@ -4,11 +4,12 @@ import Textarea from '../../../../../../../@common/Textarea/Textarea';
 import useApi from '../../../../../../../../hooks/useApi';
 import { useRecoilValue } from 'recoil';
 import { userItem } from '../../../../../../../../recoil/atoms/myPage/myPage.atom';
+import { useNavigate } from 'react-router-dom';
 
 // 멘토 - 멘토링 거절 사유 작성 모달
 function ReviewModal({ setReviewModalOpenState, item }) {
 	const userData = useRecoilValue(userItem);
-
+	const navigate = useNavigate();
 	const [textValue, setTextValue] = useState({
 		author: '',
 		ownerId: '',
@@ -17,8 +18,8 @@ function ReviewModal({ setReviewModalOpenState, item }) {
 
 	useEffect(() => {
 		if (userData) {
-			textValue.author = userData.nickName;
-			textValue.ownerId = userData._id;
+			textValue.author = { ...userData.nickName };
+			textValue.ownerId = { ...userData._id };
 		}
 		console.log(userData);
 	}, [userData]);
@@ -60,7 +61,7 @@ function ReviewModal({ setReviewModalOpenState, item }) {
 			});
 
 			alert('후기를 작성했습니다.');
-			window.location.replace('/mypage');
+			navigate('/mypage');
 		}
 	};
 

@@ -3,9 +3,11 @@ import * as RM from './RefuseModal.styles';
 import axios from 'axios';
 import Textarea from '../../../../../../../@common/Textarea/Textarea';
 import useApi from '../../../../../../../../hooks/useApi';
+import { useNavigate } from 'react-router-dom';
 
 // 멘토 - 멘토링 거절 사유 작성 모달
 function RefuseModal({ setRefuseModalOpenState, item }) {
+	const navigate = useNavigate();
 	const [textValue, setTextValue] = useState({
 		message: '',
 		action: 'reject',
@@ -48,7 +50,7 @@ function RefuseModal({ setRefuseModalOpenState, item }) {
 			});
 
 			alert('거절되었습니다.');
-			window.location.replace('/mypage');
+			navigate('/mypage');
 		}
 	};
 

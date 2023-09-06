@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import useApi from '../../../../../../hooks/useApi';
 import * as MPLD from './MentoringPostListData.styles';
 import { useEffect, useState } from 'react';
 
 // 유저가 작성한 게시글(스터디/프로젝트 모집글)
 function MentoringPostListData() {
+	const navigate = useNavigate();
 	// 멘토링 신청 게시글 정보 담을 state
 	const [postList, setPostList] = useState([]);
 	// 멘토링 신청 게시글 정보 통신(GET)
@@ -27,11 +29,7 @@ function MentoringPostListData() {
 	// 게시물 보기
 	const showPost = postId => {
 		console.log(postId);
-		window.open(
-			`/portfolio/post/${postId}`,
-			'_blank',
-			'noopener, noreferrer',
-		); // 멘토링 게시물 (멘토)
+		navigate(`/portfolio/post/${postId}`); // 멘토링 게시물 (멘토)
 	};
 
 	// 게시글 삭제

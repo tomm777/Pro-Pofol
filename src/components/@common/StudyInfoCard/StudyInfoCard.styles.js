@@ -22,7 +22,7 @@ export const Container = styled.div`
 	border-radius: 10px;
 `;
 
-export const StudyInfoCard = styled.a`
+export const StudyInfoCard = styled.div`
 	${({ $background }) => backgroundCSS[$background]}
 	${flexColumn};
 	justify-content: center;

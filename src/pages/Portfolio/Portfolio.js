@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { Link } from 'react-router-dom';
 
-import { checkToken } from '../../utils/cookie';
 import useApi from '../../hooks/useApi';
+import { userAtom } from '../../recoil/atoms/index.atom';
 
 import * as S from './Portfolio.styles';
 
@@ -10,12 +12,11 @@ import MentorCard from '../../components/pages/Portfolio/PortfolioCard/Card';
 import Button from '../../components/@common/Button/Button';
 import Select from '../../components/@common/Select/Select';
 import EmptyMessage from '../../components/@common/EmptyMessage/EmptyMessage';
-import { Link } from 'react-router-dom';
 import LoadingBar from '../../components/@common/Loading/LoadingBar';
 
 function Portfolio() {
 	// 로그인 유저 체크
-	const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
+	const { isAuth, role } = useRecoilValue(userAtom);
 
 	// 멘토 체크
 	const [isMentor, setIsMentor] = useState(false);
@@ -41,12 +42,7 @@ function Portfolio() {
 	const observer = useRef();
 	const observerElement = useRef();
 
-	// api 통신 1. 유저 정보 / 2. 포지션 === 카테고리 정보 / 3. 모든 멘토 데이터 호출
-	const { result } = useApi({
-		path: isLoggedIn ? '/user' : '',
-		shouldFetch: isLoggedIn,
-	});
-
+	// api 통신 1. 포지션 === 카테고리 정보 / 2. 모든 멘토 데이터 호출
 	const { result: positionResult } = useApi({
 		path: '/position',
 		shouldFetch: true,
@@ -67,7 +63,7 @@ function Portfolio() {
 	});
 
 	useEffect(() => {
-		if (mentorResult.data && mentorResult.data.length > 0) {
+		if (mentorResult.data && Array.isArray(mentorResult.data)) {
 			setMentorData(prev => [...prev, ...mentorResult.data]);
 			setMentorDataTotal(mentorResult.total);
 
@@ -77,15 +73,9 @@ function Portfolio() {
 		}
 	}, [mentorResult]);
 
-	// 로그인 체크
-	useEffect(() => {
-		const tokenStatus = checkToken();
-		setIsLoggedIn(tokenStatus);
-	}, []);
-
 	// 멘토 롤 체크 && 카테고리 값 들어오는지 체크
 	useEffect(() => {
-		const mentor = result.role === 'mentor';
+		const mentor = role === 'mentor';
 
 		if (mentor) setIsMentor(true);
 		else setIsMentor(false);
@@ -101,7 +91,7 @@ function Portfolio() {
 		if (popularMentorResult && popularMentorResult.length > 0) {
 			setPopularData(popularMentorResult);
 		}
-	}, [result, positionResult, popularMentorResult]);
+	}, [positionResult, popularMentorResult]);
 
 	// 무한 스크롤
 	const handleObserver = entries => {
@@ -115,7 +105,7 @@ function Portfolio() {
 			});
 
 			trigger({
-				params: {
+				data: {
 					category: selectedValues.position,
 					sort: selectedValues.selectedSort,
 					limit,
@@ -139,9 +129,7 @@ function Portfolio() {
 			observer.current.observe(observerElement.current);
 		}
 
-		if (mentorData.length >= mentorDataTotal) {
-			observer.current.disconnect();
-		}
+		if (mentorData.length >= mentorDataTotal) observer.current.disconnect();
 
 		return () => {
 			if (observer.current) {
@@ -151,7 +139,7 @@ function Portfolio() {
 	}, [observer.current, observerElement, mentorData, mentorDataTotal]);
 
 	// select 클릭
-	const handleChange = e => {
+	const handleChangeSelect = e => {
 		setLimit(12);
 		setCurrentSkip(0);
 
@@ -163,7 +151,7 @@ function Portfolio() {
 		}));
 
 		trigger({
-			params: {
+			data: {
 				category: selectedValues.position,
 				sort: value,
 				limit: 12,
@@ -185,19 +173,18 @@ function Portfolio() {
 		}));
 
 		trigger({
-			params: {
+			data: {
 				category: positionValue,
 				sort: selectedValues.selectedSort,
 				limit: 12,
 				skip: 0,
 			},
-
 			applyResult: true,
 		});
 
-		if (selectedValues.position !== positionValue) {
-			setMentorData([]);
-		}
+		// if (selectedValues.position !== positionValue) {
+		// 	setMentorData([]);
+		// }
 	};
 
 	useEffect(() => {
@@ -288,7 +275,7 @@ function Portfolio() {
 					<Select
 						variant={'none'}
 						font={'large'}
-						onChange={handleChange}
+						onChange={handleChangeSelect}
 					>
 						<option value="newest">최신순</option>
 						<option value="popular">인기순</option>
@@ -311,6 +298,7 @@ function Portfolio() {
 											/>
 										</div>
 									))}
+
 									<div
 										style={{
 											height: '10px',

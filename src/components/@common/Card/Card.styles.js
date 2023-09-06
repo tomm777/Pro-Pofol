@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { flexCenter, flexColumn } from '../../../styles/common';
+import { Link } from 'react-router-dom';
 
 const variantCSS = {
 	blue: css`
@@ -12,26 +13,32 @@ const variantCSS = {
 	`,
 };
 
-export const PopularCard = styled.a`
-	${({ variant }) => variantCSS[variant]}
-	${flexColumn}
-	width: 255px;
-	height: 320px;
-	padding: 20px;
-	justify-content: center;
-	gap: 16px;
-	border-radius: 10px;
+export const StyledLink = styled(Link)`
 	text-decoration: none;
-	color: ${({ theme }) => theme.PALETTE.black};
 
 	&:visited {
 		color: ${({ theme }) => theme.PALETTE.black};
 	}
+`;
+
+export const PopularCard = styled.div`
+	${({ variant }) => variantCSS[variant]}
+	width: 255px;
+	height: 320px;
+	padding: 20px;
 
 	&:hover {
 		transform: scale(1.05);
 		transition: 0.5s;
 	}
+`;
+
+export const CardBox = styled.div`
+	${flexColumn}
+	justify-content: center;
+	gap: 16px;
+	border-radius: 10px;
+	color: ${({ theme }) => theme.PALETTE.black};
 `;
 
 export const CoachNumBox = styled.div`
@@ -64,7 +71,7 @@ export const Contents = styled(ContentsBox)`
 
 export const ContentSpan = styled.span`
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
-	color: ${({ theme }) => theme.PALETTE.gray[300]};
+	color: ${({ theme }) => theme.PALETTE.gray[400]};
 `;
 
 export const TitleBox = styled.div`

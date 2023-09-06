@@ -285,7 +285,7 @@ function Portfolio() {
 			<Line size={'small'} />
 
 			<S.MentorBox>
-				{/* 모든 멘토 제목 쫘르르르륵~ */}
+				{/* 모든 멘토 제목 */}
 				<S.MentorTitleBox>
 					<span>🌟 모든 멘토</span>
 

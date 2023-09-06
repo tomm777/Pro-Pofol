@@ -88,11 +88,18 @@ function Review(props) {
 			method: 'put',
 			path: `${getUrl}/comments/${edit}`,
 			data: editReview, // review data 들어갈 곳
-			applyResult: true,
 		});
 
 		alert('수정이 완료되었습니다.');
-		setEdit(false);
+
+		await trigger({
+			params: {
+				skip: currentPage * 10 - 10,
+			},
+			applyResult: true,
+		});
+
+		setEdit(null);
 	};
 
 	// 페이지 변경 핸들러

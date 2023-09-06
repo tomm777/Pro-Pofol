@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { flexCenter, flexColumn } from '../../../styles/common';
+import { Link } from 'react-router-dom';
 
 const variantCSS = {
 	blue: css`
@@ -11,6 +12,14 @@ const variantCSS = {
 		background-color: ${({ theme }) => theme.PALETTE.hover};
 	`,
 };
+
+export const StyledLink = styled(Link)`
+	text-decoration: none;
+
+	&:visited {
+		color: ${({ theme }) => theme.PALETTE.black};
+	}
+`;
 
 export const PopularCard = styled.a`
 	${({ variant }) => variantCSS[variant]}

@@ -11,6 +11,7 @@ import Button from '../../components/@common/Button/Button';
 import Select from '../../components/@common/Select/Select';
 import EmptyMessage from '../../components/@common/EmptyMessage/EmptyMessage';
 import { Link } from 'react-router-dom';
+import LoadingBar from '../../components/@common/Loading/LoadingBar';
 
 function Portfolio() {
 	// 로그인 유저 체크
@@ -193,6 +194,10 @@ function Portfolio() {
 
 			applyResult: true,
 		});
+
+		if (selectedValues.position !== positionValue) {
+			setMentorData([]);
+		}
 	};
 
 	useEffect(() => {
@@ -254,7 +259,7 @@ function Portfolio() {
 					<span>✨ 지금 인기 있는 멘토</span>
 				</S.TitleBox>
 
-				{/* 지금 인기 있는 멘토들 목록 4개 */}
+				{/* 지금 인기 있는 멘토들 목록 4개 출력 */}
 				<S.MentorCardBox>
 					{!Array.isArray(popularData) || popularData.length === 0 ? (
 						<EmptyMessage />
@@ -276,7 +281,7 @@ function Portfolio() {
 			<Line size={'small'} />
 
 			<S.MentorBox>
-				{/* 모든 멘토 제목 쫘르르르륵~ */}
+				{/* 모든 멘토 제목 */}
 				<S.MentorTitleBox>
 					<span>🌟 모든 멘토</span>
 
@@ -291,25 +296,30 @@ function Portfolio() {
 				</S.MentorTitleBox>
 
 				<S.MentorCardBox>
-					{!Array.isArray(mentorData) || mentorData.length === 0 ? (
-						<EmptyMessage />
-					) : (
+					{isLoading && <LoadingBar />}
+					{!isLoading && (
 						<>
-							{mentorData.map(mentor => (
-								<div key={mentor._id}>
-									<MentorCard
-										variant={'white'}
-										mentor={mentor}
+							{!mentorData.length ? (
+								<EmptyMessage />
+							) : (
+								<>
+									{mentorData.map(mentor => (
+										<div key={mentor._id}>
+											<MentorCard
+												variant={'white'}
+												mentor={mentor}
+											/>
+										</div>
+									))}
+									<div
+										style={{
+											height: '10px',
+											border: '1px solid white',
+										}}
+										ref={observerElement}
 									/>
-								</div>
-							))}
-							<div
-								style={{
-									height: '10px',
-									border: '1px solid white',
-								}}
-								ref={observerElement}
-							/>
+								</>
+							)}
 						</>
 					)}
 				</S.MentorCardBox>

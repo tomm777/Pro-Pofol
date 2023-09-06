@@ -17,7 +17,7 @@ export const Header = styled.header`
 	position: relative;
 `;
 
-export const ImgBox = styled.a`
+export const ImgBox = styled.div`
 	${flexCenter}
 	width: 100px;
 	height: 50px;

@@ -183,7 +183,12 @@ function Header() {
 					{isLoggedIn ? (
 						<>
 							<a onClick={handleLogoutClick}>로그아웃</a>
-							<Link to="/mypage">마이페이지</Link>
+							<S.NavLinkItem
+								to="/mypage"
+								activeclassname="active"
+							>
+								마이페이지
+							</S.NavLinkItem>
 							{result && result.role === 'admin' && (
 								<Link to="/admin/user">관리자 페이지</Link>
 							)}

@@ -64,10 +64,6 @@ export const LoginBar = styled.div`
 		> img {
 			width: 24px;
 		}
-
-		&:visited {
-			color: ${({ theme }) => theme.PALETTE.black};
-		}
 	}
 `;
 export const notiWrap = styled.div`

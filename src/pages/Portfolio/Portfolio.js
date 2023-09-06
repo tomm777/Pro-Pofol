@@ -263,7 +263,7 @@ function Portfolio() {
 					<span>✨ 지금 인기 있는 멘토</span>
 				</S.TitleBox>
 
-				{/* 지금 인기 있는 멘토들 목록 4개 */}
+				{/* 지금 인기 있는 멘토들 목록 4개 출력 */}
 				<S.MentorCardBox>
 					{!Array.isArray(popularData) || popularData.length === 0 ? (
 						<EmptyMessage />

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { checkToken } from '../../../../utils/cookie';
 import * as S from './Header.styles';
 import SignupModal from '../../../pages/SignUp/Modal/SignUpModal';
 import Button from '../../Button/Button';
 import useApi from '../../../../hooks/useApi';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from '../../../../recoil/atoms/index.atom';
 
 function Header() {
 	const [openModal, setOpenModal] = useState(false);
-	const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
-	const [isMentor, setIsMentor] = useState(false);
+	const { isLoading, isAuth, role } = useRecoilValue(userAtom);
+	// const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
 	const navigate = useNavigate();
 
 	// 알림 표시 상태
@@ -19,18 +21,14 @@ function Header() {
 	// 알림 데이터
 	const [notiData, setNotiData] = useState([]);
 
-	useEffect(() => {
-		const tokenStatus = checkToken();
-		setIsLoggedIn(tokenStatus);
-	}, []);
-
-	const { result, trigger } = useApi({
-		path: isLoggedIn ? '/user' : '', // 유저인지 멘토인지 확인할 수 있는 api 필요
-		shouldFetch: isLoggedIn,
+	const { trigger: logoutTrigger } = useApi({
+		path: '/auth/logout',
+		shouldFetch: false,
 	});
+
 	const { result: notiResult, trigger: notiTrigger } = useApi({
 		path: '/notification',
-		shouldFetch: isLoggedIn && true,
+		shouldFetch: isAuth,
 	});
 	const bellImg = '/assets/img/icons/bell.png';
 	const dotBellImg = '/assets/img/icons/dotbell.png';
@@ -41,12 +39,11 @@ function Header() {
 		// if(notiData.)
 	};
 	useEffect(() => {
-		// console.log(notiResult);
-		if (isLoggedIn) {
+		// console.log(isAuth);
+		if (isAuth) {
 			if (notiResult?.notifications?.length > 0) {
 				setNotiData(notiResult.notifications);
-				// if (notiResult?.notifications?.length === 0) {
-				// }
+
 				setNoti(true);
 			}
 			if (notiResult?.notifications?.length === 0) {
@@ -62,16 +59,7 @@ function Header() {
 			// 컴포넌트가 언마운트되면 타이머 해제
 			return () => clearInterval(intervalId);
 		}
-	}, [notiResult, notiData]);
-
-	useEffect(() => {
-		if (result) {
-			const mentor = result.role === 'user';
-
-			if (mentor) setIsMentor(true);
-			else setIsMentor(false);
-		}
-	}, [result]);
+	}, [notiResult, notiData, isAuth]);
 
 	const handleSignupClick = () => {
 		setOpenModal(true);
@@ -83,17 +71,19 @@ function Header() {
 
 	const handleLogoutClick = async () => {
 		try {
-			await trigger({ path: '/auth/logout', method: 'post' });
-			setIsLoggedIn(false);
+			// await trigger({ path: '/auth/logout' });
+			// setIsLoggedIn(false);
+			// console.log('handleLogoutClick');
+			await logoutTrigger({});
 			alert('로그아웃이 완료되었습니다.');
-			// navigate(0);
+			navigate(0);
 		} catch (error) {
 			alert('로그아웃이 실패 하였습니다.');
 		}
 	};
 
 	const handleMentorApplyClick = () => {
-		if (!isLoggedIn) {
+		if (!isAuth) {
 			alert('로그인 후 이용 가능합니다.');
 			setOpenModal(true);
 		} else {
@@ -180,7 +170,7 @@ function Header() {
 					</S.NavLinkItem>
 				</S.NavBar>
 				<S.LoginBar>
-					{isLoggedIn ? (
+					{!isLoading && isAuth && (
 						<>
 							<a onClick={handleLogoutClick}>로그아웃</a>
 							<S.NavLinkItem
@@ -189,7 +179,7 @@ function Header() {
 							>
 								마이페이지
 							</S.NavLinkItem>
-							{result && result.role === 'admin' && (
+							{role === 'admin' && (
 								<Link to="/admin/user">관리자 페이지</Link>
 							)}
 							<a onClick={notiHandler}>
@@ -199,7 +189,7 @@ function Header() {
 									alt="알림"
 								/>
 							</a>
-							{isMentor && (
+							{role === 'user' && (
 								<Button
 									variant={'primary'}
 									shape={'default'}
@@ -242,7 +232,8 @@ function Header() {
 								''
 							)}
 						</>
-					) : (
+					)}
+					{!isLoading && !isAuth && (
 						<>
 							<a onClick={handleSignupClick}>로그인 / 회원가입</a>
 							<a href="#">

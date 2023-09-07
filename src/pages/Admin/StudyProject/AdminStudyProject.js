@@ -121,13 +121,12 @@ const AdminStudyProject = () => {
 		[tableData, memoColumns, currentPage],
 	);
 	const changeSelectValue = async e => {
-		setCurrentPage(1);
 		// console.log(currentPage);
 		if (e === 'study') {
 			trigger({
-				params: {
+				data: {
 					classification: '스터디',
-					skip: currentPage * 10 - 10,
+					skip: 0,
 				},
 				applyResult: true,
 			});
@@ -135,22 +134,23 @@ const AdminStudyProject = () => {
 			// Todo 스터디만 가져오는 API
 		} else if (e === 'project') {
 			trigger({
-				params: {
+				data: {
 					classification: '프로젝트',
-					skip: currentPage * 10 - 10,
+					skip: 0,
 				},
 				applyResult: true,
 			});
 			setCurrentClassification('프로젝트');
 		} else if (e === '') {
 			trigger({
-				params: {
-					skip: currentPage * 10 - 10,
+				data: {
+					skip: 0,
 				},
 				applyResult: true,
 			});
 			setCurrentClassification('');
 		}
+		setCurrentPage(1);
 	};
 	const removeHandler = async (key, index) => {
 		await trigger({
@@ -161,14 +161,14 @@ const AdminStudyProject = () => {
 		if (result.projectStudies.length === 1) {
 			if (index === 1) {
 				await trigger({
-					params: {
+					data: {
 						skip: (currentPage - 1) * 10 - 10,
 						classification: currentclassification,
 					},
 				});
 			} else {
 				await trigger({
-					params: {
+					data: {
 						skip: (currentPage - 1) * 10 - 10,
 						classification: currentclassification,
 					},
@@ -178,7 +178,7 @@ const AdminStudyProject = () => {
 			setCurrentPage(prev => prev - 1);
 		} else {
 			await trigger({
-				params: {
+				data: {
 					skip: currentPage * 10 - 10,
 					classification: currentclassification,
 				},
@@ -197,7 +197,7 @@ const AdminStudyProject = () => {
 		// console.log(pageNumber);
 
 		await trigger({
-			params: {
+			data: {
 				skip: pageNumber * 10 - 10,
 				classification: currentclassification,
 			},

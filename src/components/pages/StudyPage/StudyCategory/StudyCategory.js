@@ -223,8 +223,8 @@ function StudyCategory() {
 			</S.CategoryBottomList>
 
 			<S.PostCardContainer>
-				{isLoadingProjectStudy && <LoadingBar />}
-				{!isLoadingProjectStudy && !projectStudy.length && (
+				{/* {isLoadingProjectStudy && <LoadingBar />} */}
+				{/* {!isLoadingProjectStudy && !projectStudy.length && (
 					<EmptyMessage />
 				)}
 				{!isLoadingProjectStudy &&
@@ -240,16 +240,17 @@ function StudyCategory() {
 							<div
 								style={{
 									height: '10px',
-									border: '1px solid transparent',
+									border: '1px solid black',
 								}}
 								ref={observerElement}
 							/>
 						</>
-					)}
-				{/* {!isLoadingProjectStudy && !projectStudy.length && (
+					)} */}
+
+				{!isLoadingProjectStudy && !projectStudy.length && (
 					<EmptyMessage />
 				)}
-				{Array.isArray(projectStudy) && projectStudy.length && (
+				{Array.isArray(projectStudy) && projectStudy.length > 0 && (
 					<>
 						{projectStudy.map((projectStudy, idx) => (
 							<div key={projectStudy._id + idx}>
@@ -265,7 +266,7 @@ function StudyCategory() {
 							ref={observerElement}
 						/>
 					</>
-				)} */}
+				)}
 			</S.PostCardContainer>
 		</>
 	);

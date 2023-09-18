@@ -41,7 +41,13 @@ function Home() {
 				<RollingSlider />
 				{isAuth && (
 					<H.RecommendMentor>
-						<H.Title>👀 {nickName} 님에게 추천하는 멘토</H.Title>
+						<H.TitleWrap>
+							<img
+								src="/assets/img/icons/eyes.png"
+								alt="눈아이콘"
+							/>
+							<H.Title>{nickName} 님에게 추천하는 멘토</H.Title>
+						</H.TitleWrap>
 						<H.RecommendCards>
 							{recommendedMentors.map((mentor, idx) => (
 								<RecommendCard
@@ -61,19 +67,22 @@ function Home() {
 					</H.RecommendMentor>
 				)}
 				<H.NewStudy>
-					<H.TitleBox>
-						<H.Title>🔥 방금 올라온 스터디 / 프로젝트</H.Title>
-						<Link to="/study">
-							{' '}
-							<H.ViewAll>
-								전체보기
-								<img
-									src="/assets/img/icons/bluearrow.svg"
-									alt="파란화살표"
-								/>
-							</H.ViewAll>
-						</Link>
-					</H.TitleBox>
+					<H.TitleWrap>
+						<img src="/assets/img/icons/fire.png" alt="불아이콘" />
+						<H.TitleBox>
+							<H.Title>방금 올라온 스터디 / 프로젝트</H.Title>
+							<Link to="/study">
+								{' '}
+								<H.ViewAll>
+									전체보기
+									<img
+										src="/assets/img/icons/bluearrow.svg"
+										alt="파란화살표"
+									/>
+								</H.ViewAll>
+							</Link>
+						</H.TitleBox>
+					</H.TitleWrap>
 					<H.SlideStudyCard>
 						<Slider
 							$background="lightBlueBackground"
@@ -83,18 +92,21 @@ function Home() {
 					</H.SlideStudyCard>
 				</H.NewStudy>
 				<H.PopularMento>
-					<H.TitleBox>
-						<H.Title>✨ 지금 인기 있는 멘토</H.Title>
-						<Link to="/portfolio">
-							<H.ViewAll>
-								전체보기
-								<img
-									src="/assets/img/icons/bluearrow.svg"
-									alt="파란화살표"
-								/>
-							</H.ViewAll>
-						</Link>
-					</H.TitleBox>
+					<H.TitleWrap>
+						<img src="/assets/img/icons/star.png" alt="별아이콘" />
+						<H.TitleBox>
+							<H.Title>지금 인기 있는 멘토</H.Title>
+							<Link to="/portfolio">
+								<H.ViewAll>
+									전체보기
+									<img
+										src="/assets/img/icons/bluearrow.svg"
+										alt="파란화살표"
+									/>
+								</H.ViewAll>
+							</Link>
+						</H.TitleBox>
+					</H.TitleWrap>
 					<H.PopularCards>
 						<MentorCard
 							variant={'white'}

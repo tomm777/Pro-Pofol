@@ -31,6 +31,7 @@ export const RegisterForm = styled.form`
 			padding: 0 12px 0 6px;
 			border: 1px solid #0000001a;
 			border-radius: 4px;
+			color: ${({ theme }) => theme.PALETTE.gray[300]};
 		}
 	}
 	> button {

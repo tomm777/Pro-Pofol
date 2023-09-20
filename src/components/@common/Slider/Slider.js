@@ -43,7 +43,7 @@ function Slider({ $background, url, slidesToShow }) {
 									key={index}
 									postId={studyInfo._id}
 									classification={studyInfo.classification}
-									recruitsStatus ={studyInfo.recruitsStatus}
+									recruitsStatus={studyInfo.recruitsStatus}
 									$background={$background}
 									title={studyInfo.title}
 									process={studyInfo.process}
@@ -78,5 +78,3 @@ function Slider({ $background, url, slidesToShow }) {
 }
 
 export default Slider;
-
-// 주석처리

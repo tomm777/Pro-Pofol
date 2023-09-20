@@ -1,6 +1,9 @@
 import { css, styled } from 'styled-components';
 
 const sizeCSS = {
+	small: css`
+		width: 272px;
+	`,
 	regular: css`
 		width: 324px;
 	`,

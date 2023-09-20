@@ -23,7 +23,6 @@ function SignUp() {
 
 	function fetchUserData() {
 		const email = decodeURIComponent(getCookie('email'));
-		console.log({ email });
 		// 비유저가 들어왔을 때
 		if (email !== 'undefined') {
 			setEmail(email);
@@ -96,18 +95,20 @@ function SignUp() {
 					position,
 				},
 				// showBoundary: false,
-				applyResult: true,
+				// applyResult: true,
 			});
 			navigate('/signup/done');
 		} catch (err) {
-			if (err.response.data.result === 'MongoServerError') {
-				if (err.response.data.reason.includes('duplicate key')) {
-					alert('이미 사용중인 닉네임입니다.');
-				} else {
-					alert('회원가입에 실패하였습니다. 다시 시도해 주세요.');
-				}
+			console.error('Error caught:', err);
+			console.log('Error response data:', err.response.data);
+			if (
+				err.response.data.result === 'MongoServerError' &&
+				err.response.data.reason.includes('duplicate key')
+			) {
+				alert('이미 사용중인 닉네임입니다.');
+			} else {
+				alert('회원가입에 실패하였습니다. 다시 시도해 주세요.');
 			}
-			// console.log(err);
 		}
 	};
 

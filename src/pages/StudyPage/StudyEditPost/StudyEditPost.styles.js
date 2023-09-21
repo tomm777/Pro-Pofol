@@ -33,6 +33,7 @@ export const SelectWrapper = styled.div`
 
 export const SelectBox = styled.div`
 	${flexAlignCenter}
+	width: 493px;
 
 	.react-datepicker-wrapper {
 		width: 400px;
@@ -73,6 +74,7 @@ export const SelectTitle = styled.span`
 	font-size: ${({ theme }) => theme.FONT_SIZE.md};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	margin-right: 2rem;
+	min-width: 60px;
 `;
 
 export const Deadline = styled(SelectTitle)`

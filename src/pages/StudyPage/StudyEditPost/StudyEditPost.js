@@ -111,7 +111,7 @@ function StudyEditPost() {
 							<SelectWithDefault
 								options={STUDYOPTIONS.CLASSIFICATION}
 								selectedValue={selectedOptions.classification}
-								defaultValue="모집 구분"
+								selectText="모집 구분"
 								onChange={e =>
 									handleOptionChange(
 										'classification',
@@ -126,7 +126,7 @@ function StudyEditPost() {
 							<SelectWithDefault
 								options={STUDYOPTIONS.PROCESS}
 								selectedValue={selectedOptions.process}
-								defaultValue="진행 방식"
+								selectText="진행 방식"
 								onChange={e =>
 									handleOptionChange(
 										'process',
@@ -154,7 +154,7 @@ function StudyEditPost() {
 							<SelectWithDefault
 								options={STUDYOPTIONS.RECRUITS}
 								selectedValue={selectedOptions.recruits}
-								defaultValue="모집 인원"
+								selectText="모집 인원"
 								onChange={e =>
 									handleOptionChange(
 										'recruits',
@@ -185,7 +185,7 @@ function StudyEditPost() {
 							<SelectWithDefault
 								options={STUDYOPTIONS.CONTACT}
 								selectedValue={selectedOptions.howContactTitle}
-								defaultValue="연락 방법"
+								selectText="연락 방법"
 								onChange={e =>
 									handleOptionChange(
 										'howContactTitle',

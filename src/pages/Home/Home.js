@@ -9,11 +9,13 @@ import useApi from '../../hooks/useApi';
 import EmptyMessage from '../../components/@common/EmptyMessage/EmptyMessage';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from '../../recoil/atoms/index.atom';
+import LoadingBar from '../../../src/components/@common/Loading/LoadingBar';
 
 function Home() {
 	const [recommendedMentors, setRecommendedMentors] = useState([]);
 	const { isAuth } = useRecoilValue(userAtom);
 	const [nickName, setNickName] = useState('');
+	const [loading, setLoading] = useState(true);
 
 	const { trigger: recommandTrigger } = useApi({
 		path: '/portfolio/recommend/recommendMentor',
@@ -27,6 +29,7 @@ function Home() {
 			setNickName(getResult.nickName);
 			setRecommendedMentors([...getResult.portfolios]);
 		}
+		setLoading(false);
 	};
 
 	useEffect(() => {
@@ -48,22 +51,25 @@ function Home() {
 							/>
 							<H.Title>{nickName} 님에게 추천하는 멘토</H.Title>
 						</H.TitleWrap>
-						<H.RecommendCards>
-							{recommendedMentors.map((mentor, idx) => (
-								<RecommendCard
-									key={idx}
-									id={mentor._id}
-									profileImageUrl={mentor.profileImageUrl}
-									nickName={mentor.nickName}
-									company={mentor.company}
-									position={mentor.position}
-									career={mentor.career}
-								/>
-							))}
-							{recommendedMentors.length === 0 && (
-								<EmptyMessage />
-							)}
-						</H.RecommendCards>
+						{loading ? (
+							<LoadingBar /> // 로딩 컴포넌트를 만들거나 원하는 로딩 표시기를 사용할 수 있습니다.
+						) : recommendedMentors.length > 0 ? (
+							<H.RecommendCards>
+								{recommendedMentors.map((mentor, idx) => (
+									<RecommendCard
+										key={idx}
+										id={mentor._id}
+										profileImageUrl={mentor.profileImageUrl}
+										nickName={mentor.nickName}
+										company={mentor.company}
+										position={mentor.position}
+										career={mentor.career}
+									/>
+								))}
+							</H.RecommendCards>
+						) : (
+							<EmptyMessage />
+						)}
 					</H.RecommendMentor>
 				)}
 				<H.NewStudy>

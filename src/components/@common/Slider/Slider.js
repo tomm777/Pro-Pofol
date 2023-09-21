@@ -3,10 +3,12 @@ import StudyInfoCard from '../StudyInfoCard/StudyInfoCard';
 import * as H from './Slider.styles';
 import useApi from '../../../hooks/useApi';
 import EmptyMessage from '../../@common/EmptyMessage/EmptyMessage';
+import LoadingBar from '../../@common/Loading/LoadingBar';
 
 function Slider({ $background, url, slidesToShow }) {
 	const [slide, setSlide] = useState(0);
 	const [studyInfoData, setStudyInfoData] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const { result } = useApi({
 		path: `${url}`,
@@ -14,8 +16,10 @@ function Slider({ $background, url, slidesToShow }) {
 	});
 
 	useEffect(() => {
+		setIsLoading(true);
 		if (result && result.length > 0) {
 			setStudyInfoData([...result]);
+			setIsLoading(false);
 		}
 	}, [result]);
 
@@ -32,7 +36,9 @@ function Slider({ $background, url, slidesToShow }) {
 		<H.Wrap>
 			<H.SliderWrapper>
 				<H.SlideContainer>
-					{studyInfoData.length > 0 ? (
+					{isLoading ? (
+						<LoadingBar />
+					) : studyInfoData.length > 0 ? (
 						studyInfoData
 							.slice(
 								slide * slidesToShow,
@@ -76,5 +82,4 @@ function Slider({ $background, url, slidesToShow }) {
 		</H.Wrap>
 	);
 }
-
 export default Slider;

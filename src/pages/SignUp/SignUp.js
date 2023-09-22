@@ -16,10 +16,11 @@ function SignUp() {
 	const [position, setPosition] = useState('');
 	const [nameError, setNameError] = useState('');
 	const [nicknameError, setNicknameError] = useState('');
+	const [nicknameAvailable, setNicknameAvailable] = useState(true);
 	const navigate = useNavigate();
 	useFooter();
 
-	const { trigger, error } = useApi({});
+	const { trigger, result } = useApi({});
 
 	function fetchUserData() {
 		const email = decodeURIComponent(getCookie('email'));
@@ -42,10 +43,10 @@ function SignUp() {
 	}, []);
 
 	const handleNameChange = event => {
-		const newName = event.target.value;
-		setName(newName);
-		if (VALIDATE.name.test(newName)) {
-			setName(newName);
+		const userName = event.target.value;
+		setName(userName);
+		if (VALIDATE.name.test(userName)) {
+			setName(userName);
 			setNameError('');
 		} else {
 			setNameError('2자에서 10자 사이의 한글로 입력해 주세요.');
@@ -53,10 +54,10 @@ function SignUp() {
 	};
 
 	const handleNicknameChange = event => {
-		const newNickName = event.target.value;
-		setNickName(newNickName);
-		if (VALIDATE.nickName.test(newNickName)) {
-			setNickName(newNickName);
+		const userNickName = event.target.value;
+		setNickName(userNickName);
+		if (VALIDATE.nickName.test(userNickName)) {
+			setNickName(userNickName);
 			setNicknameError('');
 		} else {
 			setNicknameError(
@@ -69,14 +70,21 @@ function SignUp() {
 		setPosition(event.target.value);
 	};
 
-	useEffect(() => {
-		if (error) {
-			// console.log(error);
+	const checkNicknameAvailable = () => {
+		trigger({
+			path: `/auth/validate-nickname/${nickName}`,
+			method: 'get',
+		});
+		if (result.status === 200) {
+			setNicknameAvailable(true);
+			alert('사용 가능한 닉네임입니다.');
+		} else {
+			setNicknameAvailable(false);
+			alert('닉네임이 이미 사용 중입니다.');
 		}
-		// console.log(error);
-	}, [error]);
+	};
 
-	const handleSubmit = async event => {
+	const handleSubmit = event => {
 		event.preventDefault();
 
 		if (!name || !email || !nickName || !position) {
@@ -84,32 +92,17 @@ function SignUp() {
 			return;
 		}
 
-		try {
-			await trigger({
-				path: '/auth/signup',
-				method: 'post',
-				data: {
-					name,
-					email,
-					nickName,
-					position,
-				},
-				// showBoundary: false,
-				// applyResult: true,
-			});
-			navigate('/signup/done');
-		} catch (err) {
-			console.error('Error caught:', err);
-			console.log('Error response data:', err.response.data);
-			if (
-				err.response.data.result === 'MongoServerError' &&
-				err.response.data.reason.includes('duplicate key')
-			) {
-				alert('이미 사용중인 닉네임입니다.');
-			} else {
-				alert('회원가입에 실패하였습니다. 다시 시도해 주세요.');
-			}
-		}
+		trigger({
+			path: '/auth/signup',
+			method: 'post',
+			data: {
+				name,
+				email,
+				nickName,
+				position,
+			},
+		});
+		navigate('/signup/done');
 	};
 
 	return (
@@ -134,13 +127,24 @@ function SignUp() {
 				</div>
 				<div>
 					<label>닉네임</label>
-					<Input
-						type="text"
-						placeholder="닉네임을 입력해 주세요."
-						value={nickName}
-						onChange={handleNicknameChange}
-						size={'medium'}
-					/>
+					<S.NickNameCheck>
+						<Input
+							type="text"
+							placeholder="닉네임을 입력해 주세요."
+							value={nickName}
+							onChange={handleNicknameChange}
+							size={'small'}
+						/>
+						<Button
+							variant={'reverse'}
+							shape={'default'}
+							size={'small'}
+							onClick={checkNicknameAvailable}
+						>
+							중복 확인
+						</Button>
+					</S.NickNameCheck>
+
 					{nicknameError && (
 						<S.StyledError>{nicknameError}</S.StyledError>
 					)}

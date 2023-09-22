@@ -3,7 +3,7 @@ import { flexAlignCenter, flexColumn } from '../../../../../styles/common';
 
 export const Container = styled.div`
 	border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};
-	font-size: ${({ theme }) => theme.FONT_SIZE.xs};
+	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.medium};
 	border-radius: 4px;
 	width: 100%;
@@ -33,7 +33,8 @@ export const OptionList = styled.ul`
 	overflow-y: scroll;
 	position: relative;
 	background-color: white;
-	border: 1px solid #e9e9e9;
+	border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};
+
 	border-radius: 0 0 4px 4px;
 `;
 

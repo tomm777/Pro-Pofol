@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as S from './SelectWithDefault.styles';
 
-function SelectWithDefault({ onChange, options, selectText }) {
+function SelectWithDefault({ onChange, options, selectText, name }) {
 	const [isOpen, setIsOpen] = useState(false);
 	const [selectedOption, setSelectedOption] = useState(null);
 
 	const handleSelect = option => {
 		setSelectedOption(option);
-		setIsOpen(false);
+		setIsOpen(!isOpen);
+		onChange(name, option.name);
 	};
 
 	const toggleSelect = () => {
@@ -18,27 +19,21 @@ function SelectWithDefault({ onChange, options, selectText }) {
 		<S.Container>
 			<S.SelectDefaultOptionBox onClick={toggleSelect}>
 				<S.SelectDefaultOption
-					value={selectedOption}
+					value={selectedOption ? selectedOption.name : ''}
 					onChange={onChange}
 				>
 					{selectedOption
 						? selectedOption.name
-						: `${selectText}를(을) 선택하세요`}
+						: `${selectText}을(를) 선택하세요`}
 				</S.SelectDefaultOption>
 
-				{isOpen ? (
-					<span className="material-symbols-outlined">
-						arrow_drop_up
-					</span>
-				) : (
-					<span className="material-symbols-outlined">
-						arrow_drop_down
-					</span>
-				)}
+				<span className="material-symbols-outlined">
+					{isOpen ? 'arrow_drop_up' : 'arrow_drop_down'}
+				</span>
 			</S.SelectDefaultOptionBox>
 			{isOpen && (
 				<S.OptionList>
-					{options.map((el, idx) => (
+					{options.map(el => (
 						<S.Option
 							key={el.value}
 							onClick={() => handleSelect(el)}

@@ -6,25 +6,26 @@ import {
 } from '../../../styles/common';
 
 export const Container = styled.div`
-	padding: 4.7rem 0 7.35rem;
+	padding: 75px 0;
 	${bodyContainer}
 `;
 export const Title = styled.h2`
-	padding-bottom: 2rem;
-	margin-bottom: 2rem;
+	padding-bottom: 32px;
+	margin-bottom: 32px;
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	font-size: ${({ theme }) => theme.FONT_SIZE.lg};
 	border-bottom: 1px solid ${({ theme }) => theme.PALETTE.gray[100]};
 `;
 export const SelectContainer = styled.div`
 	${flexColumn}
-	padding: 1rem 0 6rem;
+	padding: 16px 0 96px;
 `;
 
 export const SelectWrapper = styled.div`
 	${flexAlignCenter}
 	justify-content: space-between;
-	margin-bottom: 2rem;
+	margin-bottom: 32px;
+	gap: 40px;
 
 	&:last-child {
 		margin-bottom: 0;
@@ -33,17 +34,22 @@ export const SelectWrapper = styled.div`
 
 export const SelectBox = styled.div`
 	${flexAlignCenter}
-	width: 493px;
+	flex: 1;
+	/* width: 493px; */
 
 	.react-datepicker-wrapper {
-		width: 400px;
+		/* width: 400px; */
+		max-width: 403px;
+		margin-left: auto;
+
+		width: 100%;
 		height: 42px;
 		border: 1px solid #e9e9e9;
 		border-radius: 4px;
 		padding-left: 5px;
 
 		.react-datepicker__view-calendar-icon input {
-			padding: 0 0 0 5px;
+			padding-left: 5px;
 		}
 
 		.react-datepicker__input-container {
@@ -58,8 +64,8 @@ export const SelectBox = styled.div`
 				padding-left: 12px;
 				width: 100%;
 				border: none;
-				font-size: 0.875rem;
-				font-family: Pretendard-Regular;
+				font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+				font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 				cursor: pointer;
 
 				&:focus-visible {
@@ -73,18 +79,19 @@ export const SelectBox = styled.div`
 export const SelectTitle = styled.span`
 	font-size: ${({ theme }) => theme.FONT_SIZE.md};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
-	margin-right: 2rem;
-	min-width: 60px;
+	margin-right: 32px;
+	min-width: 86px;
 `;
 
 export const Deadline = styled(SelectTitle)`
-	font-size: 1rem;
-	margin-right: 1rem;
+	font-size: 16px;
+	margin-right: 16px;
 `;
 
 export const Input = styled.input`
-	width: 25rem;
-	border-radius: 0.25rem;
+	width: 400px;
+
+	border-radius: 4px;
 	border: 1px solid ${({ theme }) => theme.PALETTE.gray[100]};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};

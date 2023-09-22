@@ -35,7 +35,6 @@ export const SelectWrapper = styled.div`
 export const SelectBox = styled.div`
 	${flexAlignCenter}
 	flex: 1;
-	/* width: 493px; */
 
 	.react-datepicker-wrapper {
 		/* width: 400px; */
@@ -90,11 +89,10 @@ export const Deadline = styled(SelectTitle)`
 
 export const Input = styled.input`
 	width: 400px;
-
 	border-radius: 4px;
 	border: 1px solid ${({ theme }) => theme.PALETTE.gray[100]};
-	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+	font-family: ${({ theme }) => theme.FONT_WEIGHT.medium};
 	margin-left: auto;
 	padding: 16px 12px;
 `;

@@ -16,10 +16,10 @@ export const SelectBox = styled.div`
 	border-radius: 4px;
 
 	> select {
-		padding-left: 8px;
+		padding-left: 11px;
 		width: 100%;
 		height: 42px;
-		font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+		font-family: ${({ theme }) => theme.FONT_WEIGHT.medium};
 		border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};
 		border-radius: 4px;
 	}
@@ -29,7 +29,8 @@ export const CheckBoxContainer = styled.div`
 	z-index: 10;
 	background-color: ${({ theme }) => theme.PALETTE.white};
 	${flexColumn}
-	/* width: 400px; */
+	/* width: 100%; */
+	width: 400px;
 	max-height: 150px;
 	overflow-y: scroll;
 	border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};

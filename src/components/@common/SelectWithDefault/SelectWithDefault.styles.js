@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { flexAlignCenter, flexColumn } from '../../../../../styles/common';
+import { flexAlignCenter, flexColumn } from '../../../styles/common';
 
 export const Container = styled.div`
 	border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};

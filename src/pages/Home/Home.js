@@ -52,7 +52,7 @@ function Home() {
 							<H.Title>{nickName} 님에게 추천하는 멘토</H.Title>
 						</H.TitleWrap>
 						{loading ? (
-							<LoadingBar /> // 로딩 컴포넌트를 만들거나 원하는 로딩 표시기를 사용할 수 있습니다.
+							<LoadingBar />
 						) : recommendedMentors.length > 0 ? (
 							<H.RecommendCards>
 								{recommendedMentors.map((mentor, idx) => (

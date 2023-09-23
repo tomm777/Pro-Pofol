@@ -16,11 +16,10 @@ function SignUp() {
 	const [position, setPosition] = useState('');
 	const [nameError, setNameError] = useState('');
 	const [nicknameError, setNicknameError] = useState('');
-	const [nicknameAvailable, setNicknameAvailable] = useState(true);
 	const navigate = useNavigate();
 	useFooter();
 
-	const { trigger, result } = useApi({});
+	const { trigger } = useApi({});
 
 	function fetchUserData() {
 		const email = decodeURIComponent(getCookie('email'));
@@ -70,17 +69,17 @@ function SignUp() {
 		setPosition(event.target.value);
 	};
 
-	const checkNicknameAvailable = () => {
-		trigger({
+	const checkNicknameAvailable = async () => {
+		const response = await trigger({
 			path: `/auth/validate-nickname/${nickName}`,
 			method: 'get',
 		});
-		if (result.status === 200) {
-			setNicknameAvailable(true);
+
+		console.log(response);
+		if (response && response.message === '사용 가능한 닉네임입니다.') {
 			alert('사용 가능한 닉네임입니다.');
 		} else {
-			setNicknameAvailable(false);
-			alert('닉네임이 이미 사용 중입니다.');
+			alert('이미 사용중인 닉네임입니다.');
 		}
 	};
 

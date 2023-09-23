@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { checkToken } from '../../../../utils/cookie';
 import * as S from './Header.styles';
 import SignupModal from '../../../pages/SignUp/Modal/SignUpModal';
 import Button from '../../Button/Button';
@@ -11,7 +10,6 @@ import { userAtom } from '../../../../recoil/atoms/index.atom';
 function Header() {
 	const [openModal, setOpenModal] = useState(false);
 	const { isLoading, isAuth, role } = useRecoilValue(userAtom);
-	// const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
 	const navigate = useNavigate();
 
 	// 알림 표시 상태
@@ -72,9 +70,6 @@ function Header() {
 
 	const handleLogoutClick = async () => {
 		try {
-			// await trigger({ path: '/auth/logout' });
-			// setIsLoggedIn(false);
-			// console.log('handleLogoutClick');
 			await logoutTrigger({});
 			alert('로그아웃이 완료되었습니다.');
 			navigate(0);

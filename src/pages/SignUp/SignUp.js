@@ -77,6 +77,7 @@ function SignUp() {
 			const response = await trigger({
 				path: `/auth/validate-nickname/${nickName}`,
 				method: 'get',
+				showBoundary: false,
 			});
 
 			setCheckingNickname(false);

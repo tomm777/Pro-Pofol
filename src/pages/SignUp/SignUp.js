@@ -16,6 +16,7 @@ function SignUp() {
 	const [position, setPosition] = useState('');
 	const [nameError, setNameError] = useState('');
 	const [nicknameError, setNicknameError] = useState('');
+	const [checkingNickname, setCheckingNickname] = useState(false);
 	const navigate = useNavigate();
 	useFooter();
 
@@ -70,23 +71,30 @@ function SignUp() {
 	};
 
 	const checkNicknameAvailable = async () => {
-		const response = await trigger({
-			path: `/auth/validate-nickname/${nickName}`,
-			method: 'get',
-		});
+		if (nickName) {
+			setCheckingNickname(true);
 
-		console.log(response);
-		if (response && response.message === '사용 가능한 닉네임입니다.') {
-			alert('사용 가능한 닉네임입니다.');
+			const response = await trigger({
+				path: `/auth/validate-nickname/${nickName}`,
+				method: 'get',
+			});
+
+			setCheckingNickname(false);
+
+			if (response && response.message === '사용 가능한 닉네임입니다.') {
+				alert('사용 가능한 닉네임입니다.');
+			} else {
+				alert('이미 사용중인 닉네임입니다.');
+			}
 		} else {
-			alert('이미 사용중인 닉네임입니다.');
+			alert('닉네임을 입력해 주세요.');
 		}
 	};
 
 	const handleSubmit = event => {
 		event.preventDefault();
 
-		if (!name || !email || !nickName || !position) {
+		if (!name || !email || !nickName || !position || checkingNickname) {
 			alert('모든 필수 정보를 입력해 주세요.');
 			return;
 		}
@@ -139,6 +147,7 @@ function SignUp() {
 							shape={'default'}
 							size={'small'}
 							onClick={checkNicknameAvailable}
+							disabled={checkingNickname}
 						>
 							중복 확인
 						</Button>

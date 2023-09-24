@@ -115,7 +115,7 @@ function Home() {
 					</H.TitleWrap>
 					<H.PopularCards>
 						<MentorCard
-							variant={'white'}
+							$variant={'white'}
 							url={'/portfolio/recommend/topMentor'}
 						/>
 					</H.PopularCards>

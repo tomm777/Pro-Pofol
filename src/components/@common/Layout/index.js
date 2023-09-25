@@ -11,6 +11,9 @@ import ScrollToTopButton from '../ScrollToTop/ScrollToTopButton';
 
 const excludeRedirectPath = [
 	{
+		path: '/',
+	},
+	{
 		path: '/portfolio/post',
 		hasParam: true,
 	},

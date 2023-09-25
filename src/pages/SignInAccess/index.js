@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignInAccess = () => {
+	const navigate = useNavigate();
 	useEffect(() => {
-		navigator('/');
+		navigate('/');
 	}, []);
 	return <></>;
 };

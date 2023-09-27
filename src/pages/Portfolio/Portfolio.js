@@ -2,17 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
-import useApi from '../../hooks/useApi';
-import { userAtom } from '../../recoil/atoms/index.atom';
+import useApi from 'hooks/useApi';
+import { userAtom } from 'recoil/atoms/index.atom';
 
 import * as S from './Portfolio.styles';
 
-import Line from '../../components/@common/Line/Line';
-import MentorCard from '../../components/pages/Portfolio/PortfolioCard/Card';
-import Button from '../../components/@common/Button/Button';
-import Select from '../../components/@common/Select/Select';
-import EmptyMessage from '../../components/@common/EmptyMessage/EmptyMessage';
-import LoadingBar from '../../components/@common/Loading/LoadingBar';
+import Line from 'components/@common/Line/Line';
+import PortfolioCard from 'components/pages/Portfolio/PortfolioCard/PortfolioCard';
+import MentorCard from 'components/@common/Card/Card';
+import Button from 'components/@common/Button/Button';
+import Select from 'components/@common/Select/Select';
+import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
+import LoadingBar from 'components/@common/Loading/LoadingBar';
 
 function Portfolio() {
 	// 로그인 유저 체크
@@ -58,16 +59,6 @@ function Portfolio() {
 		shouldFetch: true,
 	});
 
-	const { result: userResult } = useApi({
-		path: '/user',
-		shouldFetch: true,
-	});
-
-	const { result: popularMentorResult } = useApi({
-		path: '/portfolio/recommend/topMentor',
-		shouldFetch: true,
-	});
-
 	useEffect(() => {
 		if (mentorResult.data && Array.isArray(mentorResult.data)) {
 			setMentorData(prev => [...prev, ...mentorResult.data]);
@@ -81,12 +72,7 @@ function Portfolio() {
 
 	// 멘토 롤 체크 && 카테고리 값 들어오는지 체크
 	useEffect(() => {
-		// const mentor = role === 'mentor';
-
-		// if (mentor) setIsMentor(true);
-		// else setIsMentor(false);
-
-		if (userResult.role === 'mentor') setIsMentor(true);
+		if (role === 'mentor') setIsMentor(true);
 		else setIsMentor(false);
 
 		if (positionResult.positions) {
@@ -96,11 +82,7 @@ function Portfolio() {
 		if (mentorResult.data) {
 			setMentorData(mentorResult.data);
 		}
-
-		if (popularMentorResult) {
-			setPopularData(popularMentorResult);
-		}
-	}, [positionResult, popularMentorResult, isAuth, role]);
+	}, [positionResult, isAuth, role]);
 
 	// 무한 스크롤
 	const handleObserver = entries => {
@@ -169,10 +151,6 @@ function Portfolio() {
 
 			applyResult: true,
 		});
-
-		// if (selectedValues.selectedSort !== value) {
-		// 	setMentorData([]);
-		// }
 	};
 
 	// 포지션 클릭
@@ -263,25 +241,18 @@ function Portfolio() {
 			<div>
 				{/* 지금 인기 있는 멘토들 제목 */}
 				<S.TitleBox>
-					<span>✨ 지금 인기 있는 멘토</span>
+					<span>
+						<img src="assets/img/icons/stars.svg" /> 지금 인기 있는
+						멘토
+					</span>
 				</S.TitleBox>
 
 				{/* 지금 인기 있는 멘토들 목록 4개 출력 */}
 				<S.MentorCardBox>
-					{!Array.isArray(popularData) || popularData.length === 0 ? (
-						<EmptyMessage />
-					) : (
-						<>
-							{popularData.map(mentor => (
-								<div key={mentor._id}>
-									<MentorCard
-										variant={'blue'}
-										mentor={mentor}
-									/>
-								</div>
-							))}
-						</>
-					)}
+					<MentorCard
+						$variant={'blue'}
+						url={'/portfolio/recommend/topMentor'}
+					/>
 				</S.MentorCardBox>
 			</div>
 
@@ -290,11 +261,13 @@ function Portfolio() {
 			<S.MentorBox>
 				{/* 모든 멘토 제목 */}
 				<S.MentorTitleBox>
-					<span>🌟 모든 멘토</span>
+					<span>
+						<img src="assets/img/icons/star.svg" /> 모든 멘토
+					</span>
 
 					<Select
-						variant={'none'}
-						font={'large'}
+						$variant={'none'}
+						$font={'large'}
 						onChange={handleChangeSelect}
 					>
 						<option value="newest">최신순</option>
@@ -303,33 +276,25 @@ function Portfolio() {
 				</S.MentorTitleBox>
 
 				<S.MentorCardBox>
-					{/* {isLoading && <LoadingBar />} */}
-					{/* {!isLoading && ( */}
-					<>
-						{isLoading && !mentorData.length && <LoadingBar />}
-						{!isLoading && !mentorData.length && <EmptyMessage />}
-						{Array.isArray(mentorData) && mentorData.length > 0 && (
-							<>
-								{mentorData.map(mentor => (
-									<div key={mentor._id}>
-										<MentorCard
-											variant={'white'}
-											mentor={mentor}
-										/>
-									</div>
-								))}
+					{isLoading && !mentorData.length && <LoadingBar />}
+					{!isLoading && !mentorData.length && <EmptyMessage />}
+					{Array.isArray(mentorData) && mentorData.length > 0 && (
+						<>
+							{mentorData.map(mentor => (
+								<div key={mentor._id}>
+									<PortfolioCard mentor={mentor} />
+								</div>
+							))}
 
-								<div
-									style={{
-										height: '10px',
-										border: '1px solid white',
-									}}
-									ref={observerElement}
-								/>
-							</>
-						)}
-					</>
-					{/* )} */}
+							<div
+								style={{
+									height: '10px',
+									border: '1px solid white',
+								}}
+								ref={observerElement}
+							/>
+						</>
+					)}
 				</S.MentorCardBox>
 			</S.MentorBox>
 		</S.PortfolioBox>

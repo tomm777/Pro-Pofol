@@ -1,16 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+
+import { userAtom } from 'recoil/atoms/index.atom';
+import useApi from 'hooks/useApi';
+import MESSAGE from 'constants/message';
 
 import * as S from './Review.styles';
 
 import Line from '../Line/Line';
-import useApi from '../../../hooks/useApi';
-import MESSAGE from '../../../constants/message';
 import Textarea from '../Textarea/Textarea';
 import Pagination from '../Pagination/Pagination';
 import LoadingBar from '../Loading/LoadingBar';
+import Button from '../Button/Button';
 
 function Review(props) {
 	const { title, getUrl } = props;
+
+	const { _id, isAuth } = useRecoilValue(userAtom);
 
 	// review && comments 데이터
 	const [review, setReview] = useState([]);
@@ -20,7 +26,6 @@ function Review(props) {
 		author: '',
 		content: '',
 		ownerId: '',
-		createdAt: '',
 	});
 
 	const [userInfo, setUserInfo] = useState();
@@ -36,18 +41,13 @@ function Review(props) {
 		shouldFetch: true,
 	});
 
-	const { result: userResult } = useApi({
-		path: '/user',
-		shouldFetch: true,
-	});
-
 	useEffect(() => {
 		if (result.comments) {
 			setReview(result.comments);
 		}
 
-		setUserInfo(userResult._id);
-	}, [result.comments, userResult]);
+		setUserInfo(_id);
+	}, [result.comments, _id, isAuth]);
 
 	// 댓글 바뀌는 값
 	const handleChange = e => {
@@ -100,7 +100,7 @@ function Review(props) {
 	// 페이지 변경 핸들러
 	const handlePageChange = async pageNumber => {
 		await trigger({
-			params: {
+			data: {
 				skip: pageNumber * 10 - 10,
 				limit: 10,
 			},
@@ -130,7 +130,7 @@ function Review(props) {
 				if (result.comments.length === 1) {
 					alert(MESSAGE.DELETE.COMPLETE);
 					await trigger({
-						params: {
+						data: {
 							skip: (currentPage - 1) * 10 - 10,
 						},
 						applyResult: true,
@@ -139,7 +139,7 @@ function Review(props) {
 					setCurrentPage(prev => prev - 1);
 				} else {
 					await trigger({
-						params: {
+						data: {
 							skip: currentPage * 10 - 10,
 						},
 						applyResult: true,
@@ -174,12 +174,11 @@ function Review(props) {
 				<strong>{title}</strong>
 				<span>{result.total}</span>
 			</S.TopBox>
-
-			<S.BottomBox>
-				{isLoading ? (
-					<LoadingBar />
-				) : (
-					<>
+			{isLoading ? (
+				<LoadingBar />
+			) : (
+				<>
+					<S.BottomBox>
 						{review.map((comment, idx) => (
 							<S.CommentBox key={idx}>
 								<S.MiddleBox>
@@ -189,34 +188,46 @@ function Review(props) {
 											{dateAndTime(comment.createdAt)}
 										</span>
 									</S.NamingBox>
-									{edit === comment._id ? (
-										<S.Buttons>
-											<button onClick={handleComplete}>
-												완료
-											</button>
-											<button
-												onClick={() => setEdit(null)}
-											>
-												취소
-											</button>
-										</S.Buttons>
-									) : (
-										<S.Buttons>
-											<button
-												onClick={() =>
-													handleEdit(comment._id)
-												}
-											>
-												수정
-											</button>
-											<button
-												onClick={() =>
-													handleDelete(comment._id)
-												}
-											>
-												삭제
-											</button>
-										</S.Buttons>
+									{isAuth && (
+										<>
+											{edit === comment._id ? (
+												<S.Buttons>
+													<button
+														onClick={handleComplete}
+													>
+														완료
+													</button>
+													<button
+														onClick={() =>
+															setEdit(null)
+														}
+													>
+														취소
+													</button>
+												</S.Buttons>
+											) : (
+												<S.Buttons>
+													<button
+														onClick={() =>
+															handleEdit(
+																comment._id,
+															)
+														}
+													>
+														수정
+													</button>
+													<button
+														onClick={() =>
+															handleDelete(
+																comment._id,
+															)
+														}
+													>
+														삭제
+													</button>
+												</S.Buttons>
+											)}
+										</>
 									)}
 								</S.MiddleBox>
 
@@ -239,16 +250,20 @@ function Review(props) {
 								<Line size={'small'} />
 							</S.CommentBox>
 						))}
-					</>
-				)}
-			</S.BottomBox>
+					</S.BottomBox>
 
-			<Pagination
-				itemsPerPage={itemsPerPage}
-				totalItems={result.totalPages}
-				currentPage={currentPage}
-				onPageChange={handlePageChange}
-			/>
+					{review.length === 0 ? (
+						<></>
+					) : (
+						<Pagination
+							itemsPerPage={itemsPerPage}
+							totalItems={result.totalPages}
+							currentPage={currentPage}
+							onPageChange={handlePageChange}
+						/>
+					)}
+				</>
+			)}
 		</S.ReviewBox>
 	);
 }

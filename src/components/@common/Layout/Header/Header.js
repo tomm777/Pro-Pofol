@@ -5,13 +5,14 @@ import * as S from './Header.styles';
 import SignupModal from '../../../pages/SignUp/Modal/SignUpModal';
 import Button from '../../Button/Button';
 import useApi from '../../../../hooks/useApi';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAtom } from '../../../../recoil/atoms/index.atom';
 
 function Header() {
 	const [openModal, setOpenModal] = useState(false);
 	const { isLoading, isAuth, role } = useRecoilValue(userAtom);
-	const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
+	const [user, setUser] = useRecoilState(userAtom);
+	// const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
 	const navigate = useNavigate();
 
 	// 알림 표시 상태
@@ -28,7 +29,7 @@ function Header() {
 
 	const { result: notiResult, trigger: notiTrigger } = useApi({
 		path: '/notification',
-		shouldFetch: isLoggedIn,
+		shouldFetch: isAuth,
 	});
 	const bellImg = '/assets/img/icons/bell.png';
 	const dotBellImg = '/assets/img/icons/dotbell.png';
@@ -39,7 +40,7 @@ function Header() {
 		// if(notiData.)
 	};
 	useEffect(() => {
-		if (isLoggedIn) {
+		if (isAuth) {
 			if (notiResult?.notifications?.length > 0) {
 				setNotiData(notiResult.notifications);
 
@@ -77,6 +78,14 @@ function Header() {
 			// console.log('handleLogoutClick');
 			await logoutTrigger({});
 			alert('로그아웃이 완료되었습니다.');
+			setUser(prev => ({
+				...prev,
+				isAuth: false,
+				nickName: '',
+				role: '',
+				_id: '',
+				isLoading: false,
+			}));
 			navigate(0);
 		} catch (error) {
 			alert('로그아웃이 실패 하였습니다.');

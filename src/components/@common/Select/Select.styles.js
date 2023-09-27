@@ -30,7 +30,6 @@ const fontCSS = {
 		font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 		font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 	`,
-
 	medium: css`
 		font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 		font-family: ${({ theme }) => theme.FONT_WEIGHT.medium};
@@ -42,8 +41,8 @@ const fontCSS = {
 };
 
 export const Selected = styled.select`
-	${({ variant }) => variantCSS[variant]}
-	${({ font }) => fontCSS[font]}
+	${({ $variant }) => variantCSS[$variant]}
+	${({ $font }) => fontCSS[$font]}
 	${({ size }) => sizeCSS[size]}
 	height: 42px;
 	padding: 0 8px;

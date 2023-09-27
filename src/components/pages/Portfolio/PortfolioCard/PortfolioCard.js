@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import * as S from './Card.styles';
+import * as S from './PortfolioCard.styles';
 
-function MentorCard(props) {
-	const { variant, mentor } = props;
+function PortfolioCard(props) {
+	const { mentor } = props;
 
 	const [data, setData] = useState({});
 
@@ -15,9 +15,12 @@ function MentorCard(props) {
 
 	return (
 		<S.StyledLink to={`/portfolio/post/${data._id}`}>
-			<S.PopularCard variant={variant}>
+			<S.PopularCard>
 				<S.CoachNumBox>
-					<span>👊 코칭 {data.coachingCount}회</span>
+					<span>
+						<img src="assets/img/icons/fite.svg" /> 코칭{' '}
+						{data.coachingCount}회
+					</span>
 				</S.CoachNumBox>
 
 				<S.ImgBox>
@@ -50,4 +53,4 @@ function MentorCard(props) {
 	);
 }
 
-export default MentorCard;
+export default PortfolioCard;

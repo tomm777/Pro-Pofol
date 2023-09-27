@@ -1,26 +1,15 @@
 import styled, { css, keyframes } from 'styled-components';
-import { flexCenter, flexColumn } from '../../../../styles/common';
+import { flexAlignCenter, flexCenter, flexColumn } from 'styles/common';
 import { Link } from 'react-router-dom';
 
 const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 `;
-
-const variantCSS = {
-	blue: css`
-		background: ${({ theme }) => theme.PALETTE.primary[100]};
-		box-shadow: 1px 4px 4px 0px rgba(67, 108, 255, 0.25);
-	`,
-
-	white: css`
-		background-color: ${({ theme }) => theme.PALETTE.hover};
-	`,
-};
 
 export const StyledLink = styled(Link)`
 	text-decoration: none;
@@ -31,7 +20,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const PopularCard = styled.div`
-	${({ variant }) => variantCSS[variant]}
+	background-color: ${({ theme }) => theme.PALETTE.hover};
 	${flexColumn}
 	width: 255px;
 	height: 320px;
@@ -50,6 +39,15 @@ export const PopularCard = styled.div`
 
 export const CoachNumBox = styled.div`
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
+
+	> span {
+		${flexAlignCenter}
+
+		> img {
+			height: 18px;
+			margin-right: 4px;
+		}
+	}
 `;
 
 export const ImgBox = styled.div`

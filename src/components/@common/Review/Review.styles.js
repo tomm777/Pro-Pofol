@@ -3,15 +3,15 @@ import {
 	flexAlignCenter,
 	flexColumn,
 	flexSpaceBetweenCenter,
-} from '../../../styles/common';
+} from 'styles/common';
 
 export const ReviewBox = styled.div`
-	margin: 70px 0 10px 0;
 	${flexColumn}
 	gap: 16px;
 `;
 
 export const TopBox = styled.div`
+	margin: 70px 0 10px 0;
 	${flexAlignCenter}
 	gap: 8px;
 
@@ -80,4 +80,19 @@ export const Contents = styled.pre`
 	line-height: 1.5;
 	font-size: ${({ theme }) => theme.FONT_SIZE.md};
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+`;
+
+export const Title = styled.div`
+	${flexAlignCenter}
+	gap: 8px;
+	margin-bottom: 8px;
+
+	p {
+		font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
+	}
+
+	span {
+		font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
+		color: #ccc;
+	}
 `;

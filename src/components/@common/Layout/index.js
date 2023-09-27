@@ -2,14 +2,18 @@ import React, { useCallback, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-import useApi from '../../../hooks/useApi';
-import { includeFooterState, userAtom } from '../../../recoil/atoms/index.atom';
+import useApi from 'hooks/useApi';
+import { includeFooterState, userAtom } from 'recoil/atoms/index.atom';
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import ScrollToTopButton from '../ScrollToTop/ScrollToTopButton';
 
 const excludeRedirectPath = [
+	{
+		path: '/',
+		hasParam: false,
+	},
 	{
 		path: '/portfolio/post',
 		hasParam: true,
@@ -83,6 +87,8 @@ function Layout() {
 				? location.pathname.includes(ex.path)
 				: location.pathname === ex.path,
 		);
+		console.log(isPublic);
+
 		if (isPublic) return;
 		checkAuth();
 	}, [location.pathname]);

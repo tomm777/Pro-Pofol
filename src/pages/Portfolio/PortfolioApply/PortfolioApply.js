@@ -11,7 +11,7 @@ import * as S from './PortfolioApply.styles';
 import Information from 'components/pages/Portfolio/Information/Information';
 import Button from 'components/@common/Button';
 import Textarea from 'components/@common/Textarea/Textarea';
-import Input from 'components/@common/Input/Input';
+import Input from 'components/@common/Input';
 
 function PortfolioApply() {
 	useFooter();

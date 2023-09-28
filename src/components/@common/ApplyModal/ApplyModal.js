@@ -3,7 +3,7 @@ import useApi from 'hooks/useApi';
 
 import * as S from './ApplyModal.styles';
 
-import Input from '../Input/Input';
+import Input from '../Input';
 import Button from '../Button';
 import Textarea from '../Textarea/Textarea';
 

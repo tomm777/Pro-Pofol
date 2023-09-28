@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './SignUp.styles';
 import Button from 'components/@common/Button';
-import Input from 'components/@common/Input/Input';
+import Input from 'components/@common/Input';
 import { getCookie } from 'utils/cookie';
 import Position from 'components/@common/Position/Position';
 import useFooter from 'hooks/useFooter';

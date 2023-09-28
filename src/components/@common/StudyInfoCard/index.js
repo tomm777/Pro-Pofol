@@ -1,6 +1,6 @@
 import * as H from './StudyInfoCard.styles';
 import { Link } from 'react-router-dom';
-import Chip from '../Chip/Chip';
+import Chip from '../Chip';
 
 function StudyInfoCard({
 	classification,

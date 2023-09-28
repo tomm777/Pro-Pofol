@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import StudyInfoCard from '../StudyInfoCard/StudyInfoCard';
+import StudyInfoCard from '../StudyInfoCard';
 import * as H from './Slider.styles';
-import useApi from '../../../hooks/useApi';
-import EmptyMessage from '../../@common/EmptyMessage/EmptyMessage';
-import LoadingBar from '../../@common/Loading/LoadingBar';
+import useApi from 'hooks/useApi';
+import EmptyMessage from '../EmptyMessage/EmptyMessage';
+import LoadingBar from '../Loading/LoadingBar';
 
 function Slider({ $background, url, slidesToShow }) {
 	const [slide, setSlide] = useState(0);

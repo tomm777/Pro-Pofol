@@ -9,7 +9,7 @@ import useApi from '../../../hooks/useApi';
 import { checkToken } from '../../../utils/cookie';
 import useFooter from '../../../hooks/useFooter';
 import MESSAGE from '../../../constants/message';
-import Review from '../../../components/@common/Review/Review';
+import Review from '../../../components/@common/Review';
 import LoadingBar from '../../../components/@common/Loading/LoadingBar';
 
 function StudyPostDetail() {

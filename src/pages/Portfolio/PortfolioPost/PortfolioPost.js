@@ -10,7 +10,7 @@ import MESSAGE from 'constants/message';
 import * as S from './PortfolioPost.styles';
 
 import IntroContents from 'components/pages/Portfolio/IntroContents/IntroContents';
-import Review from 'components/@common/Review/Review';
+import Review from 'components/@common/Review';
 import Line from 'components/@common/Line';
 import Button from 'components/@common/Button';
 import ApplyModal from 'components/@common/ApplyModal/ApplyModal';

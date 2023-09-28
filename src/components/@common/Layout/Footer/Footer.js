@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Line from '../../Line/Line';
+import Line from '../../Line';
 import * as S from './Footer.styles';
 
 function Footer() {

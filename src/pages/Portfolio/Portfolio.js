@@ -7,7 +7,7 @@ import { userAtom } from 'recoil/atoms/index.atom';
 
 import * as S from './Portfolio.styles';
 
-import Line from 'components/@common/Line/Line';
+import Line from 'components/@common/Line';
 import PortfolioCard from 'components/pages/Portfolio/PortfolioCard/PortfolioCard';
 import MentorCard from 'components/@common/Card/Card';
 import Button from 'components/@common/Button';

@@ -11,7 +11,7 @@ import Line from 'components/@common/Line';
 import PortfolioCard from 'components/pages/Portfolio/PortfolioCard/PortfolioCard';
 import MentorCard from 'components/@common/Card/Card';
 import Button from 'components/@common/Button';
-import Select from 'components/@common/Select/Select';
+import Select from 'components/@common/Select';
 import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
 import LoadingBar from 'components/@common/Loading/LoadingBar';
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useApi from 'hooks/useApi';
 
-import Select from '../Select/Select';
+import Select from '../Select';
 
 function Position(props) {
 	const { onChange, size, font, variant, value, ...rest } = props;

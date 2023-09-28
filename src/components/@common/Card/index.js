@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useApi from 'hooks/useApi';
 
-import * as S from './Card.styles';
+import * as S from './index.styles';
 
 import EmptyMessage from 'components/@common/EmptyMessage';
 import LoadingBar from '../Loading';

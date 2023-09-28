@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as S from './Header.styles';
+import * as S from './index.styles';
 import SignupModal from 'components/pages/SignUp/Modal/SignUpModal';
 import Button from '../../Button';
 import useApi from 'hooks/useApi';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StudyInfoCard from '../StudyInfoCard';
-import * as H from './Slider.styles';
+import * as H from './index.styles';
 import useApi from 'hooks/useApi';
 import EmptyMessage from '../EmptyMessage';
 import LoadingBar from '../Loading';

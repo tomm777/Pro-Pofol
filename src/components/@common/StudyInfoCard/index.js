@@ -1,4 +1,4 @@
-import * as H from './StudyInfoCard.styles';
+import * as H from './index.styles';
 import { Link } from 'react-router-dom';
 import Chip from '../Chip';
 

@@ -1,7 +1,9 @@
-import * as S from './EmptyMessage.styles';
+import * as S from './index.styles';
 
 function EmptyMessage() {
-	return <S.EmptyMessage src="/assets/img/illustration/empty.png" alt="empty" />;
+	return (
+		<S.EmptyMessage src="/assets/img/illustration/empty.png" alt="empty" />
+	);
 }
 
 export default EmptyMessage;

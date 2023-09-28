@@ -5,11 +5,11 @@ import { userAtom } from 'recoil/atoms/index.atom';
 import useApi from 'hooks/useApi';
 import MESSAGE from 'constants/message';
 
-import * as S from './Review.styles';
+import * as S from './index.styles';
 
 import Line from '../Line';
 import Textarea from '../Textarea';
-import Pagination from '../Pagination/Pagination';
+import Pagination from '../Pagination';
 import LoadingBar from '../Loading';
 import Button from '../Button';
 

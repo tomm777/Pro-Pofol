@@ -4,7 +4,7 @@ import useApi from 'hooks/useApi';
 import * as S from './ApplyModal.styles';
 
 import Input from '../Input/Input';
-import Button from '../Button/Button';
+import Button from '../Button';
 import Textarea from '../Textarea/Textarea';
 
 import { checkModal } from 'utils/check';

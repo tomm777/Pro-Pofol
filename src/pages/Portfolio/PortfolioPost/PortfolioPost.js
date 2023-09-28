@@ -12,7 +12,7 @@ import * as S from './PortfolioPost.styles';
 import IntroContents from 'components/pages/Portfolio/IntroContents/IntroContents';
 import Review from 'components/@common/Review/Review';
 import Line from 'components/@common/Line/Line';
-import Button from 'components/@common/Button/Button';
+import Button from 'components/@common/Button';
 import ApplyModal from 'components/@common/ApplyModal/ApplyModal';
 
 function PortfolioPost() {

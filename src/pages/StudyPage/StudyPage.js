@@ -4,7 +4,7 @@ import * as S from './StudyPage.styles';
 import Slider from '../../components/@common/Slider/Slider';
 import StudySlider from '../../components/pages/StudyPage/StudySlider/StudySlider';
 import SignupModal from '../../components/pages/SignUp/Modal/SignUpModal';
-import Button from '../../components/@common/Button/Button';
+import Button from '../../components/@common/Button';
 import { checkToken } from '../../utils/cookie';
 import MESSAGE from '../../constants/message';
 import StudyCategory from '../../components/pages/StudyPage/StudyCategory/StudyCategory';

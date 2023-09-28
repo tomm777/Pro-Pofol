@@ -1,5 +1,5 @@
-import useFooter from '../../../hooks/useFooter';
-import Button from '../Button/Button';
+import useFooter from 'hooks/useFooter';
+import Button from '../Button';
 import * as S from './ErrorFallback.styles';
 
 function ErrorFallback({ error }) {

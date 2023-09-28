@@ -10,7 +10,7 @@ import * as S from './Portfolio.styles';
 import Line from 'components/@common/Line/Line';
 import PortfolioCard from 'components/pages/Portfolio/PortfolioCard/PortfolioCard';
 import MentorCard from 'components/@common/Card/Card';
-import Button from 'components/@common/Button/Button';
+import Button from 'components/@common/Button';
 import Select from 'components/@common/Select/Select';
 import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
 import LoadingBar from 'components/@common/Loading/LoadingBar';

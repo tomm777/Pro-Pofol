@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { checkToken } from '../../../../utils/cookie';
+import { checkToken } from 'utils/cookie';
 import * as S from './Header.styles';
-import SignupModal from '../../../pages/SignUp/Modal/SignUpModal';
-import Button from '../../Button/Button';
-import useApi from '../../../../hooks/useApi';
+import SignupModal from 'pages/SignUp/Modal/SignUpModal';
+import Button from '../../Button';
+import useApi from 'hooks/useApi';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { userAtom } from '../../../../recoil/atoms/index.atom';
+import { userAtom } from 'recoil/atoms/index.atom';
 
 function Header() {
 	const [openModal, setOpenModal] = useState(false);

@@ -11,7 +11,7 @@ import Line from '../Line/Line';
 import Textarea from '../Textarea/Textarea';
 import Pagination from '../Pagination/Pagination';
 import LoadingBar from '../Loading/LoadingBar';
-import Button from '../Button/Button';
+import Button from '../Button';
 
 function Review(props) {
 	const { title, getUrl } = props;

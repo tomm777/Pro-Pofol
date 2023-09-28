@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useInsertionEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from './StudyPage.styles';
-import Slider from '../../components/@common/Slider/Slider';
+import Slider from '../../components/@common/Slider';
 import StudySlider from '../../components/pages/StudyPage/StudySlider/StudySlider';
 import SignupModal from '../../components/pages/SignUp/Modal/SignUpModal';
 import Button from '../../components/@common/Button';

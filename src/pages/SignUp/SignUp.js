@@ -4,7 +4,7 @@ import * as S from './SignUp.styles';
 import Button from 'components/@common/Button';
 import Input from 'components/@common/Input';
 import { getCookie } from 'utils/cookie';
-import Position from 'components/@common/Position/Position';
+import Position from 'components/@common/Position';
 import useFooter from 'hooks/useFooter';
 import useApi from 'hooks/useApi';
 import VALIDATE from 'constants/regex';

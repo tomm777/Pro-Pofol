@@ -1,6 +1,6 @@
 import * as S from './Information.styles';
 
-import Position from 'components/@common/Position/Position';
+import Position from 'components/@common/Position';
 import Input from 'components/@common/Input';
 
 function Information(props) {

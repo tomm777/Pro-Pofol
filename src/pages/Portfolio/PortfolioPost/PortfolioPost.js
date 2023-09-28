@@ -13,7 +13,7 @@ import IntroContents from 'components/pages/Portfolio/IntroContents/IntroContent
 import Review from 'components/@common/Review';
 import Line from 'components/@common/Line';
 import Button from 'components/@common/Button';
-import ApplyModal from 'components/@common/ApplyModal/ApplyModal';
+import ApplyModal from 'components/@common/ApplyModal';
 
 function PortfolioPost() {
 	useFooter();

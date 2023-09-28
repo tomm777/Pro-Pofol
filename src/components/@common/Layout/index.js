@@ -7,7 +7,7 @@ import { includeFooterState, userAtom } from 'recoil/atoms/index.atom';
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import ScrollToTopButton from '../ScrollToTop/ScrollToTopButton';
+import ScrollToTopButton from '../ScrollToTop';
 
 const excludeRedirectPath = [
 	{

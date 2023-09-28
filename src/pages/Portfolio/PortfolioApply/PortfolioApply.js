@@ -41,12 +41,12 @@ function PortfolioApply() {
 
 	// api 통신
 	const { result, trigger } = useApi({
-		path: '/user',
+		path: '/users',
 		shouldFetch: true,
 	});
 
 	const { result: postResult, trigger: postTrigger } = useApi({
-		path: portfolioId ? `/portfolio/${portfolioId}` : '',
+		path: portfolioId ? `/portfolios/${portfolioId}` : '',
 		shouldFetch: portfolioId,
 	});
 
@@ -110,7 +110,7 @@ function PortfolioApply() {
 			if (portfolioId) {
 				await postTrigger({
 					method: 'put',
-					path: `/portfolio/${portfolioId}`,
+					path: `/portfolios/${portfolioId}`,
 					data: mentorPost,
 				});
 
@@ -119,7 +119,7 @@ function PortfolioApply() {
 			} else {
 				await trigger({
 					method: 'post',
-					path: '/portfolio',
+					path: '/portfolios',
 					data: mentorPost,
 				});
 

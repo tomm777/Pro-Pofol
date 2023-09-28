@@ -31,7 +31,7 @@ function PortfolioPost() {
 
 	// api 통신
 	const { result, trigger, isLoading } = useApi({
-		path: `/portfolio/${path}`,
+		path: `/portfolios/${path}`,
 		shouldFetch: true,
 	});
 
@@ -144,7 +144,7 @@ function PortfolioPost() {
 							</S.ButtonBox>
 						)}
 
-						<Review title={'후기'} getUrl={`/portfolio/${path}`} />
+						<Review title={'후기'} getUrl={`/portfolios/${path}`} />
 					</S.ContentsBox>
 				</S.PostBox>
 			)}

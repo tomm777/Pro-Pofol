@@ -9,7 +9,7 @@ function Position(props) {
 	const [positions, setPositions] = useState([]);
 
 	const { result } = useApi({
-		path: '/position',
+		path: '/positions',
 		shouldFetch: true,
 	});
 

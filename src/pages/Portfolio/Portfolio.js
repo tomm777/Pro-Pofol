@@ -27,9 +27,6 @@ function Portfolio() {
 	const [mentorData, setMentorData] = useState([]);
 	const [mentorDataTotal, setMentorDataTotal] = useState(0);
 
-	// 인기 멘토
-	const [popularData, setPopularData] = useState([]);
-
 	// 포지션 === 카테고리 관리
 	const [positions, setPositions] = useState([]);
 	const [selectedValues, setSelectedValues] = useState({
@@ -46,7 +43,7 @@ function Portfolio() {
 
 	// api 통신 1. 포지션 === 카테고리 정보 / 2. 모든 멘토 데이터 호출
 	const { result: positionResult } = useApi({
-		path: '/position',
+		path: '/positions',
 		shouldFetch: true,
 	});
 
@@ -55,7 +52,7 @@ function Portfolio() {
 		isLoading,
 		trigger,
 	} = useApi({
-		path: '/portfolio',
+		path: '/portfolios',
 		shouldFetch: true,
 	});
 
@@ -250,7 +247,7 @@ function Portfolio() {
 				<S.MentorCardBox>
 					<MentorCard
 						$variant={'blue'}
-						url={'/portfolio/recommend/topMentor'}
+						url={'/portfolios/recommend/topMentor'}
 					/>
 				</S.MentorCardBox>
 			</div>

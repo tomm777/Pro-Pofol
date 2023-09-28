@@ -4,13 +4,14 @@ import useApi from 'hooks/useApi';
 import * as S from './Card.styles';
 
 import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
+import LoadingBar from '../Loading/LoadingBar';
 
 function MentorCard(props) {
 	const { $variant, url } = props;
 
 	const [mentorData, setMentorData] = useState([]);
 
-	const { result, isLoading, error } = useApi({
+	const { result, isLoading } = useApi({
 		path: `${url}`,
 		shouldFetch: true,
 	});
@@ -23,7 +24,7 @@ function MentorCard(props) {
 
 	return (
 		<>
-			{isLoading && <h2>로딩 중입니다.</h2>}
+			{isLoading && <LoadingBar />}
 			{mentorData.length === 0 && <EmptyMessage />}
 			{mentorData.map((mentor, idx) => (
 				<S.StyledLink to={`/portfolio/post/${mentor._id}`} key={idx}>

@@ -8,7 +8,7 @@ import MESSAGE from 'constants/message';
 import * as S from './Review.styles';
 
 import Line from '../Line';
-import Textarea from '../Textarea/Textarea';
+import Textarea from '../Textarea';
 import Pagination from '../Pagination/Pagination';
 import LoadingBar from '../Loading/LoadingBar';
 import Button from '../Button';

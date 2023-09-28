@@ -5,7 +5,7 @@ import * as S from './ApplyModal.styles';
 
 import Input from '../Input';
 import Button from '../Button';
-import Textarea from '../Textarea/Textarea';
+import Textarea from '../Textarea';
 
 import { checkModal } from 'utils/check';
 import MESSAGE from 'constants/message';

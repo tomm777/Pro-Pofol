@@ -13,7 +13,7 @@ import MentorCard from 'components/@common/Card/Card';
 import Button from 'components/@common/Button';
 import Select from 'components/@common/Select';
 import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
-import LoadingBar from 'components/@common/Loading/LoadingBar';
+import LoadingBar from 'components/@common/Loading';
 
 function Portfolio() {
 	// 로그인 유저 체크

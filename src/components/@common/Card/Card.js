@@ -4,7 +4,7 @@ import useApi from 'hooks/useApi';
 import * as S from './Card.styles';
 
 import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
-import LoadingBar from '../Loading/LoadingBar';
+import LoadingBar from '../Loading';
 
 function MentorCard(props) {
 	const { $variant, url } = props;

@@ -3,7 +3,7 @@ import StudyInfoCard from '../StudyInfoCard';
 import * as H from './Slider.styles';
 import useApi from 'hooks/useApi';
 import EmptyMessage from '../EmptyMessage/EmptyMessage';
-import LoadingBar from '../Loading/LoadingBar';
+import LoadingBar from '../Loading';
 
 function Slider({ $background, url, slidesToShow }) {
 	const [slide, setSlide] = useState(0);

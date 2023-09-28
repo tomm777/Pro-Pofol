@@ -3,7 +3,7 @@ import StudyInfoCard from '../../../@common/StudyInfoCard';
 import * as H from './StudySlider.styles';
 import useApi from '../../../../hooks/useApi';
 import EmptyMessage from '../../../@common/EmptyMessage/EmptyMessage';
-import LoadingBar from '../../../@common/Loading/LoadingBar';
+import LoadingBar from '../../../@common/Loading';
 
 function StudySlider({ isLoggedIn, $background, url, slidesToShow }) {
 	const [slide, setSlide] = useState(0);

@@ -10,7 +10,7 @@ import { checkToken } from '../../../utils/cookie';
 import useFooter from '../../../hooks/useFooter';
 import MESSAGE from '../../../constants/message';
 import Review from '../../../components/@common/Review';
-import LoadingBar from '../../../components/@common/Loading/LoadingBar';
+import LoadingBar from '../../../components/@common/Loading';
 
 function StudyPostDetail() {
 	useFooter();

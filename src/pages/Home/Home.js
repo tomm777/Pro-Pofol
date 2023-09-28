@@ -9,7 +9,7 @@ import useApi from 'hooks/useApi';
 import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'recoil/atoms/index.atom';
-import LoadingBar from 'components/@common/Loading/LoadingBar';
+import LoadingBar from 'components/@common/Loading';
 
 function Home() {
 	const [recommendedMentors, setRecommendedMentors] = useState([]);

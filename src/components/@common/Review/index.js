@@ -10,7 +10,7 @@ import * as S from './Review.styles';
 import Line from '../Line';
 import Textarea from '../Textarea';
 import Pagination from '../Pagination/Pagination';
-import LoadingBar from '../Loading/LoadingBar';
+import LoadingBar from '../Loading';
 import Button from '../Button';
 
 function Review(props) {

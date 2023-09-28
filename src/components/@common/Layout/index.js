@@ -59,7 +59,7 @@ function Layout() {
 		try {
 			setUser(prev => ({ ...prev, isLoading: true }));
 			const authResult = await trigger({
-				path: '/user',
+				path: '/users',
 				applyResult: false,
 				showBoundary: false,
 			});

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as S from './StudyCategory.styles';
 import PostCard from '../PostCard/PostCard';
 import useApi from '../../../../hooks/useApi';
-import EmptyMessage from '../../../@common/EmptyMessage/EmptyMessage';
+import EmptyMessage from '../../../@common/EmptyMessage';
 import LoadingBar from '../../../@common/Loading';
 
 const defaultCategories = [

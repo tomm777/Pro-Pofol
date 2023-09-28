@@ -12,7 +12,7 @@ import PortfolioCard from 'components/pages/Portfolio/PortfolioCard/PortfolioCar
 import MentorCard from 'components/@common/Card/Card';
 import Button from 'components/@common/Button';
 import Select from 'components/@common/Select';
-import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
+import EmptyMessage from 'components/@common/EmptyMessage';
 import LoadingBar from 'components/@common/Loading';
 
 function Portfolio() {

@@ -6,7 +6,7 @@ import MentorCard from 'components/@common/Card/Card';
 import RollingSlider from './SlideBanner/SlideBanner';
 import Slider from 'components/@common/Slider';
 import useApi from 'hooks/useApi';
-import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
+import EmptyMessage from 'components/@common/EmptyMessage';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from 'recoil/atoms/index.atom';
 import LoadingBar from 'components/@common/Loading';

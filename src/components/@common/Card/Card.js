@@ -3,7 +3,7 @@ import useApi from 'hooks/useApi';
 
 import * as S from './Card.styles';
 
-import EmptyMessage from 'components/@common/EmptyMessage/EmptyMessage';
+import EmptyMessage from 'components/@common/EmptyMessage';
 import LoadingBar from '../Loading';
 
 function MentorCard(props) {

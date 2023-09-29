@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from './StudyPage.styles';
 
-import StudySlider from 'components/pages/StudyPage/StudySlider/StudySlider';
+import Slider from 'components/@common/Slider';
 import SignupModal from 'components/pages/SignUp/Modal/SignUpModal';
 import Button from 'components/@common/Button';
 import MESSAGE from 'constants/message';
@@ -15,14 +15,18 @@ import { useRecoilValue } from 'recoil';
 import { userAtom } from 'recoil/atoms/index.atom';
 
 function StudyPage() {
-	const { isAuth } = useRecoilValue(userAtom);
-	const [userNickName, setUserNickName] = useState('');
-	const navigate = useNavigate();
+	const { isAuth, nickName } = useRecoilValue(userAtom);
 	const [openModal, setOpenModal] = useState(false);
+	const navigate = useNavigate();
+	const [selectedValues, setSelectedValues] = useState({
+		classification: '',
+		position: '',
+	});
 
-	// const isLoggedIn = checkToken();
-	// console.log('로그인 유무', checkToken());
+	// 스터디 프로젝트 데이터
+	const [data, setData] = useState([]);
 
+	// 글작성 버튼
 	const onClickAddPost = () => {
 		if (!isAuth) {
 			alert(MESSAGE.LOGIN.REQUIRED);
@@ -32,21 +36,42 @@ function StudyPage() {
 		}
 	};
 
-	const { result: userData } = useApi({
-		path: isAuth ? '/user' : '',
-		shouldFetch: isAuth,
+	// 카테고리에 맞는 스터디 프로젝트
+	const {
+		trigger: triggerProjectStudy,
+		isLoading: isLoadingProjectStudy,
+		error: errorProjectStudy,
+		result: resultProjectStudy,
+	} = useApi({
+		path: '/projectStudies',
+		shouldFetch: true,
 	});
 
+	// 카테고리 선택해서 바뀔 때 마다 trigger 호출
 	useEffect(() => {
-		if (userData) {
-			setUserNickName(userData.nickName);
-		}
-	}, [userData]);
+		triggerProjectStudy({
+			path: '/projectStudies',
+			data: {
+				classification: selectedValues.classification,
+				position: selectedValues.position,
+			},
+			applyResult: true,
+		});
+	}, [selectedValues]);
 
+	// trigger 호출해서 불러오는 데이터가 바뀔 때 마다 새롭게 데이터 set
+	useEffect(() => {
+		if (resultProjectStudy.projectStudies) {
+			setData(resultProjectStudy.projectStudies);
+		}
+	}, [resultProjectStudy]);
+
+	// 로그인 모달
 	const handleSignupClose = () => {
 		setOpenModal(false);
 	};
 
+	// 스크롤 맨 위로
 	const { pathname } = useLocation();
 
 	useEffect(() => {
@@ -65,8 +90,8 @@ function StudyPage() {
 									src="assets/img/icons/fire.svg"
 									alt="불 아이콘"
 								/>
-								{isAuth && userNickName
-									? `${userNickName} 님 추천 스터디 / 프로젝트`
+								{isAuth && nickName
+									? `${nickName} 님 추천 스터디 / 프로젝트`
 									: '추천 스터디 / 프로젝트'}
 							</S.Title>
 							<S.SubTitle>
@@ -87,8 +112,7 @@ function StudyPage() {
 					</S.TitleWrapper>
 
 					<S.PopularCardWrapper>
-						<StudySlider
-							isLoggedIn={isAuth}
+						<Slider
 							$background="whiteBackground"
 							url={
 								isAuth
@@ -113,8 +137,12 @@ function StudyPage() {
 
 					{/* 필터 카테고리 버튼 영역 */}
 					<S.CategoryContainer>
-						<StudyCategory />
-						<PostCardList />
+						<StudyCategory
+							setData={setData}
+							selectedValues={selectedValues}
+							setSelectedValues={setSelectedValues}
+						/>
+						<PostCardList data={data} />
 					</S.CategoryContainer>
 				</S.StudyContents>
 			</S.Container>

@@ -61,9 +61,13 @@ function StudyPage() {
 					<S.TitleWrapper>
 						<S.TopBox>
 							<S.Title>
+								<img
+									src="assets/img/icons/fire.svg"
+									alt="불 아이콘"
+								/>
 								{isAuth && userNickName
-									? `🔥 ${userNickName} 님 추천 스터디 / 프로젝트`
-									: '🔥 추천 스터디 / 프로젝트'}
+									? `${userNickName} 님 추천 스터디 / 프로젝트`
+									: '추천 스터디 / 프로젝트'}
 							</S.Title>
 							<S.SubTitle>
 								{isAuth
@@ -98,7 +102,13 @@ function StudyPage() {
 
 				<S.StudyContents>
 					<S.TitleWrapper>
-						<S.Title>✨ 함께 성장할 동료를 찾아보세요!</S.Title>
+						<S.Title>
+							<img
+								src="assets/img/icons/stars.svg"
+								alt="별 아이콘"
+							/>{' '}
+							함께 성장할 동료를 찾아보세요!
+						</S.Title>
 					</S.TitleWrapper>
 
 					{/* 필터 카테고리 버튼 영역 */}

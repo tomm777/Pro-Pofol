@@ -98,7 +98,8 @@ function StudyEditPost() {
 		<S.Container>
 			<S.BasicInfoBox>
 				<S.Title>
-					✨ 스터디 / 프로젝트 기본 정보를 작성해 주세요.
+					<img src="/assets/img/icons/stars.svg" alt="별 아이콘" />
+					스터디 / 프로젝트 기본 정보를 작성해 주세요.
 				</S.Title>
 				<S.SelectContainer>
 					<S.SelectWrapper>
@@ -192,7 +193,11 @@ function StudyEditPost() {
 
 			{/* 상세 설명 */}
 			<S.PostBox>
-				<S.Title>✨ 스터디 / 프로젝트를 소개해 주세요.</S.Title>
+				<S.Title>
+					{' '}
+					<img src="/assets/img/icons/stars.svg" alt="별 아이콘" />
+					스터디 / 프로젝트를 소개해 주세요.
+				</S.Title>
 				<PostForm
 					selectedOptions={selectedOptions}
 					postId={postId}

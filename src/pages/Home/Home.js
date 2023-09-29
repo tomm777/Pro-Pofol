@@ -18,7 +18,7 @@ function Home() {
 	const [loading, setLoading] = useState(true);
 
 	const { trigger: recommandTrigger } = useApi({
-		path: '/portfolio/recommend/recommendMentor',
+		path: '/portfolios/recommend/recommendMentor',
 		shouldFetch: false,
 	});
 
@@ -37,6 +37,7 @@ function Home() {
 			getRecommandMentors();
 		}
 	}, [isAuth]);
+	console.log(isAuth);
 
 	return (
 		<H.Wrap>
@@ -92,7 +93,7 @@ function Home() {
 					<H.SlideStudyCard>
 						<Slider
 							$background="lightBlueBackground"
-							url={'/projectStudy/recommend/latestProjectStudy'}
+							url={'/projectStudies/recommend/latestProjectStudy'}
 							slidesToShow={2}
 						/>
 					</H.SlideStudyCard>
@@ -116,7 +117,7 @@ function Home() {
 					<H.PopularCards>
 						<MentorCard
 							$variant={'white'}
-							url={'/portfolio/recommend/topMentor'}
+							url={'/portfolios/recommend/topMentor'}
 						/>
 					</H.PopularCards>
 				</H.PopularMento>

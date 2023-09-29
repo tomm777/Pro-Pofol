@@ -46,7 +46,7 @@ function MultiSelectDropdown({ onPositionsChange, selectedData }) {
 	};
 
 	const { result, trigger, isLoading, error } = useApi({
-		path: '/position',
+		path: '/positions',
 		shouldFetch: true,
 	});
 

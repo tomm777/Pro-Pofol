@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { STUDYOPTIONS } from '../../../../../constants/study';
 import * as S from './MultiSelectDropdown.styles';
-import useApi from '../../../../../hooks/useApi';
-import MESSAGE from '../../../../../constants/message';
+import useApi from 'hooks/useApi';
+import MESSAGE from 'constants/message';
 
 function MultiSelectDropdown({ onPositionsChange, selectedData }) {
 	const CheckBox = useRef(null);

@@ -5,7 +5,7 @@ import AdminTable from 'components/pages/Admin/Table/AdminTable';
 import useApi from 'hooks/useApi';
 import { HandlerButton } from '../MentorApply/AdminMentorApply.styles';
 import { PaginationWrap } from './Admin.styles';
-import LoadingBar from 'components/@common/Loading/LoadingBar';
+import LoadingBar from 'components/@common/Loading';
 
 const AdminHome = () => {
 	const { result, trigger, isLoading, error } = useApi({
@@ -67,10 +67,6 @@ const AdminHome = () => {
 			);
 		}
 		setTotalPages(result.totalCount);
-
-		// console.log(currentPage);
-
-		// console.log('한 페이지 Length', result?.users?.length);
 	}, [result]);
 	// const memoColumns = useMemo(() => [], [currentPage]);
 	const memoResult = useMemo(

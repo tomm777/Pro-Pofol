@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as S from './Header.styles';
-import SignupModal from '../../../pages/SignUp/Modal/SignUpModal';
-import Button from '../../Button/Button';
-import useApi from '../../../../hooks/useApi';
-import { useRecoilValue } from 'recoil';
-import { userAtom } from '../../../../recoil/atoms/index.atom';
+import * as S from './index.styles';
+import SignupModal from 'components/pages/SignUp/Modal/SignUpModal';
+import Button from '../../Button';
+import useApi from 'hooks/useApi';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userAtom } from 'recoil/atoms/index.atom';
 
 function Header() {
 	const [openModal, setOpenModal] = useState(false);
 	const { isLoading, isAuth, role } = useRecoilValue(userAtom);
+	const [user, setUser] = useRecoilState(userAtom);
+	// const [isLoggedIn, setIsLoggedIn] = useState(checkToken());
 	const navigate = useNavigate();
 
 	// 알림 표시 상태
@@ -25,7 +27,7 @@ function Header() {
 	});
 
 	const { result: notiResult, trigger: notiTrigger } = useApi({
-		path: '/notification',
+		path: '/notifications',
 		shouldFetch: isAuth,
 	});
 	const bellImg = '/assets/img/icons/bell.png';
@@ -70,8 +72,19 @@ function Header() {
 
 	const handleLogoutClick = async () => {
 		try {
+			// await trigger({ path: '/auth/logout' });
+			// setIsLoggedIn(false);
+			// console.log('handleLogoutClick');
 			await logoutTrigger({});
 			alert('로그아웃이 완료되었습니다.');
+			setUser(prev => ({
+				...prev,
+				isAuth: false,
+				nickName: '',
+				role: '',
+				_id: '',
+				isLoading: false,
+			}));
 			navigate(0);
 		} catch (error) {
 			alert('로그아웃이 실패 하였습니다.');
@@ -96,11 +109,11 @@ function Header() {
 				// 해당 알람 삭제 후
 				// 마이페이지로 이동
 				await notiTrigger({
-					path: `/notification/${notiId}`,
+					path: `/notifications/${notiId}`,
 					method: 'delete',
 				});
 				await notiTrigger({
-					path: '/notification',
+					path: '/notifications',
 					method: 'get',
 					applyResult: true,
 				});
@@ -110,7 +123,7 @@ function Header() {
 				break;
 			case '멘토 전환 신청 상태가 변경되었습니다':
 				await notiTrigger({
-					path: `/notification/${notiId}`,
+					path: `/notifications/${notiId}`,
 					method: 'delete',
 				});
 				window.location.reload();
@@ -118,11 +131,11 @@ function Header() {
 				break;
 			case '프로젝트/스터디 게시글에 새로운 댓글이 작성되었습니다.':
 				await notiTrigger({
-					path: `/notification/${notiId}`,
+					path: `/notifications/${notiId}`,
 					method: 'delete',
 				});
 				await notiTrigger({
-					path: '/notification',
+					path: '/notifications',
 					method: 'get',
 					applyResult: true,
 				});

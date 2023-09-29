@@ -5,11 +5,15 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import useApi from 'hooks/useApi';
 import { includeFooterState, userAtom } from 'recoil/atoms/index.atom';
 
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
-import ScrollToTopButton from '../ScrollToTop/ScrollToTopButton';
+import Header from './Header';
+import Footer from './Footer';
+import ScrollToTopButton from '../ScrollToTop';
 
 const excludeRedirectPath = [
+	{
+		path: '/',
+		hasParam: false,
+	},
 	{
 		path: '/portfolio/post',
 		hasParam: true,
@@ -55,7 +59,7 @@ function Layout() {
 		try {
 			setUser(prev => ({ ...prev, isLoading: true }));
 			const authResult = await trigger({
-				path: '/user',
+				path: '/users',
 				applyResult: false,
 				showBoundary: false,
 			});
@@ -83,6 +87,8 @@ function Layout() {
 				? location.pathname.includes(ex.path)
 				: location.pathname === ex.path,
 		);
+		console.log(isPublic);
+
 		if (isPublic) return;
 		checkAuth();
 	}, [location.pathname]);

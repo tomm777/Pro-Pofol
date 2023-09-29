@@ -33,7 +33,7 @@ function StudyPostDetail() {
 	}, []);
 
 	const { result: userData } = useApi({
-		path: isLoggedIn ? '/user' : '',
+		path: isLoggedIn ? '/users' : '',
 		shouldFetch: isLoggedIn,
 	});
 

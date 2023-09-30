@@ -10,12 +10,7 @@ const defaultCategories = [
 	{ name: '프로젝트', id: 1 },
 ];
 
-function StudyCategory({
-	selectedValues,
-	setSelectedValues,
-	setLimit,
-	setCurrentSkip,
-}) {
+function StudyCategory({ selectedValues, setSelectedValues }) {
 	const [data, setData] = useRecoilState(studyPageState);
 
 	const [position, setPosition] = useState([]);
@@ -33,9 +28,6 @@ function StudyCategory({
 
 	// 전체, 스터디, 프로젝트 클릭
 	const handleCategoryClick = classificationValue => {
-		setLimit(6);
-		setCurrentSkip(0);
-
 		setSelectedValues(prev => ({
 			...prev,
 			classification: classificationValue,
@@ -48,9 +40,6 @@ function StudyCategory({
 
 	// 포지션 클릭
 	const handlePositionClick = positionValue => {
-		setLimit(6);
-		setCurrentSkip(0);
-
 		setSelectedValues(prev => ({
 			...prev,
 			position: positionValue,

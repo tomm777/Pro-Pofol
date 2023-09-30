@@ -24,6 +24,8 @@ function StudyPage() {
 	const [openModal, setOpenModal] = useState(false);
 	const [limit, setLimit] = useState(6);
 	const [currentSkip, setCurrentSkip] = useState(6);
+
+	// 카테고리 (스터디, 프로젝트 / 포지션) 클릭
 	const [selectedValues, setSelectedValues] = useState({
 		classification: '',
 		position: '',
@@ -65,11 +67,14 @@ function StudyPage() {
 			},
 			applyResult: true,
 		});
+
+		setLimit(6);
+		setCurrentSkip(0);
 	}, [selectedValues]);
 
 	// trigger 호출해서 불러오는 데이터가 바뀔 때 마다 새롭게 데이터 set
 	// 1. 처음 페이지 들어왔을 때 데이터 업데이트 (shouldFetch : true => 데이터 호출 => setData)
-	// 2. 카테고리 변경 클릭해서 currentSkip이 6으로 초기화 될 때
+	// 2. 카테고리 변경 클릭해서 skip이 초기화 될 때
 	useEffect(() => {
 		if (resultProjectStudy.projectStudies && currentSkip <= 6) {
 			setData(resultProjectStudy.projectStudies);
@@ -148,22 +153,20 @@ function StudyPage() {
 					{/* 필터 카테고리 버튼 영역 */}
 
 					{/* 프롭스로 전달하는 state가 너무 많은데, 어떤 식으로 관리를 하면 좋을지 */}
-					{/* recoil =>  studyPageAtoms => 게시글 리스트 데이터 부분만 관리하고 있는데, skip / limit / selectedValues 등의 값도 같이 관리하는 게 나은지?  */}
+					{/* recoil =>  studyPageAtoms => 게시글 리스트 데이터 부분만 관리하고 있는데,  selectedValues 등의 값도 같이 관리하는 게 나은지?  */}
 					<S.CategoryContainer>
 						<StudyCategory
-							setLimit={setLimit}
-							setCurrentSkip={setCurrentSkip}
 							selectedValues={selectedValues}
 							setSelectedValues={setSelectedValues}
 						/>
 						<PostCardList
-							selectedValues={selectedValues}
 							trigger={triggerProjectStudy}
+							isLoadingProjectStudy={isLoadingProjectStudy}
 							result={resultProjectStudy}
 							limit={limit}
 							currentSkip={currentSkip}
 							setCurrentSkip={setCurrentSkip}
-							isLoadingProjectStudy={isLoadingProjectStudy}
+							selectedValues={selectedValues}
 						/>
 					</S.CategoryContainer>
 				</S.StudyContents>

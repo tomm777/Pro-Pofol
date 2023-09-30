@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import SideMenu from 'components/pages/MyPage/SideMenu';
-import * as M from './MyPageLayout.Styles';
+import * as M from './index.styles';
 import useFooter from 'hooks/useFooter';
 import { useEffect, useState } from 'react';
 import useApi from 'hooks/useApi';
@@ -13,6 +13,7 @@ import {
 	ProjectStudy,
 	EditedPostHistory,
 } from 'components/pages/MyPage/Container';
+
 const mapContentToComponent = {
 	receivedMentoringHistory: () => <ApplyMentoringHistory type={'mentor'} />, // 멘토링 신청 받은 내역(멘토)
 	applyMentoringHistory: () => <ApplyMentoringHistory type={'user'} />, // 멘토링 신청 내역(유저)

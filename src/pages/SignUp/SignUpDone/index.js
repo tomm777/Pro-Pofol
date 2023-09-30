@@ -1,4 +1,4 @@
-import * as S from './SignUpDone.styles';
+import * as S from './index.styles';
 import Button from 'components/@common/Button';
 import useFooter from 'hooks/useFooter';
 

@@ -8,7 +8,7 @@ import {
 	TeamOutlined,
 } from '@ant-design/icons';
 import { Menu, theme } from 'antd';
-import { AdminMenu, AdminSider, LogoBox } from './Sidebar.styles';
+import { AdminMenu, AdminSider, LogoBox } from './index.styles';
 
 const navList = [
 	'User',

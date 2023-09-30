@@ -1,5 +1,5 @@
 import React from 'react';
-import { MyTable } from './AdminTable.styles';
+import { MyTable } from './index.styles';
 
 const AdminTable = ({ dataSource, columns, totalPages }) => {
 	return (

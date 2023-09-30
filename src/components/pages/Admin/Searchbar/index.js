@@ -1,4 +1,4 @@
-import { SearchInput } from './Searchbar.styles';
+import { SearchInput } from './index.styles';
 
 const Searchbar = ({ type }) => {
 	// return type !== 'ADD' ? (

@@ -1,16 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
-import * as RM from './RefuseModal.styles';
+import * as RVM from './index.styles';
 import Textarea from 'components/@common/Textarea';
 import useApi from 'hooks/useApi';
+import { useRecoilValue } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { userAtom } from 'recoil/atoms/index.atom';
 
 // 멘토 - 멘토링 거절 사유 작성 모달
-function RefuseModal({ setRefuseModalOpenState, item }) {
+function ReviewModal({ setReviewModalOpenState, item }) {
+	const userData = useRecoilValue(userAtom);
 	const navigate = useNavigate();
 	const [textValue, setTextValue] = useState({
-		message: '',
-		action: 'reject',
-	}); // 작성한 거절 내용 (멘토)
+		author: '',
+		ownerId: '',
+		content: '',
+	});
+
+	useEffect(() => {
+		if (userData) {
+			textValue.author = userData.nickName;
+			textValue.ownerId = userData._id;
+		}
+	}, [userData]);
 
 	// 유저가 입력한 정보 change
 	const handleChange = e => {
@@ -21,10 +32,7 @@ function RefuseModal({ setRefuseModalOpenState, item }) {
 		});
 	};
 
-	const { result, trigger } = useApi({
-		path: `/user`,
-		shouldFetch: true,
-	});
+	const { result, trigger } = useApi({});
 
 	// 멘토
 	const portfolioId = item.portfolioId; // 멘토가 올린 신청 게시글의 id
@@ -36,57 +44,58 @@ function RefuseModal({ setRefuseModalOpenState, item }) {
 		e.preventDefault();
 
 		// 빈값 체크
-		if (!textValue?.message) {
+		if (!textValue?.content) {
 			alert(`항목이 비었습니다.\n다시 한번 확인해주세요.`);
 		} else {
 			// 유저 작성한 신청서 post로 전달
+			console.log(portfolioId, requestId, postsData);
 			trigger({
 				method: 'post',
-				path: `/portfolio/mentor/respondToMentoringRequest/${portfolioId}/${requestId}`,
+				path: `/portfolio/${portfolioId}/comments`,
 				data: postsData,
 				shouldFetch: true,
 			});
 
-			alert('거절되었습니다.');
+			alert('후기를 작성했습니다.');
 			navigate('/mypage');
 		}
 	};
 
 	// 모달 끄기
 	const closeModal = () => {
-		setRefuseModalOpenState(false);
+		setReviewModalOpenState(false);
 	};
 
 	return (
 		<>
-			<RM.Modal>
+			<RVM.Modal>
 				<form onSubmit={handleSubmit}>
-					<RM.InfoWrapper>
-						<RM.InfoTitle>거절 사유 작성</RM.InfoTitle>
-						<RM.InfoBox>
-							<RM.InfoSubTitleBox>
-								<RM.InfoSubTitle>거절 사유</RM.InfoSubTitle>
+					<RVM.InfoWrapper>
+						<RVM.InfoTitle>후기 작성</RVM.InfoTitle>
+						<RVM.InfoBox>
+							<RVM.InfoSubTitleBox>
+								<RVM.InfoSubTitle>후기</RVM.InfoSubTitle>
 								<Textarea
-									name={'message'}
+									name={'content'}
 									size={'regular'}
-									placeholder={'거절 사유를 적어주세요'}
+									placeholder={'후기를 적어주세요'}
 									onChange={handleChange}
 								/>
-							</RM.InfoSubTitleBox>
-						</RM.InfoBox>
-					</RM.InfoWrapper>
-					<RM.ButtonBox>
-						<RM.CancelButton onClick={closeModal}>
+							</RVM.InfoSubTitleBox>
+						</RVM.InfoBox>
+					</RVM.InfoWrapper>
+					<RVM.ButtonBox>
+						<RVM.CancelButton onClick={closeModal}>
 							취소
-						</RM.CancelButton>
-						<RM.CompleteButton type="submit">
+						</RVM.CancelButton>
+						<RVM.CompleteButton type="submit">
 							완료
-						</RM.CompleteButton>
-					</RM.ButtonBox>
+						</RVM.CompleteButton>
+					</RVM.ButtonBox>
 				</form>
-			</RM.Modal>
+			</RVM.Modal>
 		</>
 	);
 }
 
-export default RefuseModal;
+export default ReviewModal;

@@ -1,5 +1,5 @@
 import useApi from 'hooks/useApi';
-import * as PLD from './PostListData.styles';
+import * as PLD from './index.styles';
 import { useEffect, useState } from 'react';
 
 // 유저가 작성한 게시글(스터디/프로젝트 모집글)

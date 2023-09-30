@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-	ModalBackground,
-	flexCenter,
-	flexColumn,
-} from '../../../../../../../styles/common';
+import { ModalBackground, flexCenter, flexColumn } from 'styles/common';
 
 export const Modal = styled.div`
 	${flexCenter}
@@ -68,21 +64,8 @@ export const ButtonBox = styled.div`
 	gap: 16px;
 `;
 
-export const CancleButton = styled.button`
-	width: 12rem;
-	height: 3rem;
-	flex-shrink: 0;
-	cursor: pointer;
-	border-radius: 0.25rem;
-	background: #e9e9e9;
-
-	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
-	font-size: ${({ theme }) => theme.FONT_SIZE.md};
-	color: #000;
-`;
-
-export const CompleteButton = styled.button`
-	width: 12rem;
+export const ModalButton = styled.button`
+	width: 25rem;
 	height: 3rem;
 	flex-shrink: 0;
 	background: #37f;

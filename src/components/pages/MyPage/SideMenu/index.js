@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import * as SM from './SideMenu.styles';
+import * as SM from './index.styles';
 
 // 왼쪽 메뉴
 function SideMenu({ user, setContent, name }) {

@@ -1,4 +1,4 @@
-import * as EVM from './EditViewModal.styles';
+import * as EVM from './index.styles';
 
 // 멘티 - 첨삭 보기 모달
 function InfoViewModal({ setEditModalOpenState, item }) {

@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import {
-	ModalBackground,
-	flexCenter,
-	flexColumn,
-} from '../../../../../../../styles/common';
+import { ModalBackground, flexCenter, flexColumn } from 'styles/common';
 
 export const Modal = styled.div`
 	${flexCenter}
@@ -14,7 +10,7 @@ export const Modal = styled.div`
 		padding: 60px 100px;
 		border-radius: 10px;
 		background: ${({ theme }) => theme.PALETTE.white};
-		gap: 32px;
+		gap: 4rem;
 	}
 `;
 
@@ -31,19 +27,28 @@ export const InfoTitle = styled.div`
 `;
 
 export const InfoBox = styled.div`
+	width: 100%;
 	${flexColumn}
-	gap: 16px;
+	gap: 2rem;
 `;
 
-export const InfoSubTitleBox = styled(InfoBox)`
-	& input {
-		height: 42px;
-		width: 400px;
-		padding: 0 12px;
-		border-radius: 4px;
-		border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};
+export const InfoSubTitleBox = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1rem;
 
-		color: ${({ theme }) => theme.PALETTE.black};
+	& span {
+		font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+		font-size: ${({ theme }) => theme.FONT_SIZE.sm};
+		color: #757575;
+	}
+
+	& textarea {
+		height: 6.25em;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		resize: none;
+
 		font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 		font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 	}
@@ -59,19 +64,28 @@ export const ButtonBox = styled.div`
 	gap: 16px;
 `;
 
-export const CancelButton = styled.button`
-	width: 192px;
-	height: 48px;
+export const CancleButton = styled.button`
+	width: 12rem;
+	height: 3rem;
+	flex-shrink: 0;
 	cursor: pointer;
-	border-radius: 4px;
-	color: ${({ theme }) => theme.PALETTE.black};
-	background: ${({ theme }) => theme.PALETTE.gray[200]};
+	border-radius: 0.25rem;
+	background: #e9e9e9;
 
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
 	font-size: ${({ theme }) => theme.FONT_SIZE.md};
+	color: #000;
 `;
 
-export const CompleteButton = styled(CancelButton)`
-	background: ${({ theme }) => theme.PALETTE.mainColor};
-	color: ${({ theme }) => theme.PALETTE.white};
+export const CompleteButton = styled.button`
+	width: 12rem;
+	height: 3rem;
+	flex-shrink: 0;
+	background: #37f;
+	border-radius: 4px;
+	cursor: pointer;
+
+	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+	font-size: ${({ theme }) => theme.FONT_SIZE.md};
+	color: #fff;
 `;

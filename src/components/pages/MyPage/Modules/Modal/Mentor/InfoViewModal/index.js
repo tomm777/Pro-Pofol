@@ -1,4 +1,4 @@
-import * as IM from './InfoViewModal.styles';
+import * as IM from './index.styles';
 import axios from 'axios';
 import MYPAGEOPTION from 'constants/mypage';
 

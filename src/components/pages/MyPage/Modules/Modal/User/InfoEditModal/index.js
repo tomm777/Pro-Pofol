@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as IEM from './InfoEditModal.styles';
+import * as IEM from './index.styles';
 import Textarea from '@common/Textarea/Textarea';
 import Input from '@common/Input/Input';
 import useApi from 'hooks/useApi';

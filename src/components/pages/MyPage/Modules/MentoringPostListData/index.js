@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import useApi from 'hooks/useApi';
-import * as MPLD from './MentoringPostListData.styles';
+import * as MPLD from './index.styles';
 import { useEffect, useState } from 'react';
 
 // 유저가 작성한 게시글(스터디/프로젝트 모집글)

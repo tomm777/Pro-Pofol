@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs';
-import { sitemapUrl, sitemapRoutes } from 'data/sitemapRoutes';
+import { sitemapUrl, sitemapRoutes } from './src/data/sitemapRoutes';
 
 const generateSitemapFile = () => {
 	if (!sitemapRoutes || !sitemapRoutes.length) {

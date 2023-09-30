@@ -26,7 +26,7 @@ export const ContentsBox = styled.div`
 	${flexColumn}
 	gap: 32px;
 
-	& span {
+	& p {
 		font-size: ${({ theme }) => theme.FONT_SIZE.md};
 		font-family: ${({ theme }) => theme.FONT_WEIGHT.bold};
 	}

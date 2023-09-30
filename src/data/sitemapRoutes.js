@@ -39,13 +39,13 @@ export const sitemapRoutes = [
 		desc: '여기는 포트폴리오 리뷰 페이지입니다.',
 		keywords: ['portfolio'],
 	},
-	{
-		path: '/portfolio/post',
-		disable: false,
-		title: 'Portfolio Post',
-		desc: '여기는 포트폴리오 상세 페이지입니다.',
-		keywords: ['portfolio'],
-	},
+	// {
+	// 	path: '/portfolio/post',
+	// 	disable: true,
+	// 	title: 'Portfolio Post',
+	// 	desc: '여기는 포트폴리오 상세 페이지입니다.',
+	// 	keywords: ['portfolio'],
+	// },
 	{
 		path: '/portfolio/apply',
 		disable: true,
@@ -53,13 +53,13 @@ export const sitemapRoutes = [
 		desc: '여기는 포트폴리오 글 작성하는 페이지입니다.',
 		keywords: ['portfolio'],
 	},
-	{
-		path: '/portfolio/edit',
-		disable: true,
-		title: 'Portfolio Edit',
-		desc: '여기는 포트폴리오 편집하는 페이지입니다.',
-		keywords: ['portfolio'],
-	},
+	// {
+	// 	path: '/portfolio/edit',
+	// 	disable: true,
+	// 	title: 'Portfolio Edit',
+	// 	desc: '여기는 포트폴리오 편집하는 페이지입니다.',
+	// 	keywords: ['portfolio'],
+	// },
 	// 스터디 및 프로젝트 페이지
 	{
 		path: '/study',
@@ -68,13 +68,13 @@ export const sitemapRoutes = [
 		desc: '여기는 스터디/프로젝트 페이지입니다.',
 		keywords: ['study'],
 	},
-	{
-		path: '/study/detail',
-		disable: false,
-		title: 'Study Post Detail',
-		desc: '여기는 스터디/프로젝트 상세 페이지입니다.',
-		keywords: ['study'],
-	},
+	// {
+	// 	path: '/study/detail',
+	// 	disable: true,
+	// 	title: 'Study Post Detail',
+	// 	desc: '여기는 스터디/프로젝트 상세 페이지입니다.',
+	// 	keywords: ['study'],
+	// },
 	{
 		path: '/study/post',
 		disable: true,
@@ -82,13 +82,13 @@ export const sitemapRoutes = [
 		desc: '여기는 스터디/프로젝트 글 작성하는 페이지입니다.',
 		keywords: ['study'],
 	},
-	{
-		path: '/study/edit',
-		disable: true,
-		title: 'Study Edit Post',
-		desc: '여기는 스터디/프로젝트 글 편집하는 페이지입니다.',
-		keywords: ['study'],
-	},
+	// {
+	// 	path: '/study/edit',
+	// 	disable: true,
+	// 	title: 'Study Edit Post',
+	// 	desc: '여기는 스터디/프로젝트 글 편집하는 페이지입니다.',
+	// 	keywords: ['study'],
+	// },
 	// 멘토 신청 페이지
 	{
 		path: '/usermentorapply',

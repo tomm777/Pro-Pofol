@@ -11,8 +11,9 @@ const Seo = () => {
 	);
 
 	useEffect(() => {
+		document.title = title;
 		console.log(document.head);
-	}, []);
+	}, [title]);
 
 	return (
 		<Helmet>

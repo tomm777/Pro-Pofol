@@ -7,27 +7,17 @@
 		
         <url>
             <loc>http://localhost:3000/</loc>
-            <lastmod>2023-09-30T10:14:42.995Z</lastmod>
+            <lastmod>2023-09-30T16:56:54.833Z</lastmod>
         </url>
         
         <url>
             <loc>http://localhost:3000/portfolio</loc>
-            <lastmod>2023-09-30T10:14:42.995Z</lastmod>
-        </url>
-        
-        <url>
-            <loc>http://localhost:3000/portfolio/post</loc>
-            <lastmod>2023-09-30T10:14:42.995Z</lastmod>
+            <lastmod>2023-09-30T16:56:54.833Z</lastmod>
         </url>
         
         <url>
             <loc>http://localhost:3000/study</loc>
-            <lastmod>2023-09-30T10:14:42.995Z</lastmod>
-        </url>
-        
-        <url>
-            <loc>http://localhost:3000/study/detail</loc>
-            <lastmod>2023-09-30T10:14:42.995Z</lastmod>
+            <lastmod>2023-09-30T16:56:54.833Z</lastmod>
         </url>
         
     </urlset>

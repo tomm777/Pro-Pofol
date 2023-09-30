@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as S from './PostCardList.styles';
+import * as S from './index.styles';
 import LoadingBar from 'components/@common/Loading';
 import EmptyMessage from 'components/@common/EmptyMessage';
 

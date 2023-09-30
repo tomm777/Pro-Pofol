@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import * as S from './MultiSelectDropdown.styles';
+import * as S from './index.styles';
 import useApi from 'hooks/useApi';
 import MESSAGE from 'constants/message';
 

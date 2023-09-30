@@ -1,9 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import {
-	flexColumn,
-	flexAlignCenter,
-	flexCenter,
-} from '../../../../styles/common';
+import { flexColumn, flexAlignCenter } from 'styles/common';
 
 const fadeIn = keyframes`
   from {

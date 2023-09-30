@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import * as S from './EditComments.styles';
+import * as S from './index.styles';
 import Button from 'components/@common/Button';
 import useApi from 'hooks/useApi';
 

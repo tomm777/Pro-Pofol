@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { flexAlignCenter, flexColumn } from '../../../../../styles/common';
+import { flexAlignCenter, flexColumn } from 'styles/common';
 
 export const MultiselectContainer = styled.div`
 	font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};

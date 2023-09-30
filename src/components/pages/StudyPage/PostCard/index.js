@@ -1,6 +1,6 @@
-import * as S from './PostCard.styles';
+import * as S from './index.styles';
 import { Link } from 'react-router-dom';
-import Chip from '../../../@common/Chip';
+import Chip from 'components/@common/Chip';
 
 function PostCard({ data }) {
 	const {

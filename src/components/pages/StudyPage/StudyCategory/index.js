@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as S from './StudyCategory.styles';
-import PostCard from '../PostCard/PostCard';
+import * as S from './index.styles';
+import PostCard from '../PostCard';
 import useApi from 'hooks/useApi';
-import EmptyMessage from '../../../@common/EmptyMessage';
-import LoadingBar from '../../../@common/Loading';
-import PostCardList from '../PostCardList/PostCardList';
+import EmptyMessage from 'components/@common/EmptyMessage';
+import LoadingBar from 'components/@common/Loading';
+import PostCardList from '../PostCardList';
 
 const defaultCategories = [
 	{ name: '스터디', id: 0 },

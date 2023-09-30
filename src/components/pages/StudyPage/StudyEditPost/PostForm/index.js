@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from './PostForm.style';
-import Button from '../../../../@common/Button';
-import Textarea from '../../../../@common/Textarea';
+import * as S from './index.styles';
+import Button from 'components/@common/Button';
+import Textarea from 'components/@common/Textarea';
 import useApi from 'hooks/useApi';
 import MESSAGE from 'constants/message';
 

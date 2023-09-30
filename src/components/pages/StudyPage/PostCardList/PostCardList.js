@@ -1,16 +1,51 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PostCard from '../PostCard/PostCard';
 import * as S from './PostCardList.styles';
+import useInfiniteScroll from 'hooks/useInfiniteScroll';
+
+import { useRecoilState } from 'recoil';
+import { studyPageState } from 'recoil/atoms/studyPageAtoms';
+
 import LoadingBar from 'components/@common/Loading';
 import EmptyMessage from 'components/@common/EmptyMessage';
 
-function PostCardList({ data, observerElement }) {
-	console.log(data);
+function PostCardList({
+	isLoadingProjectStudy,
+	selectedValues,
+	trigger,
+	result,
+	setCurrentSkip,
+	currentSkip,
+	limit,
+}) {
+	const [data, setData] = useRecoilState(studyPageState);
+
+	const loadData = () => {
+		console.log('통과할 때 콜백함수');
+		setCurrentSkip(prevSkip => {
+			return prevSkip + limit;
+		});
+
+		trigger({
+			path: '/projectStudies',
+			data: {
+				classification: selectedValues.classification,
+				position: selectedValues.position,
+				limit,
+				skip: currentSkip,
+			},
+			applyResult: true,
+		});
+
+		setData(prev => [...prev, ...result.projectStudies]);
+	};
+	const { observeElement } = useInfiniteScroll(loadData);
+
 	return (
 		<>
 			<S.PostCardContainer>
-				{/* {isLoadingProjectStudy && !data.length && <LoadingBar />} */}
-				{/* {!isLoadingProjectStudy && !data.length && <EmptyMessage />} */}
+				{isLoadingProjectStudy && !data.length && <LoadingBar />}
+				{!isLoadingProjectStudy && !data.length && <EmptyMessage />}
 				{Array.isArray(data) && data.length > 0 && (
 					<>
 						{data.map((data, idx) => (
@@ -24,7 +59,7 @@ function PostCardList({ data, observerElement }) {
 								height: '10px',
 								border: 'none',
 							}}
-							ref={observerElement}
+							ref={observeElement}
 						/>
 					</>
 				)}

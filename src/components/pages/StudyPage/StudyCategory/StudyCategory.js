@@ -2,25 +2,25 @@ import React, { useState, useEffect, useRef } from 'react';
 import * as S from './StudyCategory.styles';
 import useApi from 'hooks/useApi';
 
+import { useRecoilState } from 'recoil';
+import { studyPageState } from 'recoil/atoms/studyPageAtoms';
+
 const defaultCategories = [
 	{ name: '스터디', id: 0 },
 	{ name: '프로젝트', id: 1 },
 ];
 
-function StudyCategory({ setData, selectedValues, setSelectedValues }) {
+function StudyCategory({
+	selectedValues,
+	setSelectedValues,
+	setLimit,
+	setCurrentSkip,
+}) {
+	const [data, setData] = useRecoilState(studyPageState);
+
 	const [position, setPosition] = useState([]);
-
-	// 무한스크롤
-	const [limit, setLimit] = useState(6);
-	const [currentSkip, setCurrentSkip] = useState(6);
-
 	// 포지션 리스트
-	const {
-		trigger,
-		isLoading: isLoadingPosition,
-		error,
-		result: positionResult,
-	} = useApi({
+	const { result: positionResult } = useApi({
 		path: '/positions',
 		shouldFetch: true,
 	});

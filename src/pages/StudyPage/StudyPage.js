@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+
 import * as S from './StudyPage.styles';
 
 import Slider from 'components/@common/Slider';
@@ -11,20 +12,25 @@ import PostCardList from 'components/pages/StudyPage/PostCardList/PostCardList';
 
 import useApi from 'hooks/useApi';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { userAtom } from 'recoil/atoms/index.atom';
+import { studyPageState } from 'recoil/atoms/studyPageAtoms';
 
 function StudyPage() {
-	const { isAuth, nickName } = useRecoilValue(userAtom);
-	const [openModal, setOpenModal] = useState(false);
 	const navigate = useNavigate();
+
+	const { isAuth, nickName } = useRecoilValue(userAtom);
+
+	const [openModal, setOpenModal] = useState(false);
+	const [limit, setLimit] = useState(6);
+	const [currentSkip, setCurrentSkip] = useState(6);
 	const [selectedValues, setSelectedValues] = useState({
 		classification: '',
 		position: '',
 	});
 
 	// 스터디 프로젝트 데이터
-	const [data, setData] = useState([]);
+	const [data, setData] = useRecoilState(studyPageState);
 
 	// 글작성 버튼
 	const onClickAddPost = () => {
@@ -47,21 +53,25 @@ function StudyPage() {
 		shouldFetch: true,
 	});
 
-	// 카테고리 선택해서 바뀔 때 마다 trigger 호출
+	// 카테고리 선택해서 바뀔 때 마다 (selectedValues가 바뀔 때 마다) trigger 호출
 	useEffect(() => {
 		triggerProjectStudy({
 			path: '/projectStudies',
 			data: {
 				classification: selectedValues.classification,
 				position: selectedValues.position,
+				limit,
+				skip: 0,
 			},
 			applyResult: true,
 		});
 	}, [selectedValues]);
 
 	// trigger 호출해서 불러오는 데이터가 바뀔 때 마다 새롭게 데이터 set
+	// 1. 처음 페이지 들어왔을 때 데이터 업데이트 (shouldFetch : true => 데이터 호출 => setData)
+	// 2. 카테고리 변경 클릭해서 currentSkip이 6으로 초기화 될 때
 	useEffect(() => {
-		if (resultProjectStudy.projectStudies) {
+		if (resultProjectStudy.projectStudies && currentSkip <= 6) {
 			setData(resultProjectStudy.projectStudies);
 		}
 	}, [resultProjectStudy]);
@@ -136,13 +146,25 @@ function StudyPage() {
 					</S.TitleWrapper>
 
 					{/* 필터 카테고리 버튼 영역 */}
+
+					{/* 프롭스로 전달하는 state가 너무 많은데, 어떤 식으로 관리를 하면 좋을지 */}
+					{/* recoil =>  studyPageAtoms => 게시글 리스트 데이터 부분만 관리하고 있는데, skip / limit / selectedValues 등의 값도 같이 관리하는 게 나은지?  */}
 					<S.CategoryContainer>
 						<StudyCategory
-							setData={setData}
+							setLimit={setLimit}
+							setCurrentSkip={setCurrentSkip}
 							selectedValues={selectedValues}
 							setSelectedValues={setSelectedValues}
 						/>
-						<PostCardList data={data} />
+						<PostCardList
+							selectedValues={selectedValues}
+							trigger={triggerProjectStudy}
+							result={resultProjectStudy}
+							limit={limit}
+							currentSkip={currentSkip}
+							setCurrentSkip={setCurrentSkip}
+							isLoadingProjectStudy={isLoadingProjectStudy}
+						/>
 					</S.CategoryContainer>
 				</S.StudyContents>
 			</S.Container>

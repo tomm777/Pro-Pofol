@@ -23,3 +23,7 @@ export const Input = styled.input`
 	border-radius: 4px;
 	border: 1px solid ${({ theme }) => theme.PALETTE.gray[200]};
 `;
+
+export const PositionBox = styled.div`
+	width: 325px;
+`;

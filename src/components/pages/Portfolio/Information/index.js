@@ -1,4 +1,4 @@
-import * as S from './Information.styles';
+import * as S from './index.styles';
 
 import Position from 'components/@common/Position';
 import Input from 'components/@common/Input';
@@ -12,13 +12,12 @@ function Information(props) {
 			<S.Contents>
 				<S.ContentsTitle>직무</S.ContentsTitle>
 
-				<Position
-					$variant={'default'}
-					size={'regular'}
-					$font={'regular'}
-					value={mentorPost.position}
-					onChange={handleChange}
-				/>
+				<S.PositionBox>
+					<Position
+						value={mentorPost.position}
+						onChange={handleChange}
+					/>
+				</S.PositionBox>
 			</S.Contents>
 
 			<S.Contents>

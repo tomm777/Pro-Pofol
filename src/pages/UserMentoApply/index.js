@@ -11,7 +11,7 @@ import {
 	ImageBox,
 	SubTitle,
 	Title,
-} from './UserMentorApply.styles';
+} from './index.styles';
 import useFooter from 'hooks/useFooter';
 import MESSAGE from 'constants/message';
 import useApi from 'hooks/useApi';

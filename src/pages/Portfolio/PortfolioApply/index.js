@@ -6,7 +6,7 @@ import useApi from 'hooks/useApi';
 import { check } from 'utils/check';
 import MESSAGE from 'constants/message';
 
-import * as S from './PortfolioApply.styles';
+import * as S from './index.styles';
 
 import Information from 'components/pages/Portfolio/Information';
 import Button from 'components/@common/Button';

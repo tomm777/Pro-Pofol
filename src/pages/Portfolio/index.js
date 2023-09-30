@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import useApi from 'hooks/useApi';
 import { userAtom } from 'recoil/atoms/index.atom';
 
-import * as S from './Portfolio.styles';
+import * as S from './index.styles';
 
 import Line from 'components/@common/Line';
 import PortfolioCard from 'components/pages/Portfolio/PortfolioCard';

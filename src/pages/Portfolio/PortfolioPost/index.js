@@ -7,7 +7,7 @@ import useFooter from 'hooks/useFooter';
 import useApi from 'hooks/useApi';
 import MESSAGE from 'constants/message';
 
-import * as S from './PortfolioPost.styles';
+import * as S from './index.styles';
 
 import IntroContents from 'components/pages/Portfolio/IntroContents';
 import Review from 'components/@common/Review';

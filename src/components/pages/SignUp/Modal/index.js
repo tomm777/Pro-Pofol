@@ -1,6 +1,6 @@
 import React from 'react';
-import * as H from './SignUpModal.styles';
-import Naver from '../NaverLogin/NaverLogin';
+import * as H from './index.styles';
+import Naver from '../NaverLogin';
 
 function SignUpModal({ onClose }) {
 	return (

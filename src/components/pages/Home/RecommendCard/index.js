@@ -1,4 +1,4 @@
-import * as H from './Recommend.styles';
+import * as H from './index.styles';
 import { Link } from 'react-router-dom';
 
 export default function RecommendCard(props) {

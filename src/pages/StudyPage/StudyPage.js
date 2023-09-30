@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import * as S from './StudyPage.styles';
 
-import StudySlider from 'components/pages/StudyPage/StudySlider/StudySlider';
+import StudySlider from 'components/pages/StudyPage/StudySlider';
 import SignupModal from 'components/pages/SignUp/Modal';
 import Button from 'components/@common/Button';
 import MESSAGE from 'constants/message';
-import StudyCategory from 'components/pages/StudyPage/StudyCategory/StudyCategory';
-import PostCardList from 'components/pages/StudyPage/PostCardList/PostCardList';
+import StudyCategory from 'components/pages/StudyPage/StudyCategory';
+import PostCardList from 'components/pages/StudyPage/PostCardList';
 
 import useApi from 'hooks/useApi';
 

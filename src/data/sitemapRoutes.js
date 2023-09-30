@@ -40,7 +40,7 @@ export const sitemapRoutes = [
 		keywords: ['portfolio'],
 	},
 	{
-		path: '/portfolio/post/:_id',
+		path: '/portfolio/post',
 		disable: false,
 		title: 'Portfolio Post',
 		desc: '여기는 포트폴리오 상세 페이지입니다.',
@@ -54,7 +54,7 @@ export const sitemapRoutes = [
 		keywords: ['portfolio'],
 	},
 	{
-		path: '/portfolio/edit/:portfolioId',
+		path: '/portfolio/edit',
 		disable: true,
 		title: 'Portfolio Edit',
 		desc: '여기는 포트폴리오 편집하는 페이지입니다.',
@@ -69,7 +69,7 @@ export const sitemapRoutes = [
 		keywords: ['study'],
 	},
 	{
-		path: '/study/detail/:postId',
+		path: '/study/detail',
 		disable: false,
 		title: 'Study Post Detail',
 		desc: '여기는 스터디/프로젝트 상세 페이지입니다.',
@@ -83,7 +83,7 @@ export const sitemapRoutes = [
 		keywords: ['study'],
 	},
 	{
-		path: '/study/edit/:postId',
+		path: '/study/edit',
 		disable: true,
 		title: 'Study Edit Post',
 		desc: '여기는 스터디/프로젝트 글 편집하는 페이지입니다.',

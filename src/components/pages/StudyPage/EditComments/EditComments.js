@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as S from './EditComments.styles';
-import Button from '../../../@common/Button';
+import Button from 'components/@common/Button';
 import useApi from 'hooks/useApi';
 
 import MESSAGE from 'constants/message';
-import SignUpModal from '../../../pages/SignUp/Modal/SignUpModal';
+import SignUpModal from '../../SignUp/Modal';
 
 function EditComments({ isLoggedIn, userData, title }) {
 	const [openModal, setOpenModal] = useState(false);

@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-
 import * as S from './index.styles';
-import PostCard from '../PostCard';
 import useApi from 'hooks/useApi';
-import EmptyMessage from 'components/@common/EmptyMessage';
-import LoadingBar from 'components/@common/Loading';
-import PostCardList from '../PostCardList';
 
 import { useRecoilState } from 'recoil';
 import { studyPageState } from 'recoil/atoms/studyPageAtoms';

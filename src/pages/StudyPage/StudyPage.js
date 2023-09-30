@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import * as S from './StudyPage.styles';
 
-import StudySlider from 'components/pages/StudyPage/StudySlider';
+import Slider from 'components/@common/Slider';
 import SignupModal from 'components/pages/SignUp/Modal';
 import Button from 'components/@common/Button';
 import MESSAGE from 'constants/message';

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import * as S from './index.styles';
 import PostCard from '../PostCard';
+import * as S from './index.styles';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
 
 import { useRecoilState } from 'recoil';

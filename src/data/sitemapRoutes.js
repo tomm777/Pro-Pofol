@@ -50,7 +50,7 @@ export const sitemapRoutes = [
 		path: '/portfolio/apply',
 		disable: true,
 		title: 'Portfolio Apply',
-		desc: '여기는 포트폴리오 리뷰 글 작성하는 페이지입니다.',
+		desc: '여기는 포트폴리오 글 작성하는 페이지입니다.',
 		keywords: ['portfolio'],
 	},
 	{

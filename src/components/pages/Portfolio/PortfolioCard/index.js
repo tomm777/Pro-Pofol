@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import * as S from './PortfolioCard.styles';
+import * as S from './index.styles';
 
 function PortfolioCard(props) {
 	const { mentor } = props;

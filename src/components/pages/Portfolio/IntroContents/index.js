@@ -1,4 +1,4 @@
-import * as S from './IntroContents.styles';
+import * as S from './index.styles';
 
 function IntroContents({ post }) {
 	const { name, career, position, company, description } = post;

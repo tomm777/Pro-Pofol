@@ -8,7 +8,7 @@ import MESSAGE from 'constants/message';
 
 import * as S from './PortfolioApply.styles';
 
-import Information from 'components/pages/Portfolio/Information/Information';
+import Information from 'components/pages/Portfolio/Information';
 import Button from 'components/@common/Button';
 import Textarea from 'components/@common/Textarea';
 import Input from 'components/@common/Input';
@@ -137,8 +137,7 @@ function PortfolioApply() {
 
 			<S.InfoContentsBox>
 				<S.ContentsBox>
-					<span>1. 멘토 님의 기본 정보를 작성해 주세요.</span>
-
+					<p>1. 멘토 님의 기본 정보를 작성해 주세요.</p>
 					<Information
 						handleChange={handleChange}
 						user={user}
@@ -148,7 +147,7 @@ function PortfolioApply() {
 				</S.ContentsBox>
 
 				<S.ContentsBox>
-					<span>2. 멘토링 소개 제목을 작성해 주세요.</span>
+					<p>2. 멘토링 소개 제목을 작성해 주세요.</p>
 					<Input
 						maxLength="50"
 						size={'large'}
@@ -160,7 +159,7 @@ function PortfolioApply() {
 				</S.ContentsBox>
 
 				<S.ContentsBox>
-					<span>3. 멘토링 소개 내용을 작성해 주세요.</span>
+					<p>3. 멘토링 소개 내용을 작성해 주세요.</p>
 					<Textarea
 						maxLength="1000"
 						size={'regular'}

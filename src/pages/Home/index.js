@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import * as H from './Home.styles';
+import * as H from './index.styles';
 import RecommendCard from 'components/pages/Home/RecommendCard';
 import MentorCard from 'components/@common/Card';
-import RollingSlider from './SlideBanner/SlideBanner';
+import RollingSlider from './SlideBanner';
 import Slider from 'components/@common/Slider';
 import useApi from 'hooks/useApi';
 import EmptyMessage from 'components/@common/EmptyMessage';

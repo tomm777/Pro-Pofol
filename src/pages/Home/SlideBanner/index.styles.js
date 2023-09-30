@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { flexCenter } from '../../../styles/common';
+import { flexCenter } from 'styles/common';
 
 export const IndicatorContainer = styled.div`
 	position: absolute;

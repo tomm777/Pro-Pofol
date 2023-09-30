@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bodyContainer, flexSpaceBetweenCenter } from '../../styles/common';
+import { bodyContainer, flexSpaceBetweenCenter } from 'styles/common';
 
 export const Wrap = styled.div`
 	width: 100%;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as H from './SlideBanner.styles';
+import * as H from './index.styles';
 
 const images = [
 	'./assets/img/banner/banner01.png',

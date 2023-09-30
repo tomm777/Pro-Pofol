@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import SideMenu from 'components/pages/MyPage/SideMenu/SideMenu';
+import SideMenu from 'components/pages/MyPage/SideMenu';
 import * as M from './MyPageLayout.Styles';
 import useFooter from 'hooks/useFooter';
 import { useEffect, useState } from 'react';

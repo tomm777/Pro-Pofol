@@ -58,6 +58,7 @@ function SignUp() {
 	const handleNicknameChange = event => {
 		const userNickName = event.target.value;
 		setNickName(userNickName);
+		setIsNicknameAvailable(null);
 		if (VALIDATE.nickName.test(userNickName)) {
 			setNickName(userNickName);
 			setNicknameError('');

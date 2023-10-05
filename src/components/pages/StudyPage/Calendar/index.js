@@ -7,7 +7,7 @@ import CalendarInput from './CalendarInput';
 function Calendar({ selectedCalendarDate, setSelectedCalendarDate }) {
 	const [isOpen, setIsOpen] = useState(false);
 	// 현재 날짜 / 시간
-	const [currentDate, setCurrentDate] = useState(new Date());
+	const [currentDate, setCurrentDate] = useState(selectedCalendarDate);
 
 	// 차례대로, 유저가 선택한 연, 월, 일
 	const [selectedYear, setSelectedYear] = useState(currentDate.getFullYear());

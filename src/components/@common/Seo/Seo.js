@@ -1,59 +1,73 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { sitemapRoutes } from 'data/sitemapRoutes';
 
+const exceptionPaths = [
+	'/portfolio/post',
+	'/portfolio/edit',
+	'/study/detail',
+	'/study/edit',
+];
+
+const getSeoData = targetPath => {
+	const exceptedPath = exceptionPaths.find(
+		exceptionPath =>
+			targetPath &&
+			typeof targetPath === 'string' &&
+			targetPath.includes(exceptionPath),
+	);
+	const { title, desc } = sitemapRoutes.find(
+		({ path: sitemapPath }) => sitemapPath === (exceptedPath || targetPath),
+	);
+	return { title, desc };
+};
+
+const targetMetaTags = ['description', 'og:title', 'og:description'];
 const Seo = () => {
 	const location = useLocation();
 
-	// 경로에 해당하는 라우트 찾기
-	const route = useMemo(
-		() => sitemapRoutes.find(site => site.path === location.pathname),
-		[location.pathname],
-	);
-
-	// /portfolio/post | /portfolio/edit | /study/detail | /study/edit 을 위한...
-	const exception = useMemo(
-		() => sitemapRoutes.find(site => location.pathname.includes(site.path)),
-		[location.pathname],
-	);
-
-	// 특정 경로에 대한 title 값 설정
-	let title = '';
-	let desc = '';
-
-	if (exception) {
-		// 특정 경로에 대해 다른 title 값을 설정
-		if (location.pathname.includes('/portfolio/post')) {
-			title = '포폴 : 포트폴리오 리뷰 상세';
-			desc = '여기는 포트폴리오 상세 페이지입니다.';
-		} else if (location.pathname.includes('/portfolio/edit')) {
-			title = '포폴 : 포트폴리오 리뷰 글 수정';
-			desc = '여기는 포트폴리오 편집하는 페이지입니다.';
-		} else if (location.pathname.includes('/study/detail')) {
-			title = '포폴 : 스터디 / 프로젝트 모집 상세';
-			desc = '여기는 스터디 / 프로젝트 상세 페이지입니다.';
-		} else if (location.pathname.includes('/study/edit')) {
-			title = '포폴 : 스터디 / 프로젝트 모집 글 수정';
-			desc = '여기는 스터디 / 프로젝트 글 편집하는 페이지입니다.';
-		} else {
-			title = route.title;
-			desc = route.desc;
-		}
-	}
+	const [seoData, setSeoData] = useState({ title: '', desc: '' });
+	const checkSeoData = pathname => {
+		setSeoData(getSeoData(pathname));
+	};
 
 	useEffect(() => {
-		document.title = title;
-	}, [title]);
+		checkSeoData(location.pathname);
+	}, [location.pathname]);
+
+	useEffect(() => {
+		document.title = seoData.title;
+		const metaTags = document.getElementsByTagName('meta');
+		Array.from(metaTags).forEach(metaTag => {
+			if (targetMetaTags.includes(metaTag.getAttribute('name'))) {
+				document.head.removeChild(metaTag);
+			}
+		});
+
+		const newMetaTag1 = document.createElement('meta');
+		newMetaTag1.setAttribute('name', 'description');
+		newMetaTag1.setAttribute('content', seoData.desc);
+		document.head.append(newMetaTag1);
+
+		const newMetaTag2 = document.createElement('meta');
+		newMetaTag2.setAttribute('name', 'og:title');
+		newMetaTag2.setAttribute('content', seoData.title);
+		document.head.append(newMetaTag2);
+
+		const newMetaTag3 = document.createElement('meta');
+		newMetaTag3.setAttribute('name', 'og:description');
+		newMetaTag3.setAttribute('content', seoData.desc);
+		document.head.append(newMetaTag3);
+	}, [seoData]);
 
 	return (
 		<Helmet>
-			{/* <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> */}
-			<title>{title}</title>
-			<meta name="description" content={desc} />
-			<meta name="og:title" content={title} />
-			<meta name="og:description" content={desc} />
-			{/* 다른 <meta/> 추가 적용 .....  */}
+			<title>{seoData.title}</title>
+			{/* <meta name="description" content={seoData.desc} />
+			<meta name="og:title" content={seoData.title} />
+			<meta name="og:description" content={seoData.desc} /> */}
+			{/* 다른 <meta/> 추가 적용 ..... */}
 		</Helmet>
 	);
 };

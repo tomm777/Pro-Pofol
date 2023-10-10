@@ -24,6 +24,7 @@ const getSeoData = targetPath => {
 };
 
 const targetMetaTags = ['description', 'og:title', 'og:description'];
+
 const Seo = () => {
 	const location = useLocation();
 
@@ -45,29 +46,21 @@ const Seo = () => {
 			}
 		});
 
-		const newMetaTag1 = document.createElement('meta');
-		newMetaTag1.setAttribute('name', 'description');
-		newMetaTag1.setAttribute('content', seoData.desc);
-		document.head.append(newMetaTag1);
-
-		const newMetaTag2 = document.createElement('meta');
-		newMetaTag2.setAttribute('name', 'og:title');
-		newMetaTag2.setAttribute('content', seoData.title);
-		document.head.append(newMetaTag2);
-
-		const newMetaTag3 = document.createElement('meta');
-		newMetaTag3.setAttribute('name', 'og:description');
-		newMetaTag3.setAttribute('content', seoData.desc);
-		document.head.append(newMetaTag3);
+		targetMetaTags.forEach(name => {
+			const newMetaTag = document.createElement('meta');
+			newMetaTag.setAttribute('name', name);
+			newMetaTag.setAttribute(
+				'content',
+				name === 'og:title' ? seoData.title : seoData.desc,
+			);
+			document.head.append(newMetaTag);
+		});
 	}, [seoData]);
 
 	return (
 		<Helmet>
 			<title>{seoData.title}</title>
-			{/* <meta name="description" content={seoData.desc} />
-			<meta name="og:title" content={seoData.title} />
-			<meta name="og:description" content={seoData.desc} /> */}
-			{/* 다른 <meta/> 추가 적용 ..... */}
+			{/* 다른 <meta/> 추가 적용 */}
 		</Helmet>
 	);
 };

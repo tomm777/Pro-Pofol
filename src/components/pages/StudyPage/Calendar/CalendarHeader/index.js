@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
 import * as S from './index.styles';
 
-function CalendarHeader({ currentDate, handleMonthChange }) {
+function CalendarHeader({ selectedDate, handleMonthChange }) {
 	// 이전 달 클릭
 	const handleLeftClick = () => {
-		const newDate = new Date(currentDate);
+		const newDate = new Date(selectedDate);
 		newDate.setMonth(newDate.getMonth() - 1);
 		handleMonthChange(newDate);
 	};
 
+	// console.log(selectedDate)
+
 	// 다음 달 클릭
 	const handleRightClick = () => {
-		const newDate = new Date(currentDate);
+		const newDate = new Date(selectedDate);
 		newDate.setMonth(newDate.getMonth() + 1);
 		handleMonthChange(newDate);
 	};
 
-	const year = currentDate.getFullYear();
-
-	const month = currentDate.toLocaleString('default', { month: 'long' });
+	const year = selectedDate.getFullYear();
+	const month = selectedDate.toLocaleString('default', { month: 'long' });
 
 	return (
 		<S.Container>

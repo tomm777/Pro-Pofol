@@ -28,17 +28,16 @@ export const CalendarCell = styled.td`
 	font-size: ${({ theme }) => theme.FONT_SIZE.sm};
 
 	cursor: pointer;
-	${({ $isCurrentMonth, $isSelected }) => {
+	${({ $isSelected }) => {
 		if ($isSelected) {
 			return `
 	  background-color: #3377FF;
 	  color: #fff;
 	`;
-		} else if (!$isCurrentMonth) {
+		} else {
 			return `
-	  color: #ccc;
+	  color: #000;
 	`;
 		}
-		return '';
 	}}
 `;

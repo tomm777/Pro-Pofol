@@ -13,7 +13,6 @@ import Calendar from 'components/pages/StudyPage/Calendar';
 
 function StudyEditPost() {
 	useFooter();
-	const [isEdit, setIsEdit] = useState(false);
 	const [selectedCalendarDate, setSelectedCalendarDate] = useState(
 		new Date(),
 	);
@@ -31,6 +30,8 @@ function StudyEditPost() {
 		recruitsStatus: '모집중',
 		profileImageUrl: '',
 	});
+
+	console.log('선택한 옵션', selectedOptions);
 
 	const params = useParams();
 	const postId = params.postId;
@@ -76,8 +77,6 @@ function StudyEditPost() {
 
 	useEffect(() => {
 		if (postData._id) {
-			setIsEdit(true);
-
 			const initialDeadline = new Date(postData.deadline);
 			setSelectedOptions(prevOptions => ({
 				...prevOptions,

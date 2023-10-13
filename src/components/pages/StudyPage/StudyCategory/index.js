@@ -32,10 +32,11 @@ function StudyCategory({ selectedValues, setSelectedValues }) {
 			...prev,
 			classification: classificationValue,
 		}));
+		// console.log('카테고리 선택', selectedValues);
 
-		if (selectedValues.classificationValue !== classificationValue) {
-			setData([]);
-		}
+		// if (selectedValues.classificationValue !== classificationValue) {
+		// 	setData([]);
+		// }
 	};
 
 	// 포지션 클릭
@@ -45,9 +46,11 @@ function StudyCategory({ selectedValues, setSelectedValues }) {
 			position: positionValue,
 		}));
 
-		if (selectedValues.position !== positionValue) {
-			setData([]);
-		}
+		// console.log('포지션 선택', selectedValues);
+
+		// if (selectedValues.position !== positionValue) {
+		// 	setData([]);
+		// }
 	};
 
 	return (

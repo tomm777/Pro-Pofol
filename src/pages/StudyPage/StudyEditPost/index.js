@@ -31,8 +31,6 @@ function StudyEditPost() {
 		profileImageUrl: '',
 	});
 
-	console.log('선택한 옵션', selectedOptions);
-
 	const params = useParams();
 	const postId = params.postId;
 
@@ -77,7 +75,13 @@ function StudyEditPost() {
 
 	useEffect(() => {
 		if (postData._id) {
-			const initialDeadline = new Date(postData.deadline);
+			const deadlineDate = new Date(postData.deadline);
+			setSelectedCalendarDate(deadlineDate);
+		}
+	}, [postData._id]);
+
+	useEffect(() => {
+		if (postData._id) {
 			setSelectedOptions(prevOptions => ({
 				...prevOptions,
 				classification: postData.classification,
@@ -86,7 +90,7 @@ function StudyEditPost() {
 				recruits: postData.recruits,
 				howContactTitle: postData.howContactTitle,
 				howContactContent: postData.howContactContent,
-				deadline: initialDeadline,
+				deadline: selectedCalendarDate,
 				nickName: userData.nickName,
 				name: userData.name,
 				ownerId: userData._id,
@@ -95,6 +99,13 @@ function StudyEditPost() {
 			}));
 		}
 	}, [postData._id]);
+
+	// console.log(
+	// 	'selectedCalendarDate',
+	// 	selectedCalendarDate,
+	// 	'selectedOptions',
+	// 	selectedOptions,
+	// );
 
 	const handleOptionChange = (name, value) => {
 		setSelectedOptions(prevOptions => ({

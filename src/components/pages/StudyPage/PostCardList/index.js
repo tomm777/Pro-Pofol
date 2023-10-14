@@ -18,7 +18,7 @@ function PostCardList({
 	limit,
 }) {
 	const [data, setData] = useRecoilState(studyPageState);
-	const [disableLoadData, setDisableLoadDate] = useState(false);
+	const [disableLoadData, setDisableLoadData] = useState(false);
 	const observerRef = useRef();
 
 	const loadData = async () => {
@@ -36,15 +36,16 @@ function PostCardList({
 			applyResult: false,
 		});
 		if (addedData && !addedData.projectStudies.length) {
-			setDisableLoadDate(true);
+			setDisableLoadData(true);
+			return;
 		}
 		// console.log(data);
 		setData(prev => [...prev, ...addedData.projectStudies]);
 	};
 
-	// console.log('disableLoadData', disableLoadData);
-
-	const { setTargetRef } = useInfiniteScroll(loadData, [currentSkip]);
+	const { setTargetRef } = useInfiniteScroll(loadData, disableLoadData, [
+		currentSkip,
+	]);
 	useEffect(() => {
 		if (observerRef?.current) {
 			setTargetRef(observerRef);
@@ -65,13 +66,15 @@ function PostCardList({
 						))}
 					</>
 				)}
-				<div
-					style={{
-						height: '10px',
-						border: 'none',
-					}}
-					ref={observerRef}
-				/>
+				{(!isLoadingProjectStudy || currentSkip) && (
+					<div
+						style={{
+							height: '10px',
+							border: 'none',
+						}}
+						ref={observerRef}
+					/>
+				)}
 			</S.PostCardContainer>
 		</>
 	);

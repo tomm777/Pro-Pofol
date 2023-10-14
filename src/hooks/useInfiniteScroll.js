@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 
-function useInfiniteScroll(func, deps) {
+function useInfiniteScroll(func, pause, deps) {
 	const [targetRef, setTargetRef] = useState(useRef(null));
 
 	const intersectionObserver = new IntersectionObserver(entries => {
 		const target = entries[0];
+		if(pause) return;
 		if (target.isIntersecting) {
 			intersectionObserver.unobserve(targetRef.current);
 			func();

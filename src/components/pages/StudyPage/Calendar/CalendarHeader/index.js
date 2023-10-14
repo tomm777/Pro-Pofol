@@ -1,33 +1,29 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import * as S from './index.styles';
 
 function CalendarHeader({ selectedDate, handleMonthChange }) {
-	// 이전 달 클릭
-	const handleLeftClick = () => {
-		const newDate = new Date(selectedDate);
-		newDate.setMonth(newDate.getMonth() - 1);
-		handleMonthChange(newDate);
-	};
+	const handleClickNav = useCallback(
+		direction => {
+			const newDate = new Date(selectedDate);
+			newDate.setMonth(newDate.getMonth() + direction);
+			handleMonthChange(newDate);
+		},
+		[selectedDate, handleMonthChange],
+	);
 
-	// console.log(selectedDate)
-
-	// 다음 달 클릭
-	const handleRightClick = () => {
-		const newDate = new Date(selectedDate);
-		newDate.setMonth(newDate.getMonth() + 1);
-		handleMonthChange(newDate);
-	};
-
-	const year = selectedDate.getFullYear();
-	const month = selectedDate.toLocaleString('default', { month: 'long' });
+	const year = useMemo(() => selectedDate.getFullYear(), [selectedDate]);
+	const month = useMemo(
+		() => selectedDate.toLocaleString('default', { month: 'long' }),
+		[selectedDate],
+	);
 
 	return (
 		<S.Container>
-			<S.ArrowButton onClick={handleLeftClick}>
+			<S.ArrowButton onClick={() => handleClickNav(-1)}>
 				<span className="material-symbols-outlined">chevron_left</span>
 			</S.ArrowButton>
 			<p>{`${year}년 ${month}`}</p>
-			<S.ArrowButton onClick={handleRightClick}>
+			<S.ArrowButton onClick={() => handleClickNav(1)}>
 				<span className="material-symbols-outlined">chevron_right</span>
 			</S.ArrowButton>
 		</S.Container>

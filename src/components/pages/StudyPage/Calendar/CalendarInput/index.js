@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as S from './index.styles';
+import { formatDate } from 'utils/date';
 
 function CalendarInput({ selectedDate, toggleCalendar }) {
 	const [formattedSelectedDate, setFormattedSelectedDate] = useState({
@@ -7,13 +8,6 @@ function CalendarInput({ selectedDate, toggleCalendar }) {
 		month: selectedDate.getMonth() + 1,
 		date: selectedDate.getDate(),
 	});
-
-	// 날짜 형식 변환
-	const formatDate = (year, month, date) => {
-		const formattedMonth = `${month < 10 ? '0' : ''}${month}`;
-		const formattedDate = `${date < 10 ? '0' : ''}${date}`;
-		return `${year}-${formattedMonth}-${formattedDate}`;
-	};
 
 	// Input에 들어가는 날짜
 	const [inputValue, setInputValue] = useState(

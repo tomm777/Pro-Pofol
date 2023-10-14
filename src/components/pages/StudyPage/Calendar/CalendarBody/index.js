@@ -1,45 +1,64 @@
-import React, { useEffect, useState } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import * as S from './index.styles';
 
-function CalendarBody({ selectedDate, setSelectedDate, setIsOpen }) {
-	const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
-	const year = selectedDate.getFullYear();
-	const month = selectedDate.getMonth();
-	const daysInMonth = new Date(year, month + 1, 0).getDate();
-	const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
-	const firstDayOfMonth = new Date(year, month, 1).getDay();
-	const [selectedDay, setSelectedDay] = useState(null);
+const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
 
-	const handleDateClick = day => {
-		const selectedDay = new Date(year, month, day);
-		setSelectedDate(selectedDay);
-		setSelectedDay(day);
-		setIsOpen(false);
+function CalendarBody({ selectedDate, setSelectedDate, setIsOpen }) {
+	const { year, month } = {
+		year: selectedDate.getFullYear(),
+		month: selectedDate.getMonth(),
 	};
 
+	const { daysInMonth, firstDayOfMonth } = {
+		daysInMonth: new Date(year, month + 1, 0).getDate(),
+		firstDayOfMonth: new Date(year, month, 1).getDay(),
+	};
+
+	const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+	const handleDateClick = useCallback(
+		day => {
+			const selectedDay = new Date(year, month, day);
+			setSelectedDate(selectedDay);
+			setIsOpen(false);
+		},
+		[year, month, setSelectedDate, setIsOpen],
+	);
+
 	// 달의 시작에서 앞에 빈칸
-	const emptyCells = Array.from({ length: firstDayOfMonth }, (_, i) => (
-		<S.CalendarCell key={`empty-${i}`} />
-	));
+	const emptyCells = useMemo(
+		() =>
+			Array.from({ length: firstDayOfMonth }, (_, i) => (
+				<S.CalendarCell key={`empty-${i}`} />
+			)),
+		[firstDayOfMonth],
+	);
 
 	// 날짜
-	const dayCells = days.map((day, idx) => (
-		<S.CalendarCell
-			key={idx}
-			onClick={() => handleDateClick(day)}
-			$isSelected={selectedDate.getDate() === day}
-		>
-			{day}
-		</S.CalendarCell>
-	));
+	const dayCells = useMemo(
+		() =>
+			days.map((day, idx) => (
+				<S.CalendarCell
+					key={idx}
+					onClick={() => handleDateClick(day)}
+					$isSelected={selectedDate.getDate() === day}
+				>
+					{day}
+				</S.CalendarCell>
+			)),
+		[days, handleDateClick, selectedDate],
+	);
 
 	// 빈칸과 날짜를 합쳐서 새로운 배열로 만든다. => 일주일 단위로 끊음
-	const weekRows = [];
-	const totalCells = emptyCells.concat(dayCells);
-	for (let i = 0; i < totalCells.length; i += 7) {
-		const week = totalCells.slice(i, i + 7);
-		weekRows.push(<tr key={i}>{week}</tr>);
-	}
+	const weekRows = useMemo(() => {
+		const totalCells = emptyCells.concat(dayCells);
+		const rows = [];
+		for (let i = 0; i < totalCells.length; i += 7) {
+			const week = totalCells.slice(i, i + 7);
+			rows.push(<tr key={i}>{week}</tr>);
+		}
+		return rows;
+	}, [emptyCells, dayCells]);
 
 	// console.log(emptyCells, firstDayOfMonth);
 

@@ -4,17 +4,23 @@ import * as S from './index.styles';
 const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
 
 function CalendarBody({ selectedDate, setSelectedDate, setIsOpen }) {
-	const { year, month } = {
-		year: selectedDate.getFullYear(),
-		month: selectedDate.getMonth(),
-	};
+	const [year, month] = useMemo(
+		() => [selectedDate.getFullYear(), selectedDate.getMonth()],
+		[selectedDate],
+	);
 
-	const { daysInMonth, firstDayOfMonth } = {
-		daysInMonth: new Date(year, month + 1, 0).getDate(),
-		firstDayOfMonth: new Date(year, month, 1).getDay(),
-	};
+	const [daysInMonth, firstDayOfMonth] = useMemo(
+		() => [
+			new Date(year, month + 1, 0).getDate(),
+			new Date(year, month, 1).getDay(),
+		],
+		[year, month],
+	);
 
-	const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+	const days = useMemo(
+		() => Array.from({ length: daysInMonth }, (_, i) => i + 1),
+		[daysInMonth],
+	);
 
 	const handleDateClick = useCallback(
 		day => {

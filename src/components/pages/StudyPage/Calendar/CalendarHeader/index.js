@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import * as S from './index.styles';
 
 function CalendarHeader({ selectedDate, handleMonthChange }) {
-	const handleClickNav = useCallback(
+	const handleClickNavigator = useCallback(
 		direction => {
 			const newDate = new Date(selectedDate);
 			newDate.setMonth(newDate.getMonth() + direction);
@@ -19,11 +19,11 @@ function CalendarHeader({ selectedDate, handleMonthChange }) {
 
 	return (
 		<S.Container>
-			<S.ArrowButton onClick={() => handleClickNav(-1)}>
+			<S.ArrowButton onClick={() => handleClickNavigator(-1)}>
 				<span className="material-symbols-outlined">chevron_left</span>
 			</S.ArrowButton>
 			<p>{`${year}년 ${month}`}</p>
-			<S.ArrowButton onClick={() => handleClickNav(1)}>
+			<S.ArrowButton onClick={() => handleClickNavigator(1)}>
 				<span className="material-symbols-outlined">chevron_right</span>
 			</S.ArrowButton>
 		</S.Container>

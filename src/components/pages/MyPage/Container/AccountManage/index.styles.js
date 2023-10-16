@@ -81,6 +81,8 @@ export const UserCardImg = styled.div`
 	& button {
 		background: none;
 		cursor: pointer;
+		font-family: ${({ theme }) => theme.FONT_WEIGHT.regular};
+		font-size: ${({ theme }) => theme.FONT_SIZE.xs};
 	}
 
 	& input:nth-child(3) {

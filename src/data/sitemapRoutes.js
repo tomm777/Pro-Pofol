@@ -1,5 +1,5 @@
-export const sitemapUrl = 'http://localhost:3000';
-// export const sitemapUrl = 'https://pofol.site';
+// export const sitemapUrl = 'http://localhost:3000';
+export const sitemapUrl = 'https://pofol.site';
 
 export const sitemapRoutes = [
 	{

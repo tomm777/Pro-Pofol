@@ -71,6 +71,7 @@ export const MentorCardBox = styled.div`
 
 export const MentorBox = styled.div`
 	margin: 0 0 120px 0;
+	min-height: 580px;
 `;
 
 export const MentorTitleBox = styled(TitleBox)`

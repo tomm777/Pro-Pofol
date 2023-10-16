@@ -51,7 +51,7 @@ export const SubTitle = styled.div`
 
 export const CheckboxWrap = styled.div`
 	display: flex;
-	align-items: flex-start;
+	align-items: center;
 	gap: 0.5rem;
 `;
 

@@ -14,6 +14,7 @@ import Review from 'components/@common/Review';
 import Line from 'components/@common/Line';
 import Button from 'components/@common/Button';
 import ApplyModal from 'components/@common/ApplyModal';
+import Loading from 'components/@common/Loading/Loading';
 
 function PortfolioPost() {
 	useFooter();
@@ -86,7 +87,7 @@ function PortfolioPost() {
 
 	return (
 		<>
-			{isLoading && <p>로딩 중입니다.</p>}
+			{isLoading && <Loading />}
 			{post && (
 				<S.PostBox>
 					<S.TitleBox>

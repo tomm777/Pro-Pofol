@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import useApi from 'hooks/useApi';
 import * as MPLD from './index.styles';
 import { useEffect, useState } from 'react';
+import MESSAGE from 'constants/message';
 
 // 유저가 작성한 게시글(스터디/프로젝트 모집글)
 function MentoringPostListData() {
@@ -36,7 +37,7 @@ function MentoringPostListData() {
 			method: 'delete',
 			path: `/portfolios/${targetId}`,
 		});
-		alert('삭제 되었습니다.');
+		alert(MESSAGE.DELETE.COMPLETE);
 		await postListsT({
 			method: 'get',
 			path: `/portfolios/mypage`,

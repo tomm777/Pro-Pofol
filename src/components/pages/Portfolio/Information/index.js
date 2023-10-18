@@ -4,7 +4,13 @@ import Position from 'components/@common/Position';
 import Input from 'components/@common/Input';
 
 function Information(props) {
-	const { handleChange, user, mentorPost, portfolioId } = props;
+	const {
+		handleChange,
+		handlePositionChange,
+		user,
+		mentorPost,
+		portfolioId,
+	} = props;
 	const { name, career, company } = user;
 
 	return (
@@ -15,7 +21,7 @@ function Information(props) {
 				<S.PositionBox>
 					<Position
 						value={mentorPost.position}
-						onChange={handleChange}
+						onChange={handlePositionChange}
 					/>
 				</S.PositionBox>
 			</S.Contents>

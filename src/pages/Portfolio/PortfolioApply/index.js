@@ -146,7 +146,8 @@ function PortfolioApply() {
 				<S.ContentsBox>
 					<p>1. 멘토 님의 기본 정보를 작성해 주세요.</p>
 					<Information
-						handleChange={handlePositionChange}
+						handlePositionChange={handlePositionChange}
+						handleChange={handleChange}
 						user={user}
 						portfolioId={portfolioId}
 						mentorPost={mentorPost}

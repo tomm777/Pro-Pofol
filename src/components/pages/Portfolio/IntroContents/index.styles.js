@@ -18,6 +18,9 @@ export const IntroBox = styled.div`
 
 	& pre {
 		line-height: 1.6;
+		white-space: pre-wrap;
+		word-break: break-all;
+		overflow: auto;
 	}
 `;
 

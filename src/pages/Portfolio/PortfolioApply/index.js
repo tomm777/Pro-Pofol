@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import useFooter from 'hooks/useFooter';
 import useApi from 'hooks/useApi';
 import { check } from 'utils/check';
 import MESSAGE from 'constants/message';
+import { userAtom } from 'recoil/atoms/index.atom';
 
 import * as S from './index.styles';
 
@@ -24,6 +26,7 @@ function PortfolioApply() {
 
 	// 유저 정보 체크
 	const [user, setUser] = useState([]);
+	const { nickName } = useRecoilValue(userAtom);
 
 	// 글 작성
 	const [mentorPost, setMentorPost] = useState({
@@ -72,11 +75,12 @@ function PortfolioApply() {
 	// 글 수정 시 이미 들어가 있던 데이터 불러오는 로직
 	useEffect(() => {
 		if (postResult && portfolioId) {
+			console.log(postResult);
 			setMentorPost(prevState => ({
 				...prevState,
 				ownerId: result._id,
 				position: postResult.position,
-				nickName: postResult.nickName,
+				nickName,
 				name: postResult.name,
 				company: postResult.company,
 				career: postResult.career,

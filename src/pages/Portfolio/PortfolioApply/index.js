@@ -52,7 +52,7 @@ function PortfolioApply() {
 
 	// 원래 유저에 들어가 있던 정보 setMentorPost에 넣어주기
 	useEffect(() => {
-		if (result) {
+		if (result && !portfolioId) {
 			setUser(result);
 
 			setMentorPost(prevState => ({
@@ -71,7 +71,7 @@ function PortfolioApply() {
 
 	// 글 수정 시 이미 들어가 있던 데이터 불러오는 로직
 	useEffect(() => {
-		if (postResult) {
+		if (postResult && portfolioId) {
 			setMentorPost(prevState => ({
 				...prevState,
 				ownerId: result._id,

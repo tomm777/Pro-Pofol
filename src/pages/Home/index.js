@@ -13,8 +13,7 @@ import LoadingBar from 'components/@common/Loading';
 
 function Home() {
 	const [recommendedMentors, setRecommendedMentors] = useState([]);
-	const { isAuth } = useRecoilValue(userAtom);
-	const [nickName, setNickName] = useState('');
+	const { isAuth, nickName } = useRecoilValue(userAtom);
 	const [loading, setLoading] = useState(true);
 
 	const { trigger: recommendTrigger } = useApi({
@@ -26,7 +25,6 @@ function Home() {
 		const getResult = await recommendTrigger({ applyResult: false });
 
 		if (getResult && getResult.portfolios && getResult.portfolios.length) {
-			setNickName(getResult.nickName);
 			setRecommendedMentors([...getResult.portfolios]);
 		}
 		setLoading(false);

@@ -63,7 +63,7 @@ function PortfolioPost() {
 	// 게시글 삭제
 	const handleDelete = () => {
 		if (confirm(MESSAGE.POST.DELETE)) {
-			trigger({ path: `/portfolio/${path}`, method: 'delete' });
+			trigger({ path: `/portfolios/${path}`, method: 'delete' });
 			alert(MESSAGE.DELETE.COMPLETE);
 			navigate('/portfolio');
 		}

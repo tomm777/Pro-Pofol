@@ -1,4 +1,4 @@
-# 프로페셔널한 포트폴리오 리뷰를 받을 수 있는 Pro포폴입니다.  
+# 프로폴리오 리뷰 사이트 Pro-포폴입니다.  
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

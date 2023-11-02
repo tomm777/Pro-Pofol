@@ -1,10 +1,12 @@
 # 프로폴리오 리뷰 사이트 Pro-포폴입니다.
 
-![Alt text](image-1.png)
+![image](https://github.com/tomm777/Pro-Pofol-client/assets/95726595/bdb821ff-159c-49ef-8f8b-d339dee02f6a)
+
 
 # 페르소나
 
-![Alt text](image-3.png)
+![image](https://github.com/tomm777/Pro-Pofol-client/assets/95726595/59ee8a75-870f-49a2-bd74-c0fac42a949f)
+
 
 # URL
 

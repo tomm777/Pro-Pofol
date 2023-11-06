@@ -124,8 +124,9 @@
 # 협업 방법
 
 # 1. Notion
+![image](https://github.com/tomm777/Pro-Pofol-client/assets/95726595/2f1fce50-533c-457f-a7b9-ee09dc696c9c)
 
-![Alt text](notion.png)
+
 
 <ul>
     <li>팀 노션 워크스페이지에서 진행상황, 진행예정 등 작업 흐름을 공유하였습니다.</li>
@@ -134,7 +135,8 @@
 
 # 2. Figma
 
-![Alt text](image.png)
+![image](https://github.com/tomm777/Pro-Pofol-client/assets/95726595/5f21b781-a2fb-46f7-92bd-a8772481f098)
+
 
 <ul>
     <li>피그마에서 기획 및 디자인작업을 진행했습니다.</li>
@@ -143,7 +145,8 @@
 
 # 3. Gather Town
 
-![Alt text](gather.png)
+![image](https://github.com/tomm777/Pro-Pofol-client/assets/95726595/c956378a-f02a-4ade-b930-46e9ac097436)
+
 
 <ul>
     <li>매일 아침 10시에 게더타운에서 회의하였으며 이슈가 있을 시 실시간으로 소통하며 협업을 진행하였습니다.</li>
@@ -151,6 +154,77 @@
 
 </br>
 
+# 🙋‍♂️ What did I do?
+
+<ul>
+  <li>구현기능
+    <ul>
+      <li>관리자 페이지 기능 구현</li>
+      <li>Amazon S3 서버로 이미지 업로드 기능 구현</li>
+      <li>알림 기능 구현</li>
+      <li>useApi.js 작성</li>
+      <li>Axios의 Interceptors 기능 구현</li>
+    </ul>
+  </li>
+  <li>구현 상세 설명</li>
+    <details markdown="1">
+  <summary>관리자 페이지 기능 구현</summary>
+  <div>
+    <ul>
+      <li>페이지의 공통 부분인 SideBar, Table, 레이아웃 등 컴포넌트로 관리</li>
+    </ul>
+  </div>
+</details>
+     <details markdown="1">
+  <summary>Amazon S3 서버로 이미지 업로드 기능 구현</summary>
+  <div>
+    <ul>
+      <li>multer를 사용해서 백엔드에서 이미지를 업로드하여 관리하려고 하였으나
+      백엔드의 인적자원이 부족해서 프론트에서 s3 서버로 이미지를 업로드하는
+      기능을 구현했습니다.</li>
+    </ul>
+  </div>
+</details>
+    <details markdown="1">
+  <summary>알림 기능 구현</summary>
+  <div>
+    <ul>
+      <li>Palling방식으로 유저 정보를 setInterval로 주기적으로 호출해서
+      알림이 오면 그 정보를 받아서 화면에
+      표시해주는 기능 구현</li>
+        <li>알림의 종류를 캐치하여 알림을 클릭 할 시 정보에 맞는 화면으로 이동</li>
+    </ul>
+  </div>
+</details>
+    <details markdown="1">
+  <summary>useApi.js 작성</summary>
+  <div>
+    <ul>
+      <li>사용 배경 : Axios를 이용해 HTTP 통신을 하던 와중 매번 반복적으로 API 호출 로직을
+      작성해야 하는 불편한 상황</li>
+        <li>로직을 반복해서 작성하지 않고 재사용 할 수 있는 부분과 API 호출에 따른 데이터
+        로딩상태, 에러 상태와 데이터를 쉽게 관리</li>
+        <li>즉시 호출할 때 쓰이는 initFetch 함수, API가 필요한 상황에만 호출을 하는 trigger 함수
+        로 2개를 나눠서 진행하던 도중 initFetch에서 호출하는 상황을 trigger로 구현 할 수있다고
+        판단되어 현재 trigger로만 API호출</li>
+    </ul>
+  </div>
+</details>
+     <details markdown="1">
+  <summary>Axios의 Interceptors 기능 구현</summary>
+  <div>
+    <ul>
+      <li>Axios로 호출할 때 BaseUrl 설정 서버에서 일정시간 이상 응답이 없을 경우 에러처리</li>
+      <li>요청, 응답전 Interceptors 기능으로 필요한 데이터만을 추출, 에러 처리</li>
+    </ul>
+  </div>
+</details>
+</ul>
+
+# [ 프로젝트 기간 ]
+2023.08.14 ~ 2023.09.01
+
 # 기술스택
 
-![Alt text](image-4.png)
+![image](https://github.com/tomm777/Pro-Pofol-client/assets/95726595/0a39a5f8-a3a5-43b5-bdcc-ed6d1bf808be)
+

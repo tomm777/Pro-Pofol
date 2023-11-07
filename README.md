@@ -242,8 +242,14 @@
 </details>
 </ul>
 
-
 # 기술스택
 
 ![image](https://github.com/tomm777/Pro-Pofol-client/assets/95726595/0a39a5f8-a3a5-43b5-bdcc-ed6d1bf808be)
+
+
+## 🌐 Browser Support
+
+| ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_48x48.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_48x48.png) | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_48x48.png) |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Latest ✔ | Latest ✔ | Latest ✔ |
 

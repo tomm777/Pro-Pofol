@@ -14,7 +14,7 @@
 | 김현규 | 김기범 | 이혜진 | 예은선 | 조아연 | 박민준 |
 | :-----------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: | :------------------------------------------------------------------------------: | :------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/110807563?v=4" width="90px"/> | <img src="https://avatars.githubusercontent.com/u/95726595?v=4" width="90px" /> | <img src="https://avatars.githubusercontent.com/u/122958485?v=4" width="90px" /> | <img src="https://avatars.githubusercontent.com/u/118370673?v=4" width="90px" /> | <img src="https://avatars.githubusercontent.com/u/92145151?v=4" width="90px" /> | <img src="https://avatars.githubusercontent.com/u/129268793?v=4" width="90px" /> |
-| [Hyeongyu-619](https://github.com/Hyeongyu-619) | [Gigeom Kim](https://github.com/tomm777) | [meggylee](https://github.com/meggylee) | [Ysvln](https://github.com/Ysvln) | [zn](https://github.com/salmeungyelan) | [박민준](https://github.com/)
+| [Hyeongyu-619](https://github.com/Hyeongyu-619) | [Gibeom Kim](https://github.com/tomm777) | [meggylee](https://github.com/meggylee) | [Ysvln](https://github.com/Ysvln) | [zn](https://github.com/salmeungyelan) | [박민준](https://github.com/)
 
 
 #### 1. 김현규(팀장/BE) - 백엔드 총괄 및 배포

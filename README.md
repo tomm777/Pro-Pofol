@@ -193,7 +193,8 @@
   <summary>관리자 페이지 기능 구현</summary>
   <div>
     <ul>
-      <li>페이지의 공통 부분인 SideBar, Table, 레이아웃 등 컴포넌트로 관리</li>
+        <li>페이지의 공통 부분인 SideBar, Table, 레이아웃 등 컴포넌트로 관리</li>
+        <li>관리자 페이지 모든 기능 구현</li>
     </ul>
   </div>
 </details>

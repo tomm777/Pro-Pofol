@@ -32,7 +32,7 @@
 # URL
 
 
-프로젝트 배포 주소 : <a href=https://pofol.site target=_blank>https://pofol.site/</a>
+프로젝트 배포 주소 : <a href=http://pofol.site target=_blank>http://pofol.site/</a>
 </br>
 백엔드 서버 주소 :
 <a href=https://github.com/tomm777/Pro-Pofol-server target=_blank>https://github.com/tomm777/Pro-Pofol-server</a>
